@@ -1,0 +1,174 @@
+/* ════════════════════════════════════════════════════════════
+   Hope By Bit · design tokens
+   Built to Pavel Kiselev's three-level method:
+   global → system → component.
+   Globals are never used directly by a screen.
+
+   One palette — Grove: oat · forest · apricot.
+
+   Two grounds. Dark uses the last six neutral steps only,
+   with accents desaturated rather than merely lightened.
+
+   The accent names are kept generic at level 2 (--accent,
+   --secondary) so a screen never names a hue. Forest is
+   always "the good bit"; apricot is always "your people".
+   ════════════════════════════════════════════════════════════ */
+
+/* ── LEVEL 1 · GLOBAL ─────────────────────────────────────── */
+:root {
+  --g-n-100: hsl(40 10% 100%);
+  --g-n-98:  hsl(40 10% 97.5%);
+  --g-n-96:  hsl(40 9% 95.5%);
+  --g-n-92:  hsl(40 9% 92%);
+  --g-n-86:  hsl(40 8% 86%);
+  --g-n-78:  hsl(40 8% 78%);
+  --g-n-58:  hsl(40 7% 56%);
+  --g-n-54:  hsl(40 7% 52%);
+  --g-n-38:  hsl(40 9% 36%);
+  --g-n-32:  hsl(40 10% 30%);
+  --g-n-24:  hsl(40 11% 23%);
+  --g-n-18:  hsl(40 12% 17%);
+  --g-n-16:  hsl(40 12% 15%);
+  --g-n-14:  hsl(40 12% 13%);
+  --g-n-10:  hsl(40 13% 9.5%);
+  --g-n-08:  hsl(40 14% 7.5%);
+
+  /* Forest — the good bit. Deep enough that white passes easily. */
+  --g-teal-100: hsl(155 30% 94%);
+  --g-teal-300: hsl(155 30% 30%);
+  --g-teal-400: hsl(155 33% 24%);
+  --g-teal-500: hsl(155 35% 19%);
+  --g-teal-d-300: hsl(155 24% 50%);
+  --g-teal-d-400: hsl(155 26% 60%);
+  --g-teal-d-tint: hsl(155 22% 12%);
+
+  /* Apricot — your people. The chosen 52% swatch is the TINT and
+     the avatar; the button fill drops to 40% so it clears 4.5:1
+     against white with margin (42% lands on 4.50 exactly, which
+     is too tight to ship). The warmth survives; the fill works. */
+  --g-clay-100: hsl(28 62% 94%);
+  --g-clay-300: hsl(28 58% 40%);
+  --g-clay-400: hsl(28 60% 33%);
+  --g-clay-d-300: hsl(28 46% 60%);
+  --g-clay-d-tint: hsl(28 34% 12%);
+
+  /* ── Shape and space ─────────────────────────────────────── */
+  --gutter: 32px;
+  --radius-control: 14px;
+  --radius-card: 18px;
+  --tap: 56px;
+
+  /* ── Type ────────────────────────────────────────────────
+     Settled: Cormorant Infant heads, Rubik carries body and
+     every control. Two families, which is the ceiling the
+     website build enforces. Declared once here rather than
+     per page, because there is no longer a second answer. */
+  --font-display: 'Cormorant Infant', Georgia, serif;
+  --font-ui: 'Rubik', system-ui, sans-serif;
+
+  /* Rubik is the body face, so it is the reference and needs
+     no x-height correction against itself. */
+  --text-scale: 1;
+  --lh-body: 1.68;
+
+  /* Cormorant Infant is small on the body and light in colour;
+     a heading has to be set large before it reads as a voice
+     rather than as a caption. */
+  --headline-size: 46px;
+  --headline-lh: 50px;
+  --headline-weight: 400;
+  --headline-min: 0px;
+
+  /* The figure is set in the display face. --figure-size is a
+     fixed 64px and does not scale, so the side bearing below
+     is measured against Cormorant at that size. */
+  --figure-weight: 300;
+  --figure-optical: -0.0503em;
+  --display-var: normal;
+}
+
+/* ── LEVEL 2 · SYSTEM · light ground ────────────────────────
+   Built outward from white. Strokes start "shifted right"
+   so they stay visible against the fills. These alias the
+   globals rather than restating any colour.                 */
+:root,
+[data-theme='light'] {
+  --fill-1: var(--g-n-98);
+  --fill-2: var(--g-n-96);
+  --fill-3: var(--g-n-92);
+  --stroke-1: var(--g-n-86);
+  --stroke-2: var(--g-n-78);
+
+  --text-1: var(--g-n-16);
+  --text-2: var(--g-n-38);
+  --text-3: var(--g-n-54);
+
+  --accent: var(--g-teal-300);
+  --accent-contrast: var(--g-teal-400);
+  --accent-press: var(--g-teal-500);
+  --accent-tint: var(--g-teal-100);
+  --on-accent: var(--g-n-100);
+
+  --secondary: var(--g-clay-300);
+  --secondary-tint: var(--g-clay-100);
+  --on-secondary: var(--g-n-100);
+
+  --shade: hsl(35 20% 8% / 0.09);
+  --frame-edge: var(--g-n-86);
+}
+
+/* ── LEVEL 2 · SYSTEM · dark ground ─────────────────────────
+   "Dark elevated": the last six steps only, with the same
+   gradient direction as light. Strokes move the opposite
+   way — more prominence means lighter.                      */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --fill-1: var(--g-n-10);
+    --fill-2: var(--g-n-14);
+    --fill-3: var(--g-n-18);
+    --stroke-1: var(--g-n-24);
+    --stroke-2: var(--g-n-32);
+
+    --text-1: var(--g-n-96);
+    --text-2: var(--g-n-78);
+    --text-3: var(--g-n-58);
+
+    --accent: var(--g-teal-d-300);
+    --accent-contrast: var(--g-teal-d-400);
+    --accent-press: var(--g-teal-d-400);
+    --accent-tint: var(--g-teal-d-tint);
+    --on-accent: var(--g-n-08);
+
+    --secondary: var(--g-clay-d-300);
+    --secondary-tint: var(--g-clay-d-tint);
+    --on-secondary: var(--g-n-08);
+
+    --shade: hsl(0 0% 0% / 0.5);
+    --frame-edge: var(--g-n-24);
+  }
+}
+
+[data-theme='dark'] {
+  --fill-1: var(--g-n-10);
+  --fill-2: var(--g-n-14);
+  --fill-3: var(--g-n-18);
+  --stroke-1: var(--g-n-24);
+  --stroke-2: var(--g-n-32);
+
+  --text-1: var(--g-n-96);
+  --text-2: var(--g-n-78);
+  --text-3: var(--g-n-58);
+
+  --accent: var(--g-teal-d-300);
+  --accent-contrast: var(--g-teal-d-400);
+  --accent-press: var(--g-teal-d-400);
+  --accent-tint: var(--g-teal-d-tint);
+  --on-accent: var(--g-n-08);
+
+  --secondary: var(--g-clay-d-300);
+  --secondary-tint: var(--g-clay-d-tint);
+  --on-secondary: var(--g-n-08);
+
+  --shade: hsl(0 0% 0% / 0.5);
+  --frame-edge: var(--g-n-24);
+}

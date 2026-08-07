@@ -1,0 +1,334 @@
+/* Hope By Bit — onboarding.
+   One job: the form primitives the story screens never needed —
+   chips, a counter, fields, a toggle, consent state.
+
+   Type and colour are not decided here. tokens.css sets the faces
+   and screen.css assigns the roles, so a question renders in the
+   same voice as a story without this file saying anything about it. */
+
+/* ── the step header ────────────────────────────────────────── */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 22px;
+  min-height: 32px;
+}
+
+.progress {
+  font-size: 13px;
+  line-height: 1;
+  color: var(--text-3);
+  letter-spacing: 0.02em;
+  font-variant-numeric: tabular-nums;
+}
+
+.back {
+  appearance: none;
+  border: 0;
+  background: none;
+  font: inherit;
+  font-size: 13px;
+  line-height: 1;
+  color: var(--text-3);
+  padding: 8px 2px;
+  margin: -8px -2px;
+  cursor: pointer;
+  transition: color 0.16s ease;
+}
+.back:hover { color: var(--text-1); }
+.back:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+
+/* ── chips ──────────────────────────────────────────────────
+   .seg is a single-select pill group with a shared track. Interests
+   and paths are multi-select and wrap over several rows, so they get
+   their own thing rather than bending that one. */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.chip {
+  appearance: none;
+  font: inherit;
+  font-size: 15px;
+  line-height: 1;
+  color: var(--text-2);
+  background: var(--fill-2);
+  border: 1px solid var(--stroke-1);
+  border-radius: 999px;
+  padding: 14px 17px;
+  min-height: 44px;
+  cursor: pointer;
+  transition: background 0.16s ease, color 0.16s ease, border-color 0.16s ease;
+}
+.chip:hover { border-color: var(--stroke-2); }
+.chip[aria-pressed='true'] {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--on-accent);
+}
+.chip:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* ── the counter, and the line that explains the floor ──────── */
+.count {
+  margin: 20px 0 0;
+  font-size: 15px;
+  line-height: 1.3;
+  font-weight: 500;
+  color: var(--text-1);
+  font-variant-numeric: proportional-nums;
+}
+.hint {
+  margin: 5px 0 0;
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--text-3);
+}
+
+/* The ceiling explains itself only when reached. */
+.notice {
+  margin-top: 14px;
+  padding: 12px 15px;
+  border-radius: var(--radius-control);
+  background: var(--accent-tint);
+  color: var(--text-1);
+  font-size: 13px;
+  line-height: 1.5;
+  text-wrap: pretty;
+}
+
+/* ── fields ─────────────────────────────────────────────────── */
+.field { margin-top: 20px; }
+.field > label {
+  display: block;
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--text-3);
+  margin-bottom: 8px;
+  text-wrap: pretty;
+}
+
+.field input,
+.field textarea {
+  display: block;
+  width: 100%;
+  font: inherit;
+  font-size: 16px;
+  color: var(--text-1);
+  background: var(--fill-2);
+  border: 1px solid var(--stroke-1);
+  border-radius: var(--radius-control);
+  padding: 15px 16px;
+  transition: border-color 0.16s ease;
+}
+.field input { height: var(--tap); }
+/* Tall enough for the intro message at its full length — a message
+   you are being asked to approve shouldn't arrive already clipped. */
+.field textarea {
+  line-height: 1.55;
+  min-height: 148px;
+  resize: vertical;
+}
+.field input::placeholder,
+.field textarea::placeholder { color: var(--text-3); }
+.field input:focus-visible,
+.field textarea:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+  border-color: var(--accent);
+}
+
+/* The clock is a whole-tap control, so it gets room. */
+.field input[type='time'] {
+  font-size: 22px;
+  font-variant-numeric: tabular-nums;
+  height: 64px;
+}
+
+.row { display: flex; gap: 8px; align-items: flex-end; margin-top: 20px; }
+.row .field { flex: 1; margin-top: 0; }
+
+/* ── the circle ─────────────────────────────────────────────── */
+button.person {
+  appearance: none;
+  font: inherit;
+  font-size: 14px;
+  cursor: pointer;
+  transition: border-color 0.16s ease;
+}
+button.person:hover { border-color: var(--stroke-2); }
+button.person:focus-visible { outline: 2px solid var(--secondary); outline-offset: 2px; }
+
+/* Consent is the whole point of this step, so it is visible on every
+   person rather than summarised once underneath. */
+.status-dot {
+  width: 7px;
+  height: 7px;
+  flex: none;
+  border-radius: 999px;
+  background: var(--text-3);
+}
+.person[data-consent='confirmed'] .status-dot { background: var(--accent-contrast); }
+.person[data-consent='declined'] .status-dot { background: var(--stroke-2); }
+.person-state { color: var(--text-3); font-size: 12px; }
+.person[data-consent='declined'] .name { text-decoration: line-through; opacity: 0.7; }
+
+/* ── the setting that matters most on that screen ───────────── */
+.toggle {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  width: 100%;
+  margin-top: 22px;
+  padding: 16px;
+  text-align: left;
+  font: inherit;
+  color: var(--text-1);
+  background: var(--fill-2);
+  border: 1px solid var(--stroke-1);
+  border-radius: var(--radius-card);
+  cursor: pointer;
+}
+.toggle:focus-visible { outline: 2px solid var(--secondary); outline-offset: 2px; }
+.toggle[disabled] { cursor: not-allowed; opacity: 0.6; }
+.toggle-text { flex: 1; font-size: 15px; line-height: 1.5; text-wrap: pretty; }
+
+.switch {
+  position: relative;
+  flex: none;
+  width: 46px;
+  height: 28px;
+  margin-top: 2px;
+  border-radius: 999px;
+  background: var(--stroke-2);
+  transition: background 0.16s ease;
+}
+.switch::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  background: var(--fill-1);
+  transition: transform 0.16s ease;
+}
+.toggle[aria-checked='true'] .switch { background: var(--secondary); }
+.toggle[aria-checked='true'] .switch::after { transform: translateX(18px); }
+
+/* Switching it on shows the whole consequence at once, rather than
+   filing the details behind a settings screen. */
+.consequence {
+  margin-top: 10px;
+  padding: 16px;
+  border-radius: var(--radius-card);
+  background: var(--secondary-tint);
+  border: 1px solid var(--stroke-1);
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--text-1);
+  text-wrap: pretty;
+}
+.consequence p { margin: 0 0 10px; }
+.consequence p:last-child { margin-bottom: 0; }
+.consequence .limit { color: var(--text-2); font-size: 13px; }
+.consequence .seg { display: inline-flex; margin: 2px 0 10px; }
+
+/* screen.css tints the pressed segment with --accent, which is teal —
+   "the good bit". This control belongs to your people, so it takes
+   clay. The two accents carrying distinct meanings is a safety rule,
+   not a preference, and a teal control here would blur it. */
+.consequence .seg button[aria-pressed='true'] {
+  background: var(--secondary);
+  color: var(--on-secondary);
+}
+.consequence .seg button:focus-visible { outline-color: var(--secondary); }
+
+/* ── actions ────────────────────────────────────────────────── */
+.btn[disabled] {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+.btn[disabled]:hover { background: var(--accent); }
+.btn-people[disabled]:hover { background: var(--secondary); }
+
+/* Skipping is an ordinary answer, not a lesser one — so it is a plain
+   control on the same axis, not a whisper in the corner. */
+.skip {
+  appearance: none;
+  display: block;
+  width: 100%;
+  height: 48px;
+  margin-top: 8px;
+  border: 0;
+  background: none;
+  font: inherit;
+  font-size: 15px;
+  color: var(--text-2);
+  cursor: pointer;
+  border-radius: var(--radius-control);
+  transition: color 0.16s ease, background 0.16s ease;
+}
+.skip:hover { color: var(--text-1); background: var(--fill-2); }
+.skip:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.btn-quiet {
+  background: var(--fill-2);
+  color: var(--text-1);
+  border: 1px solid var(--stroke-1);
+}
+.btn-quiet:hover { background: var(--fill-3); }
+
+/* ── the theme picker, in the phone ─────────────────────────── */
+.setting {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--stroke-1);
+}
+.setting > label {
+  display: block;
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--text-3);
+  margin-bottom: 10px;
+}
+
+/* ── the summary on the handoff screen ──────────────────────── */
+.summary {
+  margin-top: 20px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+.summary div {
+  display: flex;
+  gap: 12px;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--stroke-1);
+}
+.summary div:last-child { border-bottom: 0; }
+.summary dt {
+  flex: none;
+  width: 96px;
+  color: var(--text-3);
+}
+.summary dd {
+  flex: 1;
+  margin: 0;
+  color: var(--text-1);
+  text-wrap: pretty;
+}
+
+/* A stub needs to say it is one, or the prototype quietly overpromises. */
+.stub {
+  margin-top: 14px;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--text-3);
+  font-style: italic;
+  text-wrap: pretty;
+}

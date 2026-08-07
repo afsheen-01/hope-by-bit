@@ -1,0 +1,139 @@
+# The product
+
+What Hope By Bit is. Every surface implements this. The prototype shows the feel; where it differs
+from this file, this file is the one that holds.
+
+## The daily unit
+
+The whole product fits on one screen.
+
+**One good bit of news**, matched to three to five interests picked at setup: medicine, climate,
+wild places, kindness, science, your city, rights, food. One story, and the screen ends there —
+[P1](PRINCIPLES.md), the most important decision in the product. A story carries a headline under
+64 characters with the change in it, the number and what it counts, two or three paragraphs under
+90 words, a named source, one action, and hints for reading it aloud.
+
+**One bit you can do.** A ladder — give ("a treated net costs about $2"), join ("river clean-up,
+Saturday the 16th"), send it to someone, keep it, or step outside for ninety seconds. Every rung
+records the same wall entry, so there's always a rung within reach. Give and join **link out to the
+organisation's own page**, which keeps the product free of payments entirely.
+
+**The bottom.** After the action: *"That's today's bit."* Then when the next one comes. The screen
+ends.
+
+## Keepsakes and the wall
+
+**Keepsakes** are the handful of stories you deliberately kept. **The wall** is everything you did
+and kept, newest first — *"47 bits since March"*, a total that only grows. The wall is your
+journal; Keepsakes is the shoebox of letters.
+
+On a bad day you revisit your own evidence. The loop breaker draws from Keepsakes first, because a
+story you chose yourself is stronger than one we picked. That's why the ritual is worth keeping
+past week two.
+
+**Continuing bonds.** With the grief path on, any action can be dedicated — *"planted this for
+Mum"* — and the wall quietly becomes a record of things done in someone's name. The offer comes
+*after* an action, so the person who died stays a dedication rather than a reason to act. The name
+is asked once. Gated on [review](SAFETY.md).
+
+**Your record follows you.** Sign in and the wall, Keepsakes, and your settings arrive on any
+device you use. Signing in is optional: with no account everything works on the one device, and
+the only thing an account adds is the second device ([P9](PRINCIPLES.md)).
+
+## The two worst-moment buttons
+
+**Break the loop — for your head.** Yours alone, open as often as the day needs. Sixty seconds,
+three skippable steps: a breath (4 in, 3 hold, 6 out — shown, felt, and optionally spoken, so it
+works in the dark); one thing from your own Keepsakes with its date and dedication (*"three weeks
+ago you kept this, then you planted the rosemary in Mum's name"*); and one sensory question — *name
+one thing you can hear*.
+
+It closes on *"That's the loop broken, for now. If it closes again in ten minutes, come back. It
+costs nothing and stays with you."* Your own receipts land where generic reassurance slides off,
+because you can't argue with having done them. Runs are counted on the phone and stay there.
+
+**If you asked it to, the third run tells your people.** That's a choice made at setup, in a calm
+moment, off until switched on. When the count is reached, the closing screen names who is about to
+be told and offers *just me this time* for twenty seconds — doing nothing sends, so help is what
+happens by default. One message a day, so a fourth or eighth run passes quietly and the tool stays
+usable once the day has been named. Afterwards, one tap offers *let them know I'm alright*.
+
+The message says how it arrived: *"[Name] has been using their grounding tool a lot today. They
+asked us to tell you when that happens."* A count is a count, and the product says so — a hard day
+that stops at two passes unremarked, which is why the check-in button and the crisis line stay
+where they are.
+
+**Check in — for your people.** Two or three chosen at setup. Tapping the button *is* the decision,
+so what follows is immediate: the message, the names, send. The message is written **once, calm, at
+setup**, so the moment itself asks nothing of you. Default: *"[Name] is having a hard moment and
+asked me to let you know. A call or a text would mean a lot right now."*
+
+**Each person agrees first.** At setup they receive one message — *"[Name] chose you as someone to
+reach out to when things are heavy. Reply YES to be reachable, STOP to decline"* — and only a YES
+makes them reachable. The app shows who has confirmed, so nobody relies on a net that was never
+fastened. The circle needs only a phone.
+
+**Signed in, messages go out from the service**, which is what lets the third run send on its own
+when you've asked it to. **Signed out, the app hands the message to your own share sheet**, so it
+goes from your number with the contacts staying in your phone. Both reach the same people; the
+account is what buys the automatic path.
+
+The app's job ends at the handoff, and the confirmation says so: *"Three people know. That's
+everything this screen does."*
+
+## Voice
+
+Voice exists so this works with your eyes closed, in the dark, at 3am. **Everything runs on the
+phone.**
+
+**Reading out:** the daily story, paced slower than default with a pause either side of the number,
+because the number is the point. The loop breaker end to end, the breath guided rather than
+narrated — *"in… hold… and out."* Long silences are deliberate.
+
+**Speaking to it:** a fixed short list — keep, skip, next, done, the five sensory answers, leave.
+Anything outside it hands you back to the buttons quietly. Every word stays on the device.
+
+**On the web**, reading aloud runs locally and works everywhere. Voice input arrives once the
+browser can recognise speech on the device itself, and the site says where that stands today.
+
+## Haptics
+
+Meaning, carried by touch. Five: `tap` (keeping, choosing), `confirm` (an action lands on the
+wall), `settle` (the check-in hands off), `breathe` (the loop breaker's cadence), `arrive` (today's
+story is ready, when the app is already open).
+
+`settle` is deliberately unlike `confirm` — telling three people you're struggling should feel
+different from completing a form. Where the phone can't do a pattern, the other channels carry it.
+There's a **reduce haptics** setting for people who find vibration itself activating.
+
+## The content standard
+
+The pipeline is the hard problem. Real progress, specific numbers, things that happened — that's
+the moat.
+
+**Fuel:** *malaria vaccine reaches 20 million children*; *guinea worm down to 14 cases from 3.5
+million*. **Filler:** *grinning dog reunited with owner*; *study suggests optimism may be good for
+you*.
+
+The test, in order. **Did something happen** — a decision, a threshold, a rollout? **Is there a
+number, and does it move**, against a baseline a reader can hold? **Is it load-bearing** — would a
+reasonable person's picture of the world change? **Is it true, with the original source named?**
+**Does it survive the bad-day test**, read as someone whose mother died in March?
+
+**The pipeline** runs once a night: pull ~200 candidates, classify against the test above, one
+person reviews the top 30 in twenty minutes, publish one story per channel a week ahead. The human
+step is permanent — it is what *genuinely good news* means in practice. Seed from Our World in
+Data, Gavi, WHO, IEA, IUCN, national statistics offices; treat existing curators as leads to
+verify.
+
+## Tone
+
+**Plain, specific, slightly under-warm.** The subject supplies the feeling; the copy leaves room
+for it. *"Done. That's a net."*
+
+Keep praise proportional — they did a small thing, and the copy that says so stays trustworthy.
+Stay in everyday language, which is what a product like this can honestly speak. Say what a control
+does, then say it happened: "Keep it" → *"Kept."* Name the product's edges out loud — *"There's no
+more to scroll, that's on purpose"* — because a stated limit is what makes the limit believable.
+
+Second person, present tense, plain words. Address the person directly wherever they can read it.

@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hope By Bit — the prototype</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Two families, which is the ceiling tech-spec/website.md enforces. -->
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:wght@300;400&family=Rubik:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="screen.css">
+<link rel="stylesheet" href="onboarding.css">
+<style>
+  .page {
+    min-height: 100vh;
+    background: var(--fill-3);
+    padding: 44px 32px 72px;
+    display: flex;
+    flex-direction: column;
+    gap: 44px;
+    align-items: center;
+  }
+
+  .head {
+    max-width: 640px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: center;
+    text-align: center;
+  }
+  .head h1 {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: 46px;
+    line-height: 50px;
+    color: var(--text-1);
+    margin: 0;
+    text-wrap: balance;
+  }
+  .head p {
+    font-size: 15px;
+    line-height: 25px;
+    color: var(--text-2);
+    margin: 0;
+    max-width: 56ch;
+    text-wrap: pretty;
+  }
+
+  .band {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    width: 100%;
+  }
+  .band > h2 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 36px;
+    color: var(--text-1);
+    margin: 0;
+  }
+  .band > p {
+    font-size: 14px;
+    line-height: 22px;
+    color: var(--text-3);
+    margin: 0;
+    max-width: 58ch;
+    text-align: center;
+    text-wrap: pretty;
+  }
+
+  .row {
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: center;
+  }
+  .col { display: flex; flex-direction: column; gap: 14px; align-items: center; }
+
+  /* On this page every screen is shown whole rather than scrolled,
+     so the flow can be read end to end in one pass. */
+  .col .phone { height: auto; min-height: 844px; }
+  .col .screen { overflow: visible; }
+
+  .rule {
+    width: 100%;
+    max-width: 860px;
+    height: 1px;
+    background: var(--stroke-1);
+    border: 0;
+    margin: 0;
+  }
+
+  .onward {
+    color: var(--accent-contrast);
+    text-decoration: none;
+    font-size: 14px;
+    line-height: 22px;
+  }
+  .onward:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+  <div class="page">
+    <div class="head">
+      <h1>One good thing, one small thing, every day</h1>
+      <p>Cormorant Infant heads, Rubik carries the body and every control, on the
+         Grove palette. Theme is the only thing left to switch — type and palette
+         are settled.</p>
+      <div id="switches"></div>
+    </div>
+
+    <div class="band">
+      <h2>The daily unit</h2>
+      <p>The whole product fits on one screen. One story, one thing you can do,
+         and then it ends.</p>
+      <div class="row">
+        <div class="col">
+          <div id="bit"></div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="rule">
+
+    <div class="band">
+      <h2>Onboarding</h2>
+      <p>Five questions, four of them skippable, and then today's story. Value
+         comes before commitment — anyone who stops after the first question has
+         a working app.
+         <br><a class="onward" href="onboarding.html">walk it through step by step →</a></p>
+      <div class="row" id="steps"></div>
+    </div>
+  </div>
+
+  <script src="screen.js"></script>
+  <script src="onboarding.js"></script>
+  <script>
+    /* Both screenHTML functions are pure, so everything on this page is
+       rendered by calling them — no mounts, no shared mode to keep in step. */
+    document.getElementById('bit').innerHTML = HopeByBit.screenHTML('bit');
+
+    /* One answered variant, carried across all six frames, so the flow
+       reads as one person going through it rather than six blanks. */
+    var answers = {
+      notice: '',
+      channels: ['medicine', 'climate', 'kindness'],
+      paths: ['grief'],
+      carrying: 'Nina',
+      circle: [
+        { name: 'Sam Okafor', phone: '5551234', consent: 'confirmed' },
+        { name: 'Priya Kaur', phone: '5555678', consent: 'pending' },
+        { name: 'Dad', phone: '5559012', consent: 'declined' }
+      ],
+      draftName: '',
+      draftPhone: '',
+      intro:
+        'Hope By Bit: Afsheen chose you as someone to reach out to when things ' +
+        'are heavy. Reply YES to be reachable, STOP to decline.',
+      hardMessage:
+        'Afsheen is having a hard moment and asked me to let you know. A call ' +
+        'or a text would mean a lot right now.',
+      autoCheckin: true,
+      autoCount: 3,
+      time: '08:00',
+      email: 'afsheen@example.com',
+      account: 'google'
+    };
+
+    var labels = [
+      '1 · Interests',
+      '2 · Path',
+      '3 · The circle',
+      '4 · Notification time',
+      '5 · Account',
+      'And then today’s story'
+    ];
+
+    document.getElementById('steps').innerHTML = labels.map(function (label, i) {
+      var state = Object.assign({}, answers, { step: i + 1 });
+      return (
+        '<div class="col">' +
+        HopeByBitOnboarding.screenHTML(state) +
+        '<div class="caption">' + label + '</div>' +
+        '</div>'
+      );
+    }).join('');
+
+    HopeByBit.mountSwitches(document.getElementById('switches'));
+  </script>
+</body>
+</html>
