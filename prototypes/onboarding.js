@@ -164,7 +164,7 @@
     var control = opts.multiline
       ? '<textarea ' + attrs + ' rows="3">' + esc(opts.value) + '</textarea>'
       : '<input ' + attrs + ' type="' + (opts.type || 'text') +
-        '" value="' + esc(opts.value) + '">';
+      '" value="' + esc(opts.value) + '">';
     return (
       '<div class="field">' +
       '<label for="' + id + '">' + opts.label + '</label>' +
@@ -209,9 +209,8 @@
     return frame(
       topbar(2) +
       heading('Anything you’re carrying right now?') +
-      '<p class="body">Up to two, and only if you want to. Grief here isn’t ' +
-      'only about someone dying — a person, a relationship, your health, a ' +
-      'home, a future you’d counted on all belong. This stays in settings ' +
+      '<p class="body">Up to two, and only if you want to. ' +
+      'This stays in settings ' +
       'for whenever it becomes relevant.</p>' +
       chips('data-path', PATHS, s.paths) +
       notice(s) +
@@ -284,19 +283,19 @@
 
       (n ? '<div class="people">' + s.circle.map(personHTML).join('') + '</div>' : '') +
       (n ? '<p class="stub">Prototype: tap a person to move them through ' +
-           'pending → confirmed → declined, standing in for replies arriving.</p>' : '') +
+        'pending → confirmed → declined, standing in for replies arriving.</p>' : '') +
 
       notice(s) +
 
       (n < MAX_CIRCLE
         ? '<div class="row">' +
-            field({ name: 'draftName', label: 'Name', value: s.draftName, placeholder: 'Sam' }) +
-            field({ name: 'draftPhone', label: 'Number', value: s.draftPhone, placeholder: 'Optional', type: 'tel' }) +
-          '</div>' +
-          '<button class="btn btn-quiet" data-act="add">Add</button>' +
-          '<button class="btn btn-quiet" data-act="pick">Choose from contacts</button>' +
-          '<p class="stub">The picker belongs to the phone — the app receives ' +
-          'the contacts you select and nothing else.</p>'
+        field({ name: 'draftName', label: 'Name', value: s.draftName, placeholder: 'Sam' }) +
+        field({ name: 'draftPhone', label: 'Number', value: s.draftPhone, placeholder: 'Optional', type: 'tel' }) +
+        '</div>' +
+        '<button class="btn btn-quiet" data-act="add">Add</button>' +
+        '<button class="btn btn-quiet" data-act="pick">Choose from contacts</button>' +
+        '<p class="stub">The picker belongs to the phone — the app receives ' +
+        'the contacts you select and nothing else.</p>'
         : '') +
 
       field({
@@ -309,7 +308,7 @@
       field({
         name: 'hardMessage',
         label: 'And what they’d receive in a hard moment. Writing it here, ' +
-               'calm, is the point — the hard moment itself asks nothing of you.',
+          'calm, is the point — the hard moment itself asks nothing of you.',
         value: s.hardMessage,
         multiline: true
       }) +
@@ -394,7 +393,7 @@
         : '<span class="person-state">nothing set</span>') +
       row('your people', s.circle.length
         ? esc(names(s.circle)) + ' <span class="person-state">(' + yes.length +
-          ' ' + plural(yes.length, 'reply', 'replies') + ' in)</span>'
+        ' ' + plural(yes.length, 'reply', 'replies') + ' in)</span>'
         : '<span class="person-state">none yet</span>') +
       row('arriving', esc(s.time)) +
       row('account', s.account
@@ -507,7 +506,7 @@
       state.channels = c.list;
       state.notice = c.refused
         ? 'Five is the ceiling — a sixth channel dilutes the day rather than ' +
-          'widening it. Drop one to swap it.'
+        'widening it. Drop one to swap it.'
         : '';
       return render();
     }

@@ -181,9 +181,8 @@
     return frame(
       topbar(2) +
       heading('Anything you’re carrying right now?') +
-      '<p class="body">Up to two, and only if you want to. Grief here isn’t ' +
-      'only about someone dying — a person, a relationship, your health, a ' +
-      'home, a future you’d counted on all belong. This stays in settings ' +
+      '<p class="body">Up to two, and only if you want to. ' +
+      'This stays in settings ' +
       'for whenever it becomes relevant.</p>' +
       chips('data-path', PATHS, s.paths) +
       notice(s) +
