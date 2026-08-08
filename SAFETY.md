@@ -18,7 +18,7 @@ shows the crisis line. Quiet, always there, sized to sit under whatever the scre
 everywhere else, so the core looks it up by region, from the device's language and overridable in
 settings, falling back to findahelpline.com so there's always somewhere to go.
 
-The table lives in [backend config](tech-spec/backend.md), fetched on launch and cached, so a
+The table lives in [backend config](techSpec/backend.md), fetched on launch and cached, so a
 correction reaches every device within the hour rather than waiting on an app store review. Every
 row needs someone with local knowledge to verify it:
 
@@ -60,7 +60,7 @@ everyone involved.
   meant less than it looked like.
 - **Runs stay on the phone.** What reaches the backend is a request to send a message. The API has
   no field for loop-breaker history, and nobody — not us, not the circle — can see how often the
-  tool was opened ([P4](PRINCIPLES.md)).
+  tool was opened ([P4](product/principles.md)).
 
 **What this rule cannot do.** A count is a count. Someone in real trouble on their first run of the
 day trips nothing, so the crisis line stays on every screen and the check-in button stays one tap
@@ -87,16 +87,18 @@ cleared when a member is removed or the account is deleted.
 
 ## The grief gate
 
-Dedicating actions to someone who died is the most powerful thing in this product, which is exactly
-why it ships behind a gate.
+Dedicating actions to what someone is carrying is the most powerful thing in this product, which is
+exactly why it ships behind a gate. Grief here is not only bereavement — it covers the loss of a
+person, a relationship, health, a home, or a future someone had counted on, and the copy has to hold
+all of them.
 
-**Every part of the grief path carries written sign-off from a qualified bereavement counsellor**
-before release, recorded in [PROGRESS.md](PROGRESS.md) with a name and date, and renewed whenever
-the copy changes meaningfully.
+**Every part of the grief path carries written sign-off from a qualified grief counsellor** before
+release, recorded in [PROGRESS.md](PROGRESS.md) with a name and date, and renewed whenever the copy
+changes meaningfully.
 
-What the review confirms: bits are offered by what today can hold ([P8](PRINCIPLES.md)), enforced
+What the review confirms: bits are offered by what today can hold ([P8](product/principles.md)), enforced
 by the tone check; the wall waits to be visited rather than arriving on dates; the dedication offer
-comes after an action, so the person who died stays a dedication; the name is asked once and
+comes after an action, so what is carried stays a dedication; the name is asked once and
 stands; turning the path off keeps the wall and the dedications, simply unlabelled; and the record
 is held against the person's own history alone.
 
@@ -106,8 +108,8 @@ it is presented as an equally ordinary answer.
 ## User data
 
 The backend holds the wall, Keepsakes, the circle, and settings so a record and its people follow
-their person between devices ([P9](PRINCIPLES.md)). A wall entry can hold the name of someone who
-died, and a circle row holds a third party's phone number; both are treated to that standard.
+their person between devices ([P9](product/principles.md)). A wall entry can hold a name someone is
+carrying, and a circle row holds a third party's phone number; both are treated to that standard.
 
 Encrypted in transit and at rest. Used for the purpose they were given for and no other. Access
 limited to the maintainers who operate the service, with reads logged. Export returns the whole
@@ -120,7 +122,7 @@ stack trace carries a screen name.
 
 ## Content
 
-The daily story reaches people on their worst days, so the [bad-day test](PRODUCT.md) is a safety
+The daily story reaches people on their worst days, so the [bad-day test](product/features.md) is a safety
 check as much as an editorial one.
 
 Frame numbers on the living — *children reached*, *cases prevented*. Let people appear as they'd

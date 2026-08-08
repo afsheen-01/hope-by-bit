@@ -44,13 +44,15 @@ are.
 *Why:* this product is for hard moments. When something bigger is happening, the people who can
 help should be one tap away.
 *Check:* present and unconditional on every hard-moment screen, served by remote config so a
-correction reaches every device within the hour. See [SAFETY.md](SAFETY.md).
+correction reaches every device within the hour. See [SAFETY.md](../SAFETY.md).
 
-**P7 · The action shrinks to fit the day.** Donate → volunteer → share → keep → step outside for
-ninety seconds. Every rung records the same wall entry, so there is always a rung you can reach.
+**P7 · The action is body-sized.** Two or three small physical things, offered together — a glass of
+water, stand up and stretch, ninety seconds outside. Any one of them can be finished now, so there
+is always one you can reach, and each records the same wall entry.
 *Why:* doing something, however small, turns *the world has good in it* from information into
-experience.
-*Check:* shrinking terminates at *breathe*; wall entries carry one shape regardless of rung.
+experience — and a thing the body does returns an answer immediately, which reading cannot.
+*Check:* the daily screen offers two or three body-sized actions, none of them requiring money, a
+signup, or a future date; wall entries carry one shape regardless of which was taken.
 
 **P8 · Grief is offered by capacity.** Bits arrive sized to what you can manage today, and today is
 its own thing — capacity moves in both directions.
@@ -73,7 +75,7 @@ and messages are the one line that grows with how hard people's days are — the
 *Why:* free is a design constraint, and starting on free tiers keeps the early decisions honest.
 Knowing which cost grows first is what tells you where to look later.
 *Check:* any change to what it costs to run updates the table in
-[tech-spec/backend.md](tech-spec/backend.md) and carries a maintainer's sign-off. Every paid service
+[techSpec/backend.md](../techSpec/backend.md) and carries a maintainer's sign-off. Every paid service
 carries an open alternative in that table.
 
 ---

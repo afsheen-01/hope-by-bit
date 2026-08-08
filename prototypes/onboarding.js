@@ -3,7 +3,7 @@
    Nothing here names a typeface.
 
    Five questions, four of them skippable, and then today's story.
-   The shape is tech-spec/onboarding.md — where the two disagree, the
+   The shape is techSpec/app/ui.md — where the two disagree, the
    spec is right and this is a bug.
 
    The answers object is the prototype's stand-in for the variant: one
@@ -176,8 +176,8 @@
   function primary(label, opts) {
     var o = opts || {};
     return (
-      '<button class="btn' + (o.people ? ' btn-people' : '') + '" ' +
-      'data-act="next"' + (o.disabled ? ' disabled' : '') + '>' + label + '</button>'
+      '<button class="btn" data-act="next"' +
+      (o.disabled ? ' disabled' : '') + '>' + label + '</button>'
     );
   }
 
@@ -195,7 +195,8 @@
       heading('What do you want proof about?') +
       chips('data-channel', CHANNELS, s.channels) +
       '<p class="count">' + (n ? n + ' chosen' : 'Nothing chosen yet') + '</p>' +
-      (n < MIN_CHANNELS ? '<p class="hint">pick at least three</p>' : '') +
+      (n < MIN_CHANNELS ? '<p class="hint">pick three or more, and we’ll take it ' +
+        'from there</p>' : '') +
       notice(s) +
       '<div class="spacer"></div>' +
       primary('Continue', { disabled: n < MIN_CHANNELS })
@@ -205,23 +206,15 @@
   /* ── 2 · path ────────────────────────────────────────── */
   /* Skippable, and moving straight past is an equally ordinary answer. */
   function stepPath(s) {
-    var carryingGrief = has(s.paths, 'grief');
     return frame(
       topbar(2) +
       heading('Anything you’re carrying right now?') +
-      '<p class="body">Up to two. This stays in settings for whenever it ' +
-      'becomes relevant.</p>' +
+      '<p class="body">Up to two, and only if you want to. Grief here isn’t ' +
+      'only about someone dying — a person, a relationship, your health, a ' +
+      'home, a future you’d counted on all belong. This stays in settings ' +
+      'for whenever it becomes relevant.</p>' +
       chips('data-path', PATHS, s.paths) +
       notice(s) +
-      (carryingGrief
-        ? field({
-            name: 'carrying',
-            label: 'Who you’re carrying. Asked once and kept — actions can be ' +
-                   'done in their name, and the wall becomes a record of that.',
-            value: s.carrying,
-            placeholder: 'Their name'
-          })
-        : '') +
       '<div class="spacer"></div>' +
       primary('Continue') +
       skip('Not right now')
@@ -324,7 +317,7 @@
       autoCheckin(s) +
 
       '<div class="spacer"></div>' +
-      primary('Send the asks', { people: true, disabled: n === 0 }) +
+      primary('Send the asks', { disabled: n === 0 }) +
       skip('Skip for now') +
       '<div class="crisis">Numbers are held encrypted, used for this and ' +
       'nothing else, and released when someone is removed or the account is ' +
@@ -339,8 +332,8 @@
       heading('When should it arrive?') +
       '<p class="body">One arrival a day.</p>' +
       field({ name: 'time', label: 'Every day at', value: s.time, type: 'time' }) +
-      '<p class="hint">The reminder is scheduled on the phone, which is also ' +
-      'why it works with the network away.</p>' +
+      '<p class="hint">The reminder is scheduled on your phone, which is also ' +
+      'why it still arrives with the network away.</p>' +
       '<div class="spacer"></div>' +
       primary('Continue') +
       '<div class="bottom">Declining the notification leaves the app opening ' +
@@ -368,16 +361,9 @@
       '<button class="btn btn-quiet" data-act="emailLink"' +
       (s.email.indexOf('@') === -1 ? ' disabled' : '') + '>Email me a link</button>' +
 
-      '<div class="setting">' +
-      '<label>Theme</label>' +
-      segmented('data-theme-set', [
-        { value: 'auto', label: 'Auto' },
-        { value: 'light', label: 'Light' },
-        { value: 'dark', label: 'Dark' }
-      ], theme) +
-      '<p class="hint">Auto follows the clock — light from 07:00, dark from ' +
-      '19:00. A session in progress carries on in the palette it started in.</p>' +
-      '</div>' +
+      /* Theme is not asked here. Onboarding runs in Auto, and the picker
+         appears once the questions are done — a setting to fiddle with
+         mid-flow is one more thing between someone and the first story. */
 
       '<div class="spacer"></div>' +
       primary('Continue') +
@@ -400,11 +386,11 @@
       '<span class="progress">done</span></div>' +
       heading('That’s everything.') +
       '<p class="body">One good thing, one small thing, every day — starting ' +
-      'tomorrow at ' + esc(s.time) + '.</p>' +
+      'tomorrow at ' + esc(s.time) + '. We’re glad you’re here.</p>' +
       '<dl class="summary">' +
       row('proof about', esc(s.channels.join(', '))) +
       row('carrying', s.paths.length
-        ? esc(s.paths.join(', ')) + (s.carrying ? ' · ' + esc(s.carrying) : '')
+        ? esc(s.paths.join(', '))
         : '<span class="person-state">nothing set</span>') +
       row('your people', s.circle.length
         ? esc(names(s.circle)) + ' <span class="person-state">(' + yes.length +
@@ -416,7 +402,7 @@
         : '<span class="person-state">this phone only</span>') +
       '</dl>' +
       '<div class="spacer"></div>' +
-      '<button class="btn" data-act="restart">Review from the start</button>' +
+      '<button class="btn" data-act="home">See today’s story</button>' +
       '<div class="bottom">Every step can be revisited from settings, and each ' +
       'one stands as answered once given.</div>'
     );
@@ -434,8 +420,8 @@
 
   /* ══ effects, at the edge ═════════════════════════════ */
 
-  var theme = 'auto';
   var screenEl = null;
+  var onDone = null;
   var focusKey = null;
 
   var state = {
@@ -443,7 +429,6 @@
     notice: '',
     channels: [],
     paths: [],
-    carrying: '',
     circle: [],
     draftName: '',
     draftPhone: '',
@@ -456,37 +441,8 @@
     account: null
   };
 
-  function readStored(key, fallback) {
-    try { return localStorage.getItem(key) || fallback; } catch (e) { return fallback; }
-  }
-
-  function store(key, value) {
-    try { localStorage.setItem(key, value); } catch (e) {
-      /* private mode — the page works, the choice just won't persist */
-    }
-  }
-
-  /* Pressed state is swept across the whole document, so the picker
-     inside the phone and the one on the page are the same control
-     wearing two hats rather than two controls kept in step. */
-  function press(attr, value) {
-    Array.prototype.forEach.call(document.querySelectorAll('[' + attr + ']'), function (el) {
-      el.setAttribute('aria-pressed', String(el.getAttribute(attr) === value));
-    });
-  }
-
-  function applyTheme(next) {
-    theme = next;
-    var root = document.documentElement;
-    if (next === 'auto') root.removeAttribute('data-theme');
-    else root.setAttribute('data-theme', next);
-    store('hbb-theme', next);
-    press('data-theme-set', next);
-  }
-
   function render() {
     screenEl.innerHTML = screenHTML(state);
-    press('data-theme-set', theme);
     if (focusKey) {
       var el = screenEl.querySelector('[data-key="' + focusKey + '"]');
       if (el) el.focus();
@@ -539,9 +495,6 @@
     var keyed = t.closest('[data-key]');
     focusKey = keyed ? keyed.getAttribute('data-key') : null;
 
-    var themeBtn = t.closest('[data-theme-set]');
-    if (themeBtn) return applyTheme(themeBtn.getAttribute('data-theme-set'));
-
     var countBtn = t.closest('[data-count-set]');
     if (countBtn) {
       state.autoCount = Number(countBtn.getAttribute('data-count-set'));
@@ -564,7 +517,6 @@
       var p = toggle(state.paths, path.getAttribute('data-path'), MAX_PATHS);
       state.paths = p.list;
       state.notice = p.refused ? 'Two at a time.' : '';
-      if (!has(state.paths, 'grief')) state.carrying = '';
       return render();
     }
 
@@ -592,9 +544,7 @@
       case 'emailLink':
         state.account = 'email';
         return go(state.step + 1);
-      case 'restart':
-        state.step = 1;
-        return render();
+      case 'home': return onDone();
     }
   }
 
@@ -613,29 +563,17 @@
     if (link) link.disabled = state.email.indexOf('@') === -1;
   }
 
-  function mountSwitches(el) {
-    el.innerHTML =
-      '<div class="switches">' +
-      segmented('data-theme-set', [
-        { value: 'auto', label: 'Auto' },
-        { value: 'light', label: 'Light' },
-        { value: 'dark', label: 'Dark' }
-      ], theme) +
-      '</div>';
-    el.addEventListener('click', onClick);
-  }
-
-  /* mount(screenTarget, switchesTarget) */
-  function mount(screenTarget, switchesTarget) {
+  /* mount(screenTarget, done)
+     `done` is called once, when the last screen hands off. Onboarding
+     owns the element until then; what replaces it is not its business. */
+  function mount(screenTarget, done) {
     screenEl = screenTarget;
-    theme = readStored('hbb-theme', 'auto');
+    onDone = done;
 
     screenEl.addEventListener('click', onClick);
     screenEl.addEventListener('input', onInput);
 
-    mountSwitches(switchesTarget);
     render();
-    applyTheme(theme);
   }
 
   global.HopeByBitOnboarding = {

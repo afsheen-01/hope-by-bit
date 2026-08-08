@@ -9,17 +9,28 @@ The whole product fits on one screen.
 
 **One good bit of news**, matched to three to five interests picked at setup: medicine, climate,
 wild places, kindness, science, your city, rights, food. One story, and the screen ends there —
-[P1](PRINCIPLES.md), the most important decision in the product. A story carries a headline under
+[P1](principles.md), the most important decision in the product. A story carries a headline under
 64 characters with the change in it, the number and what it counts, two or three paragraphs under
 90 words, a named source, one action, and hints for reading it aloud.
 
-**One bit you can do.** A ladder — give ("a treated net costs about $2"), join ("river clean-up,
-Saturday the 16th"), send it to someone, keep it, or step outside for ninety seconds. Every rung
-records the same wall entry, so there's always a rung within reach. Give and join **link out to the
-organisation's own page**, which keeps the product free of payments entirely.
+**One bit you can do, with your body.** Two or three small physical things, offered together — *a
+glass of water*, *stand up and stretch*, *ninety seconds outside*. None of them costs anything, none
+needs a signup, and none waits for Saturday: each can be finished in the next minute, from wherever
+you are reading. Every one records the same wall entry, so there is always one within reach.
 
-**The bottom.** After the action: *"That's today's bit."* Then when the next one comes. The screen
-ends.
+The point is the answer you get back. Reading that the world has good in it is information; standing
+up and feeling the difference is experience, and only one of those survives a bad afternoon.
+
+**The bottom.** After the action, the closing line answers what you did: nothing yet is *"That's
+today's bit."*, one or two is *"That's today's win."*, all three is *"All three. A big day."* It is
+said and not kept — the wall's running total is still the only number the product holds
+([P2](principles.md)), because a per-day score is a streak wearing a kinder word. Then when the next
+one comes. The screen ends.
+
+**Give and join are not on this screen.** They sit behind the wall and Keepsakes, offered when you
+revisit a story you kept, and they link out to the organisation's own page — which keeps the product
+free of payments entirely. *Open:* exactly where they surface there, and whether a story with a
+strong ask should say so on the day, is still to be worked out.
 
 ## Keepsakes and the wall
 
@@ -32,13 +43,15 @@ story you chose yourself is stronger than one we picked. That's why the ritual i
 past week two.
 
 **Continuing bonds.** With the grief path on, any action can be dedicated — *"planted this for
-Mum"* — and the wall quietly becomes a record of things done in someone's name. The offer comes
-*after* an action, so the person who died stays a dedication rather than a reason to act. The name
-is asked once. Gated on [review](SAFETY.md).
+Mum"* — and the wall quietly becomes a record of things done in someone's name. Grief is not only
+bereavement: what you're carrying might be a person, but it might be a relationship, your health, a
+home, or a future you had counted on. The offer comes *after* an action, so what you're carrying
+stays a dedication rather than a reason to act. The name is asked once. Gated on
+[review](../SAFETY.md).
 
 **Your record follows you.** Sign in and the wall, Keepsakes, and your settings arrive on any
 device you use. Signing in is optional: with no account everything works on the one device, and
-the only thing an account adds is the second device ([P9](PRINCIPLES.md)).
+the only thing an account adds is the second device ([P9](principles.md)).
 
 ## The two worst-moment buttons
 
@@ -118,7 +131,7 @@ you*.
 The test, in order. **Did something happen** — a decision, a threshold, a rollout? **Is there a
 number, and does it move**, against a baseline a reader can hold? **Is it load-bearing** — would a
 reasonable person's picture of the world change? **Is it true, with the original source named?**
-**Does it survive the bad-day test**, read as someone whose mother died in March?
+**Does it survive the bad-day test**, read by someone in the worst week of their life?
 
 **The pipeline** runs once a night: pull ~200 candidates, classify against the test above, one
 person reviews the top 30 in twenty minutes, publish one story per channel a week ahead. The human
@@ -128,12 +141,16 @@ verify.
 
 ## Tone
 
-**Plain, specific, slightly under-warm.** The subject supplies the feeling; the copy leaves room
-for it. *"Done. That's a net."*
+**Plain, specific, warm.** Write like someone glad you came, who isn't going to make a fuss about
+it. *"Done. That's a net."*
 
-Keep praise proportional — they did a small thing, and the copy that says so stays trustworthy.
-Stay in everyday language, which is what a product like this can honestly speak. Say what a control
-does, then say it happened: "Keep it" → *"Kept."* Name the product's edges out loud — *"There's no
-more to scroll, that's on purpose"* — because a stated limit is what makes the limit believable.
+Warmth is in the welcome, not the volume. Keep praise proportional — they did a small thing, and
+the copy that says so stays trustworthy; a glass of water is not a triumph, and saying it is teaches
+someone to trust us less. Stay in everyday language, which is what a product like this can honestly
+speak. Say what a control does, then say it happened: "Keep it" → *"Kept."* Name the product's edges
+out loud — *"There's no more to scroll, that's on purpose"* — because a stated limit is what makes
+the limit believable.
 
 Second person, present tense, plain words. Address the person directly wherever they can read it.
+Warm does not mean cheerful at someone having the worst week of their life — the bad-day test above
+governs every line, and kindness that ignores the day is not kindness.

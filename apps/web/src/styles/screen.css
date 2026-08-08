@@ -1,0 +1,369 @@
+/* Hope By Bit — one layout, shared by every screen.
+   Nothing here names a typeface: the faces arrive as custom
+   properties from tokens.css, so this file only ever decides
+   which role a piece of text plays. */
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--fill-3);
+  font-family: var(--font-ui);
+  font-variation-settings: var(--ui-var, normal);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* ── device shell ─────────────────────────────────────────── */
+.phone {
+  /* Rubik carries the body and every control; the headline takes
+     the serif. */
+  font-family: var(--font-ui);
+  font-size: calc(16px * var(--text-scale, 1));
+  width: 390px;
+  height: 844px;
+  background: var(--fill-1);
+  border: 1px solid var(--frame-edge);
+  border-radius: 44px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 24px 60px -20px var(--shade);
+}
+
+.status {
+  flex: none;
+  height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-3) var(--space-8) 0;
+  color: var(--text-1);
+  font-size: 15px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+.status .bars { display: flex; gap: 3px; align-items: flex-end; }
+.status .bars i { display: block; width: 3px; background: currentColor; border-radius: 1px; }
+.status .bars i:nth-child(1) { height: 4px; }
+.status .bars i:nth-child(2) { height: 7px; }
+.status .bars i:nth-child(3) { height: 10px; }
+.status .bars i:nth-child(4) { height: 13px; opacity: 0.3; }
+
+/* A screen that runs long scrolls rather than clipping. Silent
+   truncation is the failure mode here: a story with a long
+   headline would swallow its own action button and look fine. */
+.screen {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  padding: 0 var(--gutter) var(--space-8);
+  overflow-y: auto;
+  text-align: left;
+}
+
+/* Flex children default to shrinking. In a fixed-height column that
+   means a long screen compresses every child instead of scrolling —
+   and text does not reflow when its box shrinks, it overflows, so a
+   squeezed heading paints straight over the paragraph beneath it.
+   Keeping natural heights is what lets overflow-y above do its job. */
+.screen > * { flex-shrink: 0; }
+
+/* ── content ────────────────────────────────────────────── */
+.date {
+  font-size: calc(14px * var(--text-scale, 1));
+  line-height: 1.45;
+  color: var(--text-3);
+  padding-top: var(--space-6);
+}
+
+/* The serif heads. Tracking sits at 0: negative tracking suits a
+   sans at 34px, but at 46 it closes a serif's counters and the
+   joins begin to fill in. */
+.headline {
+  font-family: var(--font-display);
+  font-size: var(--headline-size, 46px);
+  line-height: var(--headline-lh, 50px);
+  font-weight: var(--headline-weight, 400);
+  letter-spacing: 0;
+  font-variation-settings: var(--display-var, normal);
+  color: var(--text-1);
+  margin: var(--space-5) 0 0;
+  min-height: var(--headline-min, 0px);
+  text-wrap: balance;
+  hanging-punctuation: first;
+}
+
+/* The figure. Caption centred against the number rather than
+   baseline-locked to it — a 72px number drags a 13px baseline to
+   the floor and the pair stops reading as one unit. */
+/* The 6px that used to sit here relied on the headline's 132px floor
+   for the real separation. With the floor gone the figure needs its
+   own space, or it crowds the last line of the heading. */
+.figure {
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+  margin-top: var(--space-5);
+}
+
+/* The figure is set in the display face, alongside the headline —
+   it is the one number the screen is actually about, and it wants
+   the voice rather than the UI. Its size is fixed at 64px and does
+   not follow --text-scale, so the optical correction below holds
+   regardless of body size.
+
+   Figures are PROPORTIONAL. Tabular figures give every digit an
+   identical wide advance, which opens a hole inside "13" and centres
+   the 1 in an oversized slot. Nothing here is a number column, so
+   tabular has no job. `lnum` is requested explicitly because some
+   faces default to oldstyle. */
+.figure-num {
+  flex: none;
+  font-family: var(--font-display);
+  font-size: var(--figure-size, 64px);
+  line-height: 0.94;
+  font-weight: var(--figure-weight, 400);
+  font-variation-settings: var(--display-var, normal);
+  letter-spacing: -0.02em;
+  color: var(--accent-contrast);
+  font-variant-numeric: proportional-nums;
+  font-feature-settings: 'lnum' 1, 'tnum' 0, 'onum' 0;
+  /* side-bearing correction so the numeral's ink sits flush with the
+     text column. Measured against Cormorant at 64px, not guessed. */
+  margin-left: var(--figure-optical, 0);
+}
+.figure-cap {
+  flex: 1;
+  font-size: calc(13px * var(--text-scale, 1));
+  line-height: 1.45;
+  color: var(--text-3);
+  text-wrap: pretty;
+  max-width: 21ch;
+  padding-top: var(--space-1);
+}
+
+.body {
+  font-size: calc(16px * var(--text-scale, 1));
+  line-height: var(--lh-body, 1.68);
+  color: var(--text-2);
+  margin: var(--space-6) 0 0;
+  text-wrap: pretty;
+}
+
+.source {
+  font-size: calc(13px * var(--text-scale, 1));
+  line-height: 1.45;
+  color: var(--text-3);
+  margin-top: var(--space-3);
+}
+
+.spacer { flex: 1; min-height: var(--space-5); }
+
+/* ── your people ────────────────────────────────────────── */
+.msg {
+  margin-top: var(--space-6);
+  padding: var(--space-4) var(--space-5);
+  border-radius: 20px 20px 20px 6px;
+  background: var(--secondary);
+  color: var(--on-secondary);
+  font-size: calc(15px * var(--text-scale, 1));
+  line-height: var(--lh-body, 1.6);
+  text-wrap: pretty;
+}
+
+.people {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+}
+.person {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-1) var(--space-4) var(--space-1) var(--space-1);
+  border-radius: 999px;
+  background: var(--secondary-tint);
+  border: 1px solid var(--stroke-1);
+  font-size: 14px;
+  line-height: 1;
+  color: var(--text-1);
+}
+.avatar {
+  width: 26px;
+  height: 26px;
+  flex: none;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--secondary);
+  color: var(--on-secondary);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.crisis {
+  font-size: 12px;
+  line-height: 18px;
+  color: var(--text-3);
+  margin-top: var(--space-3);
+  text-wrap: pretty;
+}
+
+/* ── the action ─────────────────────────────────────────── */
+.ask {
+  font-size: calc(15px * var(--text-scale, 1));
+  line-height: var(--lh-body, 1.62);
+  color: var(--text-2);
+  margin: 0;
+  text-wrap: pretty;
+}
+
+.btn {
+  appearance: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: var(--tap);
+  margin-top: var(--space-4);
+  border: 0;
+  border-radius: var(--radius-control);
+  background: var(--accent);
+  color: var(--on-accent);
+  font-family: inherit;
+  font-variation-settings: inherit;
+  font-size: calc(16px * var(--text-scale, 1));
+  font-weight: 500;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.16s ease, transform 0.12s ease, filter 0.16s ease;
+}
+.btn:hover { background: var(--accent-press); }
+.btn:active { transform: scale(0.985); }
+.btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+/* ── the small things ───────────────────────────────────────
+   Two or three body-sized actions, offered together. They are
+   alternatives rather than a primary and its afterthoughts, so
+   they share one weight: tinted, not filled. */
+.choices {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+}
+
+.choice {
+  appearance: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: var(--tap);
+  /* The tint alone sits close to the card in the light ground, so the
+     edge carries the affordance rather than the fill. */
+  border: 1px solid var(--stroke-1);
+  border-radius: var(--radius-control);
+  background: var(--accent-tint);
+  color: var(--accent-contrast);
+  font-family: inherit;
+  font-size: calc(16px * var(--text-scale, 1));
+  font-weight: 500;
+  line-height: 1;
+  cursor: pointer;
+  transition: border-color 0.16s ease, transform 0.12s ease;
+}
+.choice:hover { border-color: var(--accent); }
+.choice:active { transform: scale(0.985); }
+.choice:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+/* Done, and still tappable — a thing you did by mistake should be as
+   easy to undo as it was to do. */
+.choice[aria-pressed='true'] {
+  background: none;
+  border-color: var(--stroke-1);
+  color: var(--text-3);
+}
+.choice .tick {
+  margin-right: var(--space-2);
+  color: var(--accent-contrast);
+  font-weight: 600;
+}
+
+.btn-people { background: var(--secondary); color: var(--on-secondary); }
+.btn-people:hover { background: var(--secondary); filter: brightness(0.93); }
+.btn-people:focus-visible { outline-color: var(--secondary); }
+
+.bottom {
+  font-size: calc(13px * var(--text-scale, 1));
+  line-height: 1.5;
+  color: var(--text-3);
+  margin-top: var(--space-5);
+  text-wrap: pretty;
+}
+
+/* ── page chrome around the phone ───────────────────────── */
+.stage {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-6);
+  padding: var(--space-10) var(--space-5) var(--space-12);
+}
+
+.switches {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  align-items: center;
+  justify-content: center;
+}
+
+.caption {
+  font-size: 12px;
+  line-height: 18px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  text-align: center;
+}
+.caption b { font-weight: 500; color: var(--text-2); }
+
+/* ── segmented switch ───────────────────────────────────── */
+.seg {
+  display: flex;
+  gap: 3px;
+  padding: 3px;
+  border-radius: 999px;
+  background: var(--fill-2);
+  border: 1px solid var(--stroke-1);
+}
+.seg button {
+  appearance: none;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  font: inherit;
+  font-size: 13px;
+  line-height: 1;
+  color: var(--text-3);
+  padding: var(--space-2) var(--space-4);
+  border-radius: 999px;
+  transition: background 0.16s, color 0.16s;
+}
+.seg button[aria-pressed='true'] {
+  background: var(--accent);
+  color: var(--on-accent);
+}
+.seg button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}

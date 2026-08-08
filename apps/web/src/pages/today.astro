@@ -1,0 +1,40 @@
+---
+// The daily unit in a browser (techSpec/web/ui.md's /today) — headline,
+// figure, body, source, the day's movements. A first visit runs onboarding
+// first (O7); the story underneath is what onboarding hands off to, and
+// what anyone returning sees straight away.
+import Base from "../layouts/Base.astro";
+import { today } from "../lib/today.ts";
+import "../styles/screen.css";
+import "../styles/onboarding.css";
+import "../styles/onboarding-page.css";
+import "../styles/tailwind.css";
+
+const bit = today();
+---
+
+<Base title="Hope By Bit — today's story">
+  <p class="date">{bit.date}</p>
+  <h1>{bit.headline}</h1>
+
+  <p class="figure">{bit.figure}</p>
+  <p class="figure-cap">{bit.figureCap}</p>
+
+  <p>{bit.body}</p>
+  <p class="source">{bit.source}</p>
+
+  <p class="ask">{bit.ask}</p>
+  <ul class="movements">
+    {bit.movements.map((m) => <li>{m}</li>)}
+  </ul>
+
+  <p class="note">
+    Placeholder story: the backend that publishes the daily bit isn't running yet (W2).
+  </p>
+
+  <!-- Empty without JavaScript, and the story above is already the whole
+       page — so a first visit with JS off gets today's story rather than
+       a flow it can't run (the read-with-JS-off rule in techSpec/web/ui.md). -->
+  <div id="onboarding"></div>
+  <script src="../scripts/mount-onboarding.js"></script>
+</Base>

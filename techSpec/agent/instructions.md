@@ -3,7 +3,7 @@
 **`hope` — turns a sentence about a person into a Hope By Bit codebase tuned to them.**
 
 ```
-$ hope new "a version for my dad. widowed last spring, mum's name was Ruth.
+$ hope new "a version for my dad. mum moved into care last spring, her name's Ruth.
             cricket and birdwatching. big text, his eyes are bad.
             keep the donation asks out. read things out loud."
 
@@ -12,7 +12,8 @@ $ hope new "a version for my dad. widowed last spring, mum's name was Ruth.
   hope-for-dad/  ready.
 ```
 
-Status: **specification**. No code written.
+Status: **A1 in progress** — `tools/agent`. The brief schema, the prompt file and its tests are in;
+plan, render and copy are still specification.
 
 ## What it is
 
@@ -42,13 +43,13 @@ a strange-but-valid brief.
 
 The one thing the model decides about the shape of the output, decided inside a schema: a name, one
 line about who it's for, one to five channels, up to two paths, whether dedication is on and to
-what name, which action rungs appear, voice, haptics, text scale and contrast, the circle, which
+what name, which of the day's movements appear, voice, haptics, text scale and contrast, the circle, which
 surfaces to build, theme, and notes for the copy step.
 
 The schema describes exactly this, so the ten principles hold by construction and the checks below
 confirm it. Every generated repo carries the crisis line matched to region, a wall that keeps
-totals, one local notification at a chosen time, a loop breaker that stays on the device, an action
-ladder reaching *step outside*, on-device voice, and export and delete.
+totals, one local notification at a chosen time, a loop breaker that stays on the device, two or
+three body-sized actions on the daily screen, on-device voice, and export and delete.
 
 A prompt asking for something the schema doesn't carry produces a working app and one line naming
 the principle that shapes it that way. Ambiguous prompts get up to five questions, with defaults
@@ -57,7 +58,7 @@ first, so pressing enter five times produces a valid app.
 ## Templates
 
 `base/` (core packages, CI, README — every repo gets these), `surface-mobile/`, `surface-web/` and
-`surface-api/` (→ [app](app.md), [website](website.md), [backend](backend.md)),
+`surface-api/` (→ [app](../app/ui.md), [website](../web/ui.md), [backend](../backend.md)),
 `path-grief|illness|burnout|lonely/`, and `feature-circle|voice|haptics|sync/`.
 
 Templates are **whole files with named holes**. A generated file is either copied as-is or rendered
@@ -84,7 +85,7 @@ link the rule, which is most of how contributed template packs learn the house s
 | P4 runs stay home | run counts live in local state; the API carries no field for them |
 | P5 the decision is theirs | the send path starts at a tap or at the threshold they switched on, and reaches confirmed members only |
 | P6 crisis line | present and unconditional on every hard-moment screen |
-| P7 ladder reaches | shrinking terminates at *breathe*; entries carry one shape |
+| P7 body-sized action | the daily screen offers two or three body-sized actions, none needing money, a signup, or a future date; entries carry one shape |
 | P8 capacity | grief copy passes the capacity check |
 | P9 yours | export returns everything; delete clears both copies |
 | P10 cheap | the daily path holds to one story fetch and one sync |
@@ -121,14 +122,11 @@ Instagram"* → theme changes, one story a day; *"remove the crisis line, it's d
 stays, principle named; *"tell me how often she uses the loop breaker"* → runs stay on her phone,
 and the reply says so.
 
-## Milestones
-
-**A1** brief, prompt and tests — 40 cases pass. **A2** plan and render with the web template — a
-reference prompt produces identical output every time. **A3** all ten principle checks, each with a
-fixture that exercises it. **A4** copy generation, with the tone check running before anything is
-written. **A5** mobile and API templates — a generated app builds on a device and talks to its
-backend. **A6** manifest, upgrade and doctor — a hand-edited file survives an upgrade. **A7** path
-templates, with grief on [counsellor sign-off](../SAFETY.md).
+Milestones A1–A7 are in [progress.md](progress.md), with the detail each one has to satisfy: A1's
+40 brief cases, A2's identical output from a reference prompt, A3's fixture per principle check,
+A4's tone check before anything is written, A5's generated app building on a device, A6's
+hand-edited file surviving an upgrade, and A7's path templates on
+[counsellor sign-off](../../SAFETY.md).
 
 ## Open questions
 
@@ -137,6 +135,6 @@ templates, with grief on [counsellor sign-off](../SAFETY.md).
    first run). Leaning public by default, recorded in the manifest, with `doctor` reporting on it.
 2. **Whether generated repos keep the principle checks in their own CI.** Yes by default — they're
    the most useful thing the boilerplate carries forward.
-3. **Custom channels.** The example prompt asks for cricket, one step outside the eight. Either the
-   brief maps it to the nearest channel and says so, or channels become open-ended and the pipeline
-   classifies against arbitrary topics. **Needs deciding before A1.**
+3. ~~**Custom channels.**~~ **Settled 2026-08-08: fixed for v1.** Cricket maps to the nearest of the
+   eight and the brief records the pair in `mapped`, so the agent says what it did. See
+   [D2](../../PROGRESS.md#4-open-decisions).

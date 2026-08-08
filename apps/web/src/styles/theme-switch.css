@@ -1,0 +1,38 @@
+/* The theme switch. Same joined-pill shape as .seg (screen.css) — icon
+   buttons in one connected track rather than three separate pills — just
+   fixed to the corner instead of sitting in the page flow. It does not
+   exist without JavaScript, which is correct: the system preference
+   already carries both grounds. */
+
+#theme {
+  position: fixed;
+  top: var(--space-4);
+  right: var(--space-4);
+  z-index: 30; /* above the onboarding overlay (z-index: 20) */
+  display: none;
+  gap: 3px;
+  padding: 3px;
+  border-radius: 999px;
+  background: var(--fill-2);
+  border: 1px solid var(--stroke-1);
+  box-shadow: 0 2px 12px -4px var(--shade);
+}
+
+#theme button {
+  appearance: none;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  color: var(--text-3);
+  transition: background 0.16s, color 0.16s;
+}
+
+#theme button svg { width: 18px; height: 18px; }
+
+#theme button[aria-pressed="true"] { background: var(--accent); color: var(--on-accent); }
+#theme button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }

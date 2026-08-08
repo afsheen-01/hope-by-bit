@@ -28,9 +28,9 @@ Types are readonly throughout, with unions carrying the shape:
 
 ```ts
 type Action =
-  | { kind: "give" | "join"; ask: string; url: Url }
+  | { kind: "move"; ask: string; seconds: number | null }
   | { kind: "send" | "keep"; ask: string }
-  | { kind: "breathe"; ask: string; seconds: number };
+  | { kind: "give" | "join"; ask: string; url: Url };
 
 type WallEntry = Readonly<{
   id: EntryId; at: Instant; what: string;
@@ -39,14 +39,15 @@ type WallEntry = Readonly<{
 ```
 
 A wall entry carries what happened and when, and that's all it carries — which is how
-[P7](PRINCIPLES.md) is held by the type rather than by discipline.
+[P7](../product/principles.md) is held by the type rather than by discipline.
 
-Functions take values and return values: choosing today's story; shrinking an action; recording it;
+Functions take values and return values: choosing today's story; offering the day's actions; recording one;
 keeping one; finding grounding evidence; deciding whether to offer the third-run check-in; matching
 what was heard against the voice list; totalling the wall; merging two devices' records.
 
-`shrinkAction` always returns something — it settles at *breathe*, which is the rung that's always
-reachable.
+`dailyActions` always returns two or three, all of them `move` — body-sized, free, and finishable in
+the next minute, so one is always reachable. `give` and `join` stay in the union because they still
+exist, but they belong to a kept story rather than to the day ([PRODUCT.md](../product/features.md)).
 
 Failure uses two small types, about forty lines: `Option` for a value that may be absent, `Result`
 for a failure we expect. Plain TypeScript throughout, so a contributor can read a change with the
@@ -66,8 +67,9 @@ few hundred lines of pure functions, so the number is reachable.
 
 ## Variant — the override surface
 
-Everything a self-hoster or the agent can change as data: channels, paths, whether give and join
-appear, voice, haptics, text scale, the circle and its message, copy, theme.
+Everything a self-hoster or the agent can change as data: channels, paths, the day's movements,
+whether give and join appear on kept stories, voice, haptics, text scale, the circle and its
+message, copy, theme.
 
 `resolveVariant(base, overrides)` is one pure function with a schema check, used by the app at
 runtime and the agent at generation time — one code path, one set of tests. Every user-visible
@@ -78,14 +80,14 @@ real, and gives translation for free later.
 
 One TypeScript service behind the app and the website — stories, accounts, sync of the wall and the
 circle, the check-in, and safety config that reaches every device within the hour. Full spec:
-[tech-spec/backend.md](tech-spec/backend.md).
+[backend.md](backend.md).
 
 It runs the same core, so merging two devices' records uses the same function the app uses locally.
 
 **What the device keeps to itself:** loop-breaker runs and anything spoken. When the count reaches
 the number the person set, the phone asks the backend to send a check-in — a message goes out, and
 the count stays home. The API has one field for the reason, `tap` or `threshold`, and none for the
-history behind it ([P4](PRINCIPLES.md)).
+history behind it ([P4](../product/principles.md)).
 
 ## Adapters
 
@@ -125,5 +127,5 @@ small pure functions — enough for a local-first app, and readable by anyone.
 ## Deliberately small
 
 The surface area is four packages and four apps. Adding a dependency, a service, or a layer is a
-conversation in an issue first, weighed against [P10](PRINCIPLES.md), because the thing that keeps
+conversation in an issue first, weighed against [P10](../product/principles.md), because the thing that keeps
 this maintainable by one person on an evening is how little there is of it.

@@ -1,0 +1,19 @@
+{
+  "name": "@hope/web",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@phosphor-icons/core": "^2.1.1",
+    "@tailwindcss/vite": "^4.3.3",
+    "@zag-js/core": "^1.43.0",
+    "@zag-js/number-input": "^1.43.0",
+    "@zag-js/vanilla": "^1.43.0",
+    "astro": "^5.13.0",
+    "tailwindcss": "^4.3.3"
+  }
+}

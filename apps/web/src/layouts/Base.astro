@@ -1,0 +1,43 @@
+---
+// The shell every page sits in. Styles are inlined by the build, so a
+// page is one request; nothing here reaches a third party.
+import "../styles/tokens.css";
+import "../styles/site.css";
+import "../styles/theme-switch.css";
+
+const { title, description } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    {description && <meta name="description" content={description} />}
+    <!-- Auto follows the local clock (6am–6pm is light, else dark); a saved
+         choice or the auto read has to land before first paint or the page
+         flashes the wrong ground (O6). theme-switch.js re-runs this same
+         6/18 split — kept in sync there, see techSpec/web/ui.md. -->
+    <script is:inline>
+      var t = localStorage.getItem("theme");
+      if (t !== "light" && t !== "dark") {
+        var h = new Date().getHours();
+        t = (h >= 6 && h < 18) ? "light" : "dark";
+      }
+      document.documentElement.dataset.theme = t;
+    </script>
+  </head>
+  <body>
+    <main>
+      <slot />
+      <footer>
+        with love and support from <a href="https://x.com/_afsheen_a" target="_blank">afsheen</a> ♥
+      </footer>
+    </main>
+
+    <!-- Rendered by script so it never appears without something behind it. -->
+    <div id="theme" role="group" aria-label="Theme"></div>
+    <script src="../scripts/theme-switch.js"></script>
+  </body>
+</html>

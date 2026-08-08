@@ -15,21 +15,41 @@ This is the product canon. Everything built under this name — the app, the web
 anything the agent generates — comes from these documents. Where the code and the canon disagree,
 the canon is right and the code is a bug.
 
+**`product/`** — what this is, and the rules it holds to.
+
 | | |
 |---|---|
-| [PRODUCT.md](PRODUCT.md) | What it is: the daily unit, Keepsakes, the wall, the two hard-moment buttons, the grief path, the content standard, the tone. |
-| [PRINCIPLES.md](PRINCIPLES.md) | Ten rules, each written so a machine can confirm it. The agent generates code that satisfies all ten. |
-| [ARCHITECTURE.md](ARCHITECTURE.md) | The shared core, what it asks of each platform, and how four surfaces share one brain. |
-| [SAFETY.md](SAFETY.md) | The crisis boundary, the grief review gate, the check-in circle, and how user data is held. Binding everywhere. |
+| [features.md](product/features.md) | The daily unit, Keepsakes, the wall, the two hard-moment buttons, the grief path, the content standard, the tone. |
+| [principles.md](product/principles.md) | Ten rules, each written so a machine can confirm it. The agent generates code that satisfies all ten. |
+| [designSystem.md](product/designSystem.md) | The spacing scale, the proximity rule, and where colour and type tokens live. |
+
+**`techSpec/`** — how it's built. The root holds what spans surfaces; each folder holds one surface
+and its own progress.
+
+| | |
+|---|---|
+| [architecture.md](techSpec/architecture.md) | The shared core, what it asks of each platform, and how four surfaces share one brain. |
+| [backend.md](techSpec/backend.md) | Stories, accounts, sync, the check-in, and safety config. |
+| [progress.md](techSpec/progress.md) | Core, backend and onboarding milestones. |
+| [agent/](techSpec/agent/instructions.md) | The generator — [instructions](techSpec/agent/instructions.md), [progress](techSpec/agent/progress.md). |
+| [web/](techSpec/web/ui.md) | The website — [ui](techSpec/web/ui.md), [progress](techSpec/web/progress.md). |
+| [app/](techSpec/app/ui.md) | The app, onboarding included — [ui](techSpec/app/ui.md), [progress](techSpec/app/progress.md). |
+
+**Root** — binding everywhere, or about working here.
+
+| | |
+|---|---|
+| [SAFETY.md](SAFETY.md) | The crisis boundary, the grief review gate, the check-in circle, and how user data is held. |
 | [CONTRIBUTING.md](CONTRIBUTING.md) | How to write code and prompts here. Read before your first change. |
-| [PROGRESS.md](PROGRESS.md) | The tracker — what's next, what's blocked, what's undecided. |
-| [tech-spec/](tech-spec/) | [agent](tech-spec/agent.md), [app](tech-spec/app.md), [website](tech-spec/website.md), [backend](tech-spec/backend.md), and [onboarding](tech-spec/onboarding.md), which spans all four. |
-| [prototype/](prototype/) | The clickable prototype. Shows the feel; the canon is what holds. |
+| [PROGRESS.md](PROGRESS.md) | The cross-track tracker — what's next, what's blocked, what's undecided. |
+| [prototypes/](prototypes/) | The clickable prototype — open `index.html`. Shows the feel; the canon is what holds. |
+| `apps/web/` | The website. `npm install && npm run dev`. |
+| `tools/agent/` | The agent. `npm install && npm test`. |
 
 ## The four surfaces
 
-**The agent** takes a sentence — *"a version for my dad, widowed last year, cricket and
-birdwatching, big text, keep the donation asks out"* — and generates a complete standalone repo
+**The agent** takes a sentence — *"a version for my dad, mum moved into care last spring, cricket
+and birdwatching, big text, keep the donation asks out"* — and generates a complete standalone repo
 tuned to that person. What ships here is boilerplate, built to be overridden.
 
 **The app** is Expo, on iOS and Android. It owns the ritual: the morning notification, haptics,
@@ -54,12 +74,14 @@ Documents here stay under 200 lines. A document growing past that is two documen
 
 ## Status
 
-Specification stage. See [PROGRESS.md](PROGRESS.md) for what's next and where help is wanted. The
+Specifications complete, and the first code is in: `apps/web` (the website shell, `/` rendering the
+daily unit on a placeholder story) and `tools/agent` (the brief schema, its prompt, and its tests).
+See [PROGRESS.md](PROGRESS.md) for what's next and where help is wanted. The
 two things that would move this furthest need no code at all: verified crisis lines per country, and
-a bereavement counsellor willing to review the grief path.
+a qualified grief counsellor willing to review the grief path.
 
 ## License
 
 Proposed: copyleft for the app, website and backend; permissive for the core and the agent's
 templates. Still open, and the hardest decision here to revisit later — see
-[PROGRESS.md](PROGRESS.md#5-open-decisions).
+[PROGRESS.md](PROGRESS.md#4-open-decisions).

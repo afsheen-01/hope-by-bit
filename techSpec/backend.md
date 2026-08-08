@@ -21,14 +21,14 @@ an email, how they signed in, and when it was made.
 **Sync.** The wall, Keepsakes, the circle, channel choices, the check-in message, and settings.
 
 **Messages.** The circle's intro and consent replies, and the check-in itself — sent on a tap, or
-at the count the person set ([P5](../PRINCIPLES.md)).
+at the count the person set ([P5](../product/principles.md)).
 
 **Safety config.** Crisis lines by region and copy corrections, fetched on launch and cached, so a
 wrong number reaches every device within the hour instead of waiting on an app store review.
 
 **What the device keeps to itself:** loop-breaker runs and anything spoken. What arrives here is a
 request to send a message; the API has no field that could hold the history behind it
-([P4](../PRINCIPLES.md)).
+([P4](../product/principles.md)).
 
 ## Stack
 
@@ -105,7 +105,7 @@ setting    accountId · key · value · updatedAt
 message    id · accountId · circleId · reason · sentAt · status
 ```
 
-An entry can hold the name of someone who died; a circle row holds a third party's phone number.
+An entry can hold a name someone is carrying; a circle row holds a third party's phone number.
 Both are treated to the standard in [SAFETY.md](../SAFETY.md): encrypted, purpose-limited, released
 on removal or deletion. `message` keeps what was sent and when, for delivery and for the person's
 own record, and holds nothing about what preceded it.
@@ -158,7 +158,7 @@ have only a phone number, which is the whole point of the circle, so it's the li
 **What breaks first as this grows:** messages, which scale with how hard people's days are and have
 no free tier. Everything else has room for thousands of people before it costs anything. That makes
 the messaging bill the number to watch — a jump in it means either growth or a worse month for a lot
-of people, and telling those apart matters ([P10](../PRINCIPLES.md)).
+of people, and telling those apart matters ([P10](../product/principles.md)).
 
 **SMS regulation is the gating item, not the price.** Sending to US numbers needs 10DLC brand and
 campaign registration; India needs DLT entity, header and template registration; other countries
@@ -175,13 +175,7 @@ handles STOP at the provider as well as in our own records.
 **Self-hosting is a first-class path**: one command brings up Postgres and the functions locally,
 with the messaging provider swappable, and the docs carry the full sequence.
 
-## Milestones
-
-**B1** stories published and `/bits/today` live. **B2** config: crisis lines by region. **B3**
-accounts: Google and email links, sessions. **B4** sync: the merge shapes, verified across two
-devices offline at once. **B5** circle: storage, intro messages, YES and STOP arriving back. **B6**
-check-in: both reasons, rate limits, honest wording, delivery reported. **B7** export and delete,
-delete releasing the circle. **B8** the daily review tool. **B9** self-hosting from the docs alone.
+Milestones B1–B9 are in [progress.md](progress.md).
 
 ## Open questions
 

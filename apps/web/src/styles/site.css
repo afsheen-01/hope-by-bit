@@ -1,0 +1,86 @@
+/* The site's own styles. Every value comes from tokens.css — a screen
+   never names a hue or a typeface, and sizes follow --text-scale so
+   dynamic type works without a second stylesheet. */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--fill-1);
+  color: var(--text-1);
+  font-family: var(--font-ui);
+  font-size: calc(16px * var(--text-scale, 1));
+  line-height: var(--lh-body);
+  -webkit-text-size-adjust: 100%;
+}
+
+main {
+  max-width: 34rem;
+  margin: 0 auto;
+  padding: var(--space-8) var(--space-5) var(--space-12);
+}
+
+h1 {
+  font-family: var(--font-display);
+  font-size: var(--headline-size);
+  line-height: var(--headline-lh);
+  font-weight: var(--headline-weight);
+  margin: 0;
+}
+
+h2 {
+  font-family: var(--font-ui);
+  font-size: calc(15px * var(--text-scale, 1));
+  font-weight: 500;
+  color: var(--text-2);
+  margin: var(--space-10) 0 var(--space-3);
+}
+
+a { color: var(--accent-contrast); }
+
+.date { color: var(--text-3); font-size: calc(13px * var(--text-scale, 1)); margin: 0 0 var(--space-3); }
+
+/* The figure is fixed at 64px and does not follow --text-scale, so the
+   optical correction measured against Cormorant at that size holds. */
+.figure {
+  font-family: var(--font-display);
+  font-size: var(--figure-size, 64px);
+  font-weight: var(--figure-weight);
+  line-height: 1;
+  letter-spacing: var(--figure-optical);
+  color: var(--accent);
+  margin: var(--space-8) 0 var(--space-2);
+}
+
+.figure-cap { color: var(--text-2); font-size: calc(15px * var(--text-scale, 1)); margin: 0; }
+
+.ask { color: var(--text-2); margin: var(--space-8) 0 var(--space-3); }
+
+.movements { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-2); }
+
+.movements li {
+  border: 1px solid var(--stroke-1);
+  border-radius: var(--radius-control);
+  background: var(--fill-2);
+  padding: var(--space-3) var(--space-4);
+  min-height: 44px;          /* the target size CONTRIBUTING asks for */
+  display: flex;
+  align-items: center;
+}
+
+.source, .note { color: var(--text-3); font-size: calc(13px * var(--text-scale, 1)); }
+
+.note {
+  border-top: 1px solid var(--stroke-1);
+  margin-top: var(--space-10);
+  padding-top: var(--space-4);
+}
+
+footer {
+  color: var(--text-3);
+  font-size: calc(13px * var(--text-scale, 1));
+  text-align: center;
+  margin-top: var(--space-12);
+}
+
+footer a { color: var(--text-2); }

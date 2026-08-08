@@ -1,0 +1,45 @@
+/* The landing page only. Everything still comes from tokens.css — this
+   file just lays the hero and the features out on the page. */
+
+.hero { padding-top: var(--space-6); }
+
+.hero h1 {
+  font-size: calc(var(--headline-size) * 1.1);
+  line-height: 1.1;
+  margin-bottom: var(--space-4);
+}
+
+.lead {
+  color: var(--text-2);
+  font-size: calc(18px * var(--text-scale, 1));
+  margin: 0 0 var(--space-6);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 var(--space-6);
+  border: 0;
+  border-radius: var(--radius-control);
+  background: var(--accent);
+  color: var(--on-accent);
+  font: inherit;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.16s ease;
+}
+.btn:hover { background: var(--accent-press); }
+
+.features {
+  display: grid;
+  gap: var(--space-8);
+  margin: var(--space-12) 0 0;
+  padding-top: var(--space-10);
+  border-top: 1px solid var(--stroke-1);
+}
+
+.feature h2 { margin: 0 0 var(--space-2); color: var(--text-1); font-size: calc(17px * var(--text-scale, 1)); }
+.feature p { margin: 0; color: var(--text-2); }

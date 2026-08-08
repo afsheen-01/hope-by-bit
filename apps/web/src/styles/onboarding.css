@@ -1,0 +1,250 @@
+/* Hope By Bit — onboarding.
+   One job: the form primitives the story screens never needed —
+   chips, a counter, fields, consent state.
+
+   Type and colour are not decided here. tokens.css sets the faces
+   and screen.css assigns the roles, so a question renders in the
+   same voice as a story without this file saying anything about it. */
+
+/* ── the step header ────────────────────────────────────────── */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding-top: var(--space-6);
+  min-height: 32px;
+}
+
+.progress {
+  font-size: 13px;
+  line-height: 1;
+  color: var(--text-3);
+  letter-spacing: 0.02em;
+  font-variant-numeric: tabular-nums;
+}
+
+.back {
+  appearance: none;
+  border: 0;
+  background: none;
+  font: inherit;
+  font-size: 13px;
+  line-height: 1;
+  color: var(--text-3);
+  padding: var(--space-2) 2px;
+  margin: calc(var(--space-2) * -1) -2px;
+  cursor: pointer;
+  transition: color 0.16s ease;
+}
+.back:hover { color: var(--text-1); }
+.back:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+
+/* ── chips ──────────────────────────────────────────────────
+   .seg is a single-select pill group with a shared track. Interests
+   and paths are multi-select and wrap over several rows, so they get
+   their own thing rather than bending that one. */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-5);
+}
+
+.chip {
+  appearance: none;
+  font: inherit;
+  font-size: 15px;
+  line-height: 1;
+  color: var(--text-2);
+  background: var(--fill-2);
+  border: 1px solid var(--stroke-1);
+  border-radius: 999px;
+  padding: var(--space-3) var(--space-4);
+  min-height: 44px;
+  cursor: pointer;
+  transition: background 0.16s ease, color 0.16s ease, border-color 0.16s ease;
+}
+.chip:hover { border-color: var(--stroke-2); }
+.chip[aria-pressed='true'] {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--on-accent);
+}
+.chip:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* ── the counter, and the line that explains the floor ──────── */
+.count {
+  margin: var(--space-5) 0 0;
+  font-size: 15px;
+  line-height: 1.3;
+  font-weight: 500;
+  color: var(--text-1);
+  font-variant-numeric: proportional-nums;
+}
+.hint {
+  margin: var(--space-1) 0 0;
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--text-3);
+}
+
+/* The ceiling explains itself only when reached. */
+.notice {
+  margin-top: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-control);
+  background: var(--accent-tint);
+  color: var(--text-1);
+  font-size: 13px;
+  line-height: 1.5;
+  text-wrap: pretty;
+}
+
+/* ── fields ─────────────────────────────────────────────────── */
+.field { margin-top: var(--space-5); }
+.field > label {
+  display: block;
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--text-3);
+  margin-bottom: var(--space-2);
+  text-wrap: pretty;
+}
+
+/* Direct children only — the time field's Zag-controlled inputs sit
+   deeper (.field > .time-box > [data-seg] > input) and carry their own
+   Tailwind classes, which this rule would otherwise out-specificity. */
+.field > input,
+.field > textarea {
+  display: block;
+  width: 100%;
+  font: inherit;
+  font-size: 16px;
+  color: var(--text-1);
+  background: var(--fill-2);
+  border: 1px solid var(--stroke-1);
+  border-radius: var(--radius-control);
+  padding: var(--space-4);
+  transition: border-color 0.16s ease;
+}
+.field > input { height: var(--tap); }
+/* Tall enough for the intro message at its full length — a message
+   you are being asked to approve shouldn't arrive already clipped. */
+.field > textarea {
+  line-height: 1.55;
+  min-height: 148px;
+  resize: vertical;
+}
+.field > input::placeholder,
+.field > textarea::placeholder { color: var(--text-3); }
+.field > input:focus-visible,
+.field > textarea:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+  border-color: var(--accent);
+}
+
+.row { display: flex; gap: var(--space-2); align-items: flex-end; margin-top: var(--space-5); }
+.row .field { flex: 1; margin-top: 0; }
+
+/* ── the circle ─────────────────────────────────────────────────
+   Apricot is "your people" once the app is running — the check-in
+   screen keeps it. Onboarding does not: five questions in a row that
+   change palette halfway read as two products, and the step is still
+   a question like the other four. Forest throughout, and the accent
+   earns its meaning on the screen where it actually fires. */
+button.person {
+  appearance: none;
+  font: inherit;
+  font-size: 14px;
+  cursor: pointer;
+  background: var(--accent-tint);
+  transition: border-color 0.16s ease;
+}
+button.person .avatar { background: var(--accent); color: var(--on-accent); }
+button.person:hover { border-color: var(--stroke-2); }
+button.person:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* Consent is the whole point of this step, so it is visible on every
+   person rather than summarised once underneath. */
+.status-dot {
+  width: 7px;
+  height: 7px;
+  flex: none;
+  border-radius: 999px;
+  background: var(--text-3);
+}
+.person[data-consent='confirmed'] .status-dot { background: var(--accent-contrast); }
+.person[data-consent='declined'] .status-dot { background: var(--stroke-2); }
+.person-state { color: var(--text-3); font-size: 12px; }
+.person[data-consent='declined'] .name { text-decoration: line-through; opacity: 0.7; }
+
+/* ── actions ────────────────────────────────────────────────── */
+.btn[disabled] {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+.btn[disabled]:hover { background: var(--accent); }
+
+/* Skipping is an ordinary answer, not a lesser one — so it is a plain
+   control on the same axis, not a whisper in the corner. */
+.skip {
+  appearance: none;
+  display: block;
+  width: 100%;
+  height: 48px;
+  margin-top: var(--space-2);
+  border: 0;
+  background: none;
+  font: inherit;
+  font-size: 15px;
+  color: var(--text-2);
+  cursor: pointer;
+  border-radius: var(--radius-control);
+  transition: color 0.16s ease, background 0.16s ease;
+}
+.skip:hover { color: var(--text-1); background: var(--fill-2); }
+.skip:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.btn-quiet {
+  background: var(--fill-2);
+  color: var(--text-1);
+  border: 1px solid var(--stroke-1);
+}
+.btn-quiet:hover { background: var(--fill-3); }
+
+/* ── the summary on the handoff screen ──────────────────────── */
+.summary {
+  margin-top: var(--space-5);
+  font-size: 14px;
+  line-height: 1.6;
+}
+.summary div {
+  display: flex;
+  gap: var(--space-3);
+  padding: var(--space-3) 0;
+  border-bottom: 1px solid var(--stroke-1);
+}
+.summary div:last-child { border-bottom: 0; }
+.summary dt {
+  flex: none;
+  width: 96px;
+  color: var(--text-3);
+}
+.summary dd {
+  flex: 1;
+  margin: 0;
+  color: var(--text-1);
+  text-wrap: pretty;
+}
+
+/* A stub needs to say it is one, or the prototype quietly overpromises. */
+.stub {
+  margin-top: var(--space-3);
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--text-3);
+  font-style: italic;
+  text-wrap: pretty;
+}

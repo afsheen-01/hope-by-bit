@@ -37,7 +37,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 14px 30px 0;
+  padding: var(--space-3) var(--space-8) 0;
   color: var(--text-1);
   font-size: 15px;
   font-weight: 600;
@@ -59,17 +59,24 @@ body {
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  padding: 0 var(--gutter) 34px;
+  padding: 0 var(--gutter) var(--space-8);
   overflow-y: auto;
   text-align: left;
 }
+
+/* Flex children default to shrinking. In a fixed-height column that
+   means a long screen compresses every child instead of scrolling —
+   and text does not reflow when its box shrinks, it overflows, so a
+   squeezed heading paints straight over the paragraph beneath it.
+   Keeping natural heights is what lets overflow-y above do its job. */
+.screen > * { flex-shrink: 0; }
 
 /* ── content ────────────────────────────────────────────── */
 .date {
   font-size: calc(14px * var(--text-scale, 1));
   line-height: 1.45;
   color: var(--text-3);
-  padding-top: 22px;
+  padding-top: var(--space-6);
 }
 
 /* The serif heads. Tracking sits at 0: negative tracking suits a
@@ -83,7 +90,7 @@ body {
   letter-spacing: 0;
   font-variation-settings: var(--display-var, normal);
   color: var(--text-1);
-  margin: 18px 0 0;
+  margin: var(--space-5) 0 0;
   min-height: var(--headline-min, 0px);
   text-wrap: balance;
   hanging-punctuation: first;
@@ -98,8 +105,8 @@ body {
 .figure {
   display: flex;
   align-items: center;
-  gap: 18px;
-  margin-top: 20px;
+  gap: var(--space-5);
+  margin-top: var(--space-5);
 }
 
 /* The figure is set in the display face, alongside the headline —
@@ -135,14 +142,14 @@ body {
   color: var(--text-3);
   text-wrap: pretty;
   max-width: 21ch;
-  padding-top: 2px;
+  padding-top: var(--space-1);
 }
 
 .body {
   font-size: calc(16px * var(--text-scale, 1));
   line-height: var(--lh-body, 1.68);
   color: var(--text-2);
-  margin: 26px 0 0;
+  margin: var(--space-6) 0 0;
   text-wrap: pretty;
 }
 
@@ -150,15 +157,15 @@ body {
   font-size: calc(13px * var(--text-scale, 1));
   line-height: 1.45;
   color: var(--text-3);
-  margin-top: 14px;
+  margin-top: var(--space-3);
 }
 
-.spacer { flex: 1; min-height: 18px; }
+.spacer { flex: 1; min-height: var(--space-5); }
 
 /* ── your people ────────────────────────────────────────── */
 .msg {
-  margin-top: 22px;
-  padding: 16px 18px;
+  margin-top: var(--space-6);
+  padding: var(--space-4) var(--space-5);
   border-radius: 20px 20px 20px 6px;
   background: var(--secondary);
   color: var(--on-secondary);
@@ -170,14 +177,14 @@ body {
 .people {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 16px;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
 }
 .person {
   display: inline-flex;
   align-items: center;
-  gap: 9px;
-  padding: 6px 15px 6px 6px;
+  gap: var(--space-2);
+  padding: var(--space-1) var(--space-4) var(--space-1) var(--space-1);
   border-radius: 999px;
   background: var(--secondary-tint);
   border: 1px solid var(--stroke-1);
@@ -204,7 +211,7 @@ body {
   font-size: 12px;
   line-height: 18px;
   color: var(--text-3);
-  margin-top: 14px;
+  margin-top: var(--space-3);
   text-wrap: pretty;
 }
 
@@ -224,7 +231,7 @@ body {
   justify-content: center;
   width: 100%;
   height: var(--tap);
-  margin-top: 16px;
+  margin-top: var(--space-4);
   border: 0;
   border-radius: var(--radius-control);
   background: var(--accent);
@@ -248,8 +255,8 @@ body {
 .choices {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  margin-top: 16px;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
 }
 
 .choice {
@@ -276,6 +283,19 @@ body {
 .choice:active { transform: scale(0.985); }
 .choice:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 
+/* Done, and still tappable — a thing you did by mistake should be as
+   easy to undo as it was to do. */
+.choice[aria-pressed='true'] {
+  background: none;
+  border-color: var(--stroke-1);
+  color: var(--text-3);
+}
+.choice .tick {
+  margin-right: var(--space-2);
+  color: var(--accent-contrast);
+  font-weight: 600;
+}
+
 .btn-people { background: var(--secondary); color: var(--on-secondary); }
 .btn-people:hover { background: var(--secondary); filter: brightness(0.93); }
 .btn-people:focus-visible { outline-color: var(--secondary); }
@@ -284,7 +304,7 @@ body {
   font-size: calc(13px * var(--text-scale, 1));
   line-height: 1.5;
   color: var(--text-3);
-  margin-top: 20px;
+  margin-top: var(--space-5);
   text-wrap: pretty;
 }
 
@@ -294,14 +314,14 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 24px;
-  padding: 40px 20px 64px;
+  gap: var(--space-6);
+  padding: var(--space-10) var(--space-5) var(--space-12);
 }
 
 .switches {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: var(--space-3);
   align-items: center;
   justify-content: center;
 }
@@ -334,7 +354,7 @@ body {
   font-size: 13px;
   line-height: 1;
   color: var(--text-3);
-  padding: 9px 16px;
+  padding: var(--space-2) var(--space-4);
   border-radius: 999px;
   transition: background 0.16s, color 0.16s;
 }

@@ -1,6 +1,6 @@
 # Contributing
 
-Read [PRINCIPLES.md](PRINCIPLES.md) first. Changes land when they serve one of the ten rules;
+Read [PRINCIPLES.md](product/principles.md) first. Changes land when they serve one of the ten rules;
 that's the bar most reviews come down to.
 
 Two sets of conventions are worth knowing before your first change: **code**, because the codebase
@@ -25,20 +25,20 @@ const keep = (keepsakes: readonly Keepsake[], bit: Bit, at: Instant) =>
 
 **Reach for a union** when a type has more than one shape — it reads better than a pile of optional
 fields, and every branch ends in a case that fails to compile when someone adds a variant, so
-adding a channel or a ladder rung shows you every place that needs attention.
+adding a channel or one of the day's movements shows you every place that needs attention.
 
 **Give ids their own types**, so a date and an id stay distinguishable. **Take a clock or a seed**
 rather than reading the time directly; that's what makes the wall's "three weeks ago" copy
 testable.
 
 **Small functions, one job.** If it wants a heading comment, it's two functions. Comment *why* —
-this product has counterintuitive decisions ([P5](PRINCIPLES.md) especially), and those are the
+this product has counterintuitive decisions ([P5](product/principles.md) especially), and those are the
 ones worth writing down.
 
 **Layout:** one concept per file, named exports, and a single entry point per package.
 
 **Tests** sit beside the source. The core carries 100% branch coverage. Property tests cover
-anything with an invariant: shrinking always terminates, the tally returns one cumulative number,
+anything with an invariant: the day always offers two or three actions, the tally returns one cumulative number,
 voice matching returns something from the list, sync merges to the same result in any order. Use
 the in-memory interfaces rather than mocks — if a mocking library would help, an effect has reached
 into the core, and moving it out is the fix. And `P1.test.ts` … `P10.test.ts`, one per rule: these
@@ -86,7 +86,7 @@ request with test results attached, same as changing a prompt.
 **The daily review step is part of the product** — it's what makes the stories worth reading, and
 it stays.
 
-**Anything a model writes that a person reads** follows [tone](PRODUCT.md), quoted into the prompt
+**Anything a model writes that a person reads** follows [tone](product/features.md), quoted into the prompt
 from the same file humans read, and passes the tone check before it's written to disk.
 
 **Logs record the run:** prompt version, model, and what was accepted or rejected — enough to

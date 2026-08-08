@@ -11,8 +11,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
-  padding-top: 22px;
+  gap: var(--space-3);
+  padding-top: var(--space-6);
   min-height: 32px;
 }
 
@@ -32,8 +32,8 @@
   font-size: 13px;
   line-height: 1;
   color: var(--text-3);
-  padding: 8px 2px;
-  margin: -8px -2px;
+  padding: var(--space-2) 2px;
+  margin: calc(var(--space-2) * -1) -2px;
   cursor: pointer;
   transition: color 0.16s ease;
 }
@@ -47,8 +47,8 @@
 .chips {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 20px;
+  gap: var(--space-2);
+  margin-top: var(--space-5);
 }
 
 .chip {
@@ -60,7 +60,7 @@
   background: var(--fill-2);
   border: 1px solid var(--stroke-1);
   border-radius: 999px;
-  padding: 14px 17px;
+  padding: var(--space-3) var(--space-4);
   min-height: 44px;
   cursor: pointer;
   transition: background 0.16s ease, color 0.16s ease, border-color 0.16s ease;
@@ -75,7 +75,7 @@
 
 /* ── the counter, and the line that explains the floor ──────── */
 .count {
-  margin: 20px 0 0;
+  margin: var(--space-5) 0 0;
   font-size: 15px;
   line-height: 1.3;
   font-weight: 500;
@@ -83,7 +83,7 @@
   font-variant-numeric: proportional-nums;
 }
 .hint {
-  margin: 5px 0 0;
+  margin: var(--space-1) 0 0;
   font-size: 13px;
   line-height: 1.45;
   color: var(--text-3);
@@ -91,8 +91,8 @@
 
 /* The ceiling explains itself only when reached. */
 .notice {
-  margin-top: 14px;
-  padding: 12px 15px;
+  margin-top: var(--space-3);
+  padding: var(--space-3) var(--space-4);
   border-radius: var(--radius-control);
   background: var(--accent-tint);
   color: var(--text-1);
@@ -102,13 +102,13 @@
 }
 
 /* ── fields ─────────────────────────────────────────────────── */
-.field { margin-top: 20px; }
+.field { margin-top: var(--space-5); }
 .field > label {
   display: block;
   font-size: 13px;
   line-height: 1.45;
   color: var(--text-3);
-  margin-bottom: 8px;
+  margin-bottom: var(--space-2);
   text-wrap: pretty;
 }
 
@@ -122,7 +122,7 @@
   background: var(--fill-2);
   border: 1px solid var(--stroke-1);
   border-radius: var(--radius-control);
-  padding: 15px 16px;
+  padding: var(--space-4);
   transition: border-color 0.16s ease;
 }
 .field input { height: var(--tap); }
@@ -149,19 +149,26 @@
   height: 64px;
 }
 
-.row { display: flex; gap: 8px; align-items: flex-end; margin-top: 20px; }
+.row { display: flex; gap: var(--space-2); align-items: flex-end; margin-top: var(--space-5); }
 .row .field { flex: 1; margin-top: 0; }
 
-/* ── the circle ─────────────────────────────────────────────── */
+/* ── the circle ─────────────────────────────────────────────────
+   Apricot is "your people" once the app is running — the check-in
+   screen keeps it. Onboarding does not: five questions in a row that
+   change palette halfway read as two products, and the step is still
+   a question like the other four. Forest throughout, and the accent
+   earns its meaning on the screen where it actually fires. */
 button.person {
   appearance: none;
   font: inherit;
   font-size: 14px;
   cursor: pointer;
+  background: var(--accent-tint);
   transition: border-color 0.16s ease;
 }
+button.person .avatar { background: var(--accent); color: var(--on-accent); }
 button.person:hover { border-color: var(--stroke-2); }
-button.person:focus-visible { outline: 2px solid var(--secondary); outline-offset: 2px; }
+button.person:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
 /* Consent is the whole point of this step, so it is visible on every
    person rather than summarised once underneath. */
@@ -181,10 +188,10 @@ button.person:focus-visible { outline: 2px solid var(--secondary); outline-offse
 .toggle {
   display: flex;
   align-items: flex-start;
-  gap: 14px;
+  gap: var(--space-3);
   width: 100%;
-  margin-top: 22px;
-  padding: 16px;
+  margin-top: var(--space-6);
+  padding: var(--space-4);
   text-align: left;
   font: inherit;
   color: var(--text-1);
@@ -193,7 +200,7 @@ button.person:focus-visible { outline: 2px solid var(--secondary); outline-offse
   border-radius: var(--radius-card);
   cursor: pointer;
 }
-.toggle:focus-visible { outline: 2px solid var(--secondary); outline-offset: 2px; }
+.toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 .toggle[disabled] { cursor: not-allowed; opacity: 0.6; }
 .toggle-text { flex: 1; font-size: 15px; line-height: 1.5; text-wrap: pretty; }
 
@@ -202,7 +209,7 @@ button.person:focus-visible { outline: 2px solid var(--secondary); outline-offse
   flex: none;
   width: 46px;
   height: 28px;
-  margin-top: 2px;
+  margin-top: var(--space-1);
   border-radius: 999px;
   background: var(--stroke-2);
   transition: background 0.16s ease;
@@ -218,36 +225,26 @@ button.person:focus-visible { outline: 2px solid var(--secondary); outline-offse
   background: var(--fill-1);
   transition: transform 0.16s ease;
 }
-.toggle[aria-checked='true'] .switch { background: var(--secondary); }
+.toggle[aria-checked='true'] .switch { background: var(--accent); }
 .toggle[aria-checked='true'] .switch::after { transform: translateX(18px); }
 
 /* Switching it on shows the whole consequence at once, rather than
    filing the details behind a settings screen. */
 .consequence {
-  margin-top: 10px;
-  padding: 16px;
+  margin-top: var(--space-3);
+  padding: var(--space-4);
   border-radius: var(--radius-card);
-  background: var(--secondary-tint);
+  background: var(--accent-tint);
   border: 1px solid var(--stroke-1);
   font-size: 14px;
   line-height: 1.55;
   color: var(--text-1);
   text-wrap: pretty;
 }
-.consequence p { margin: 0 0 10px; }
+.consequence p { margin: 0 0 var(--space-3); }
 .consequence p:last-child { margin-bottom: 0; }
 .consequence .limit { color: var(--text-2); font-size: 13px; }
-.consequence .seg { display: inline-flex; margin: 2px 0 10px; }
-
-/* screen.css tints the pressed segment with --accent, which is teal —
-   "the good bit". This control belongs to your people, so it takes
-   clay. The two accents carrying distinct meanings is a safety rule,
-   not a preference, and a teal control here would blur it. */
-.consequence .seg button[aria-pressed='true'] {
-  background: var(--secondary);
-  color: var(--on-secondary);
-}
-.consequence .seg button:focus-visible { outline-color: var(--secondary); }
+.consequence .seg { display: inline-flex; margin: var(--space-1) 0 var(--space-3); }
 
 /* ── actions ────────────────────────────────────────────────── */
 .btn[disabled] {
@@ -255,7 +252,6 @@ button.person:focus-visible { outline: 2px solid var(--secondary); outline-offse
   cursor: not-allowed;
 }
 .btn[disabled]:hover { background: var(--accent); }
-.btn-people[disabled]:hover { background: var(--secondary); }
 
 /* Skipping is an ordinary answer, not a lesser one — so it is a plain
    control on the same axis, not a whisper in the corner. */
@@ -264,7 +260,7 @@ button.person:focus-visible { outline: 2px solid var(--secondary); outline-offse
   display: block;
   width: 100%;
   height: 48px;
-  margin-top: 8px;
+  margin-top: var(--space-2);
   border: 0;
   background: none;
   font: inherit;
@@ -284,30 +280,16 @@ button.person:focus-visible { outline: 2px solid var(--secondary); outline-offse
 }
 .btn-quiet:hover { background: var(--fill-3); }
 
-/* ── the theme picker, in the phone ─────────────────────────── */
-.setting {
-  margin-top: 24px;
-  padding-top: 20px;
-  border-top: 1px solid var(--stroke-1);
-}
-.setting > label {
-  display: block;
-  font-size: 13px;
-  line-height: 1.45;
-  color: var(--text-3);
-  margin-bottom: 10px;
-}
-
 /* ── the summary on the handoff screen ──────────────────────── */
 .summary {
-  margin-top: 20px;
+  margin-top: var(--space-5);
   font-size: 14px;
   line-height: 1.6;
 }
 .summary div {
   display: flex;
-  gap: 12px;
-  padding: 11px 0;
+  gap: var(--space-3);
+  padding: var(--space-3) 0;
   border-bottom: 1px solid var(--stroke-1);
 }
 .summary div:last-child { border-bottom: 0; }
@@ -325,7 +307,7 @@ button.person:focus-visible { outline: 2px solid var(--secondary); outline-offse
 
 /* A stub needs to say it is one, or the prototype quietly overpromises. */
 .stub {
-  margin-top: 14px;
+  margin-top: var(--space-3);
   font-size: 12px;
   line-height: 1.5;
   color: var(--text-3);

@@ -25,14 +25,22 @@
     /* The action is something the body does, offered two or three at a
        time so there is always one within reach of the room you're in.
        Small enough to finish now, and to feel having finished. */
-    ask: 'Now one small thing, while you’re here. Whichever is nearest.',
+    ask: 'Now one small thing, while you’re here. Whichever is nearest — they all count the same.',
     actions: [
       'A glass of water',
       'Stand up and stretch',
       'Ninety seconds outside'
-    ],
-    bottom: "That's today's bit."
+    ]
   };
+
+  /* The closing line, by how many were done. Proportional praise, per
+     product/features.md's tone: warm without getting louder — one done is the
+     day cleared, and three is a good day, not a better person. */
+  function bottomFor(doneCount) {
+    if (doneCount === 0) return "That's today's. See you tomorrow.";
+    if (doneCount === 3) return 'All three. That was a good day.';
+    return "That's today's, and it counted.";
+  }
 
   var yourPeople = {
     date: 'Thursday, 11:48pm',
@@ -65,22 +73,28 @@
     return '<div class="phone">' + statusBar + '<div class="screen">' + inner + '</div></div>';
   }
 
-  /* choicesHTML : [String] -> String
-     No rung is the recommended one, so they carry equal weight. A
+  /* choicesHTML : ([String], [Int]) -> String
+     No action is the recommended one, so they carry equal weight. A
      single accent button among two quiet ones would be the product
-     choosing for you. */
-  function choicesHTML(actions) {
+     choosing for you. Done stays tappable, so it can be undone. */
+  function choicesHTML(actions, done) {
     return (
       '<div class="choices">' +
-      actions.map(function (a) {
-        return '<button class="choice">' + a + '</button>';
+      actions.map(function (a, i) {
+        var isDone = done.indexOf(i) !== -1;
+        return (
+          '<button class="choice" data-choice="' + i + '" ' +
+          'aria-pressed="' + isDone + '">' +
+          (isDone ? '<span class="tick" aria-hidden="true">✓</span>' : '') +
+          a + '</button>'
+        );
       }).join('') +
       '</div>'
     );
   }
 
-  /* goodBitHTML : Bit -> String */
-  function goodBitHTML(b) {
+  /* goodBitHTML : (Bit, [Int]) -> String */
+  function goodBitHTML(b, done) {
     return frame(
       '<div class="date">' + b.date + '</div>' +
       '<h1 class="headline">' + b.headline + '</h1>' +
@@ -92,8 +106,8 @@
       '<div class="source">' + b.source + '</div>' +
       '<div class="spacer"></div>' +
       '<p class="ask">' + b.ask + '</p>' +
-      choicesHTML(b.actions) +
-      '<div class="bottom">' + b.bottom + '</div>'
+      choicesHTML(b.actions, done) +
+      '<div class="bottom">' + bottomFor(done.length) + '</div>'
     );
   }
 
@@ -121,9 +135,13 @@
     );
   }
 
-  /* screenHTML : Mode -> String */
-  function screenHTML(mode) {
-    return mode === 'people' ? yourPeopleHTML(yourPeople) : goodBitHTML(goodBit);
+  /* screenHTML : (Mode, [Int]?) -> String
+     `done` is which of the day's actions have been taken. It is passed
+     in rather than read, so this stays a pure function of its inputs. */
+  function screenHTML(mode, done) {
+    return mode === 'people'
+      ? yourPeopleHTML(yourPeople)
+      : goodBitHTML(goodBit, done || []);
   }
 
   /* ── switches ────────────────────────────────────────── */
@@ -200,10 +218,40 @@
     applyTheme(theme);
   }
 
+  /* Which of today's actions have been taken.
+
+     THIS IS DELIBERATELY NOT PERSISTED. No store(), no localStorage,
+     no key of its own — it dies with the page, on purpose. The wall's
+     cumulative total is the only number this product keeps ([P2]), and
+     a per-day record of how many you managed is the shape a streak
+     takes. The encouragement is copy in the moment; making it durable
+     is the change that must not be made. */
+  var done = [];
+
+  function mountBit(el) {
+    function render() { el.innerHTML = screenHTML('bit', done); }
+
+    el.addEventListener('click', function (e) {
+      var c = e.target.closest('[data-choice]');
+      if (!c) return;
+      var i = Number(c.getAttribute('data-choice'));
+      done = done.indexOf(i) === -1
+        ? done.concat([i])
+        : done.filter(function (j) { return j !== i; });
+      render();
+      /* Re-render replaces the button, so put focus back on it. */
+      var again = el.querySelector('[data-choice="' + i + '"]');
+      if (again) again.focus();
+    });
+
+    render();
+  }
+
   global.HopeByBit = {
     goodBit: goodBit,
     yourPeople: yourPeople,
     screenHTML: screenHTML,
+    mountBit: mountBit,
     mountSwitches: mountSwitches
   };
 })(window);

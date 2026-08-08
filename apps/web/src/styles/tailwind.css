@@ -1,0 +1,48 @@
+/* Tailwind for new interactive work only (see techSpec/web/ui.md) — the
+   existing screens stay on tokens.css/site.css/screen.css/onboarding.css
+   unchanged. No preflight: this site already has its own reset in
+   site.css, and Tailwind's would fight it (list/button/heading styles).
+
+   `@theme inline` points Tailwind's generated utilities at our *existing*
+   custom properties rather than baking in new values — bg-fill-2 emits
+   `background-color: var(--color-fill-2)`, which resolves to
+   `var(--fill-2)`, which is still the thing that changes under
+   [data-theme]. One set of tokens, Tailwind just gets a fast way to use
+   them for markup that doesn't want its own stylesheet. */
+
+@layer theme, utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
+
+@theme inline {
+  --color-fill-1: var(--fill-1);
+  --color-fill-2: var(--fill-2);
+  --color-fill-3: var(--fill-3);
+  --color-stroke-1: var(--stroke-1);
+  --color-stroke-2: var(--stroke-2);
+  --color-text-1: var(--text-1);
+  --color-text-2: var(--text-2);
+  --color-text-3: var(--text-3);
+  --color-accent: var(--accent);
+  --color-accent-contrast: var(--accent-contrast);
+  --color-accent-press: var(--accent-press);
+  --color-accent-tint: var(--accent-tint);
+  --color-on-accent: var(--on-accent);
+  --color-secondary: var(--secondary);
+  --color-on-secondary: var(--on-secondary);
+
+  --radius-control: var(--radius-control);
+  --radius-card: var(--radius-card);
+
+  --spacing-1: var(--space-1);
+  --spacing-2: var(--space-2);
+  --spacing-3: var(--space-3);
+  --spacing-4: var(--space-4);
+  --spacing-5: var(--space-5);
+  --spacing-6: var(--space-6);
+  --spacing-8: var(--space-8);
+  --spacing-10: var(--space-10);
+  --spacing-12: var(--space-12);
+
+  --font-ui: var(--font-ui);
+}

@@ -1,6 +1,7 @@
 # Progress
 
-**Updated 2026-08-07 · Specifications complete, no code written.**
+**Updated 2026-08-08 · Specifications complete. First code: the website shell and the agent's
+brief schema.**
 
 `☐` not started · `◐` in progress · `☑` done · `⊘` waiting, on what's named
 
@@ -11,99 +12,50 @@ the whole state of the project. Once more than three people are working here at 
 become issues (the ids are stable so they import cleanly) and this file keeps the milestones and the
 open decisions.
 
+This page holds what spans tracks. Milestones live with the thing being built:
+
+| Track | Milestones | Progress |
+|---|---|---|
+| Website | W1–W7 | [techSpec/web/progress.md](techSpec/web/progress.md) |
+| App | M1–M9 | [techSpec/app/progress.md](techSpec/app/progress.md) |
+| Agent | A1–A7 | [techSpec/agent/progress.md](techSpec/agent/progress.md) |
+| Core, backend, onboarding | C1–C8, B1–B9, O1–O7 | [techSpec/progress.md](techSpec/progress.md) |
+
 ## 1. Now
 
-Onboarding is the first flow being built — [tech-spec/onboarding.md](tech-spec/onboarding.md).
+Onboarding is the first flow being built — the Onboarding section of
+[techSpec/app/ui.md](techSpec/app/ui.md).
 
 | | | Why first |
 |---|---|---|
+| ◐ | **W1 · Website shell** | Astro up, tokens and both themes, `/` rendering the daily unit. Placeholder story until B1. |
+| ◐ | **A1 · Brief schema and prompt** | Schema, prompt file and tests in; D2 settled, so it was unblocked. |
 | ☐ | **C1 · Core types and interfaces** | Everything reaches into it, onboarding included. |
 | ☐ | **C2 · Principle tests P1–P10** | Written *before* the surfaces, so the constraints stand while the code is still soft. |
 | ☐ | **O1 · The five onboarding steps** | The first flow, and it settles the variant's shape. |
-| ☐ | **D2 · Custom channels** | Step 1 asks the question; the answer shapes the agent's schema. |
 | ☐ | **D1 · License split** | Easiest to settle before contributors arrive. |
 
-## 2. Milestones
-
-Detail lives in the specs. This is the state.
-
-**Core** — done at full coverage, standing alone, module boundaries clean.
-
-| | | | | | |
-|---|---|---|---|---|---|
-| ☐ | C1 | Types, `Option`/`Result`, platform interfaces | ☐ | C5 | Voice matching and the word list |
-| ☐ | C2 | Principle tests P1–P10 | ☐ | C6 | Crisis lines by region — **help wanted** |
-| ☐ | C3 | Choosing, shrinking, recording, keeping, totals | ☐ | C7 | Variant schema, resolving, copy lookup |
-| ☐ | C4 | Grounding evidence, the third-run offer | ☐ | C8 | Sync merge + in-memory test interfaces |
-
-**Backend** — [tech-spec/backend.md](tech-spec/backend.md)
-
-| | | | | | |
-|---|---|---|---|---|---|
-| ☐ | B1 | Pipeline output published, `/bits/today` live | ☐ | B6 | Check-in: both reasons, rate limits, wording |
-| ☐ | B2 | Config: crisis lines by region | ☐ | B7 | Export and delete, releasing the circle |
-| ☐ | B3 | Accounts: Google and email links | ☐ | B8 | The daily review tool |
-| ☐ | B4 | Sync: merge shapes, two devices offline | ☐ | B9 | Self-hosting from the docs alone |
-| ☐ | B5 | Circle: storage, intros, YES and STOP | | | |
-
-**Onboarding** — [tech-spec/onboarding.md](tech-spec/onboarding.md)
-
-| | | | | | |
-|---|---|---|---|---|---|
-| ☐ | O1 | The five steps, accumulating and resuming | ☐ | O5 | The automatic check-in setting |
-| ☐ | O2 | Contact picker, intros, consent state | ☐ | O6 | Theme: Auto on the clock, matching first paint |
-| ☐ | O3 | Google and email sign-in, one account | ☐ | O7 | Onboarding on the website |
-| ☐ | O4 | First-sign-in upload and merge | | | |
-
-**App** — [tech-spec/app.md](tech-spec/app.md)
-
-| | | | | | |
-|---|---|---|---|---|---|
-| ☐ | M1 | Shell and Today | ☐ | M6 | Notification, deep link, shortcut |
-| ☐ | M2 | Ladder, wall, Keepsakes, storage | ☐ | M7 | Stories, signatures, config |
-| ☐ | M3 | Loop breaker, visual and haptic | ☐ | M8 | Sign-in and sync |
-| ☐ | M4 | Voice out, then voice in | ⊘ | M9 | Grief path — **on** sign-off |
-| ☐ | M5 | Check in and share — needs real devices | | | |
-
-**Website** — [tech-spec/website.md](tech-spec/website.md)
-
-| | | | | | |
-|---|---|---|---|---|---|
-| ☐ | W1 | Shell, tokens, both themes, `/` | ☐ | W5 | `/why/*` generated from the principles |
-| ☐ | W2 | `/today` live from the backend | ☐ | W6 | Docs and self-hosting guide |
-| ☐ | W3 | `/loop` and the no-tracking check | ☐ | W7 | `/account` — sign-in, sync, export, delete |
-| ☐ | W4 | `/standard` and the archive | | | |
-
-**Agent** — [tech-spec/agent.md](tech-spec/agent.md)
-
-| | | | | | |
-|---|---|---|---|---|---|
-| ⊘ | A1 | Brief, prompt, tests — **on** D2 | ☐ | A5 | Mobile and API templates |
-| ☐ | A2 | Plan and render, web template | ☐ | A6 | Manifest, upgrade, doctor |
-| ☐ | A3 | Principle checks, all ten | ⊘ | A7 | Path templates — **on** sign-off |
-| ☐ | A4 | Copy generation and tone check | | | |
-
-## 3. Review gates
+## 2. Review gates
 
 Work that ships once these clear. Record sign-off here with a name and date.
 
 | Gate | Covers | |
 |---|---|---|
-| **Bereavement counsellor sign-off** on all grief copy and interactions | M9, A7 | ☐ None identified. **Longest-lead item in the project — start before any code.** |
+| **Grief counsellor sign-off** on all grief copy and interactions | M9, A7 | ☐ None identified. **Longest-lead item in the project — start before any code.** |
 | **Crisis lines verified** per country by someone with local knowledge | C6, B2, W3, any release outside the US | ☐ 10 seeded, 0 verified |
 | **Editorial dry run** — 30 real days reviewed before launch | W4, launch | ☐ |
 
-## 4. Help wanted
+## 3. Help wanted
 
 1. **Crisis line rows.** One verified line per country. No code needed, and the highest-value thing
    available right now.
 2. **Editorial judgement.** Forty real stories labelled accept or reject against
-   [the bar](PRODUCT.md). Needs judgement, not TypeScript.
-3. **A bereavement counsellor** willing to review the grief path — or an introduction to one.
-4. **Multi-recipient messaging tested on real iPhones** ([why](tech-spec/app.md)).
+   [the bar](product/features.md). Needs judgement, not TypeScript.
+3. **A qualified grief counsellor** willing to review the grief path — or an introduction to one.
+4. **Multi-recipient messaging tested on real iPhones** ([why](techSpec/app/ui.md)).
 5. **The breathing haptic pattern** — the one genuinely fiddly piece of native code here.
 
-## 5. Open decisions
+## 4. Open decisions
 
 **D1 · License split.** Proposed: copyleft on the app, website and backend, so the product stays
 open wherever it travels; permissive on the core and the agent's templates, so someone generating a
@@ -112,10 +64,13 @@ a mix of both, and the app template descends from the copyleft app. Either the t
 dual-licensed deliberately, or everything goes permissive. **Settle before the first outside
 contributor**, since revisiting it later needs everyone's consent.
 
-**D2 · Custom channels.** *Shapes A1.* The agent's example prompt asks for cricket, one step outside
-the eight. Either unknown interests map to the nearest channel and the agent says so, or channels
-become open-ended — which asks the pipeline to classify arbitrary topics and rethinks "one reviewed
-story per channel per day". Leaning fixed for v1. Most likely of these to look wrong in a year.
+**D2 · Custom channels — settled 2026-08-08, fixed for v1.** The eight stand. An interest outside
+them maps to the nearest channel and the brief records the pair, so the agent tells the person what
+cricket became. Open-ended channels would ask the pipeline to classify arbitrary topics and would
+rethink "one reviewed story per channel per day", which is too much to carry before there is a
+pipeline. Reversible: `mapped` in the schema records every substitution, so if this looks wrong in a
+year, that list is the evidence for what the ninth channel should be. Still the most likely of these
+to look wrong in a year.
 
 **D3 · Where generated repos get their stories.** *Shapes A6.* The public feed by default (zero
 setup, and a standing dependency on infrastructure this project funds) or their own backend
@@ -140,7 +95,7 @@ attention is thin. Worth watching in the first real use, and cheap to remove.
 
 **D7 · Messaging cost as a signal.** SMS is the one line that grows with distress rather than with
 size, and the only one with no open substitute
-([backend](tech-spec/backend.md#what-it-costs)). A jump in it means either growth or a worse month
+([backend](techSpec/backend.md#what-it-costs)). A jump in it means either growth or a worse month
 for a lot of people. Deciding how to tell those apart, without measuring individuals, is worth
 thinking about before B6 rather than after.
 
@@ -153,19 +108,74 @@ Leaning website first, with the app once there's someone waiting for it.
 is days of paperwork rather than money, and each gates B5. Whichever country comes first, the
 registration should be filed well before the code that needs it.
 
-## 6. Log
+## 5. Log
 
-- **2026-08-07** — Onboarding specced as the first flow: five steps, interests required and the
-  rest skippable, with email as the identity and Google sign-in alongside an emailed link. Theme
-  gains Auto-by-clock with Light and Dark holding. **Reversed the earlier split on the check-in:**
-  the circle's numbers now live on the account, each member agrees by reply before they can be
+- **2026-08-08** — Removed the "who or what you're carrying" name field from the website's
+  onboarding step 2, along with its `state.carrying` and the summary suffix that showed it. Same
+  reasoning as the auto check-in toggle: the name exists to be dedicated to, and the website has no
+  wall and no dedications yet, so it collected something with nowhere to go. The paths themselves
+  stay, and so does the line explaining that grief isn't only bereavement. **The app spec keeps the
+  field** — it asks at M2, when there's a wall to dedicate against; `techSpec/app/ui.md` now records
+  the web/app split explicitly so the two don't read as contradicting each other.
+- **2026-08-08 · Canon change, two parts.** **Grief is no longer written as bereavement.** The docs
+  equated it with a person dying — *"someone who died"*, *"whose mother died in March"*,
+  *"widowed"* — which left anyone carrying a loss that isn't a death with no room in the product.
+  Grief now covers a person, a relationship, health, a home, or a future you'd counted on, and
+  onboarding says so on the screen. `grief` stays unchanged as a **data value** (the brief schema,
+  its tests, `path-grief/` templates, both `PATHS` arrays) — the word was always right; the reading
+  was too narrow. The review gate is now **a qualified grief counsellor**, which widens who can sign
+  off M9 and A7 without weakening the gate. The flagship agent example moved from *"widowed last
+  spring"* to *"mum moved into care last spring"* — a real, non-death loss that still supports a
+  dedication. **Deliberately kept:** the vaccine story's *"fewer deaths from any cause among
+  vaccinated under-fives"* and its half-a-million baseline. That is the good news, and the content
+  standard requires a real number against a baseline; softening it would fail our own test.
+- **2026-08-08 · Tone is warm.** `features.md` read *"plain, specific, slightly under-warm — the
+  subject supplies the feeling; the copy leaves room for it."* That rationale argued **for**
+  coolness, so it went with the rule. Warmth replaces it and the shipped copy followed: *"That's
+  today's bit."* → *"That's today's. See you tomorrow."*, *"your own evidence, not ours"* → *"proof
+  you were here for it, and it belongs to you."* **The honesty guards all stay** — proportional
+  praise, no hype or urgency or scarcity, real numbers, second person, present tense. Warm is in the
+  welcome, not the volume, and the bad-day test still governs every line: kindness that ignores the
+  day is not kindness.
+- **2026-08-08** — Docs restructured into `product/` and `techSpec/`. `ARCHITECTURE.md` became
+  `techSpec/architecture.md`, sitting with `backend.md` as the two cross-surface technical docs;
+  per-surface specs moved into `techSpec/{agent,web,app}/`. `website.md` + `ui.md` merged into
+  `web/ui.md`, `app.md` + `onboarding.md` into `app/ui.md`, both brought under the 200-line rule.
+  Milestone tables split out of this file into a `progress.md` per track. Two canon/code drifts
+  fixed while merging: the landing CTA points at `/today`, not the deleted `/account`, and Auto
+  theme is 06:00/18:00 as implemented, not the 07:00/19:00 the spec claimed.
+- **2026-08-08** — The onboarding time field is two Zag number-input machines plus an AM/PM toggle,
+  replacing `<input type="time">` whose picker is an OS widget CSS can't restyle. Tailwind v4 and
+  Phosphor icons added; React and Base UI rejected on budget (~44KB gzip for React alone against
+  12KB). Zag is dynamic-imported, so `/today` still ships 4.78KB gzip initially.
+- **2026-08-08** — Copy pass on the landing page: one CTA instead of two, dropped the "Free forever,
+  no ads" line under the hero button, and evened out the one feature heading that read as a sentence
+  fragment. A sitewide footer signature is now in `Base.astro`. **Trade-off worth flagging**:
+  removing "Free forever, no ads" drops the page's only explicit no-cost reassurance near the CTA,
+  and nothing replaced it.
+- **2026-08-08** — Theme switch moved to a fixed top-right icon-only control reusing `.seg`.
+  `color-scheme` added to all three theme blocks so native form chrome follows the site's theme.
+  Removed the auto check-in toggle from the website's onboarding step 3 — it configures the loop
+  breaker, which doesn't exist on the website yet; the app keeps it when O5 is built. **Deleted
+  `/account`**: "Get started" goes straight to `/today`, which already runs onboarding on a first
+  visit. `/account` returns at W7.
+- **2026-08-08** — Restructured `apps/web`: `/` is a marketing landing page, `/today` is the app
+  itself, running onboarding on a first visit and the daily unit after. Edited the website spec to
+  match — canon has to move with the code or stop being the canon.
+- **2026-08-08** — First code. `apps/web` is an Astro static site: shell, tokens carried over
+  unchanged, Auto/Light/Dark landing before first paint, `/` rendering the daily unit. Two requests,
+  none third-party, reads with JavaScript off. `tools/agent` has the brief schema, prompt file and
+  nine tests. **Settled D2** the way this file leaned: eight fixed channels, substitutions recorded
+  so the agent can say what it did — which unblocked A1. The schema carries no field for a crisis
+  line, a streak, or loop-breaker counts, and a test holds that shut.
+- **2026-08-07** — Onboarding specced as the first flow: five steps, interests required and the rest
+  skippable, email as the identity. Theme gains Auto-by-clock. **Reversed the earlier split on the
+  check-in:** the circle's numbers now live on the account, each member agrees by reply before being
   messaged, and a person can choose at setup — while calm — to have three loop-breaker runs in a day
-  message their circle on their behalf. P4 and P5 rewritten around it; run counts still stay on the
-  phone. Costed for the real starting size — ten people on free and starter plans, about $15 a
-  month, most of it Apple's developer fee — with an open alternative listed for every paid service.
+  message their circle. P4 and P5 rewritten around it; run counts still stay on the phone. Costed
+  for ten people at about $15 a month, most of it Apple's developer fee.
 - **2026-08-07** — Specifications written: product, principles, architecture, contributing, safety,
-  and four tech specs. Decided: the agent generates full codebases; voice runs on the device in both
-  directions; Expo, Astro, and a shared TypeScript backend on serverless; accounts sync the wall
-  between devices while the loop breaker stays on the phone; the check-in hands off to the phone's
-  own share sheet. Rewrote every document to state what the product does. Prototype at
-  `prototype/hope-by-bit.html`.
+  and four tech specs. Decided: the agent generates full codebases; voice runs on the device both
+  ways; Expo, Astro, and a shared TypeScript backend on serverless; accounts sync the wall between
+  devices while the loop breaker stays on the phone; the check-in hands off to the phone's own share
+  sheet.
