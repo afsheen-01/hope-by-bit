@@ -6,7 +6,11 @@ import "./onboarding.js";
 const KEY = "hopebybit:onboarded";
 const el = document.getElementById("onboarding");
 
-if (el && !localStorage.getItem(KEY)) {
+// The overlay is fixed and full-screen, so it has to go the moment we know
+// it isn't wanted — left in place empty it just paints over today's story.
+if (el && localStorage.getItem(KEY)) {
+  el.remove();
+} else if (el) {
   window.HopeByBitOnboarding.mount(el, () => {
     localStorage.setItem(KEY, "1");
     el.remove();

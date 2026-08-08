@@ -37,8 +37,9 @@
   display: grid;
   gap: var(--space-8);
   margin: var(--space-12) 0 0;
-  padding-top: var(--space-10);
+  padding: var(--space-10) 0;
   border-top: 1px solid var(--stroke-1);
+  border-bottom: 1px solid var(--stroke-1);
 }
 
 .feature h2 { margin: 0 0 var(--space-2); color: var(--text-1); font-size: calc(17px * var(--text-scale, 1)); }

@@ -24,3 +24,9 @@
   height: auto;
   overflow-y: visible;
 }
+
+/* Same reason as main's: the fixed theme switch has nowhere to sit once the
+   column is the whole viewport, and the step counter is what it lands on. */
+@media (max-width: 44rem) {
+  .onboarding-page { padding-top: 64px; }
+}

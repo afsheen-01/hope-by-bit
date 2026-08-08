@@ -14,23 +14,51 @@ const bit = today();
 ---
 
 <Base title="Hope By Bit — today's story">
-  <p class="date">{bit.date}</p>
-  <h1>{bit.headline}</h1>
+  <!-- .bit scopes the story's styles above screen.css, which ships on this
+       page for the onboarding overlay's primitives and shares class names
+       (.figure, .date, .ask…) with the site's own. -->
+  <article class="bit">
+    <p class="date">{bit.date}</p>
+    <h1>{bit.headline}</h1>
 
-  <p class="figure">{bit.figure}</p>
-  <p class="figure-cap">{bit.figureCap}</p>
+    <p class="figure">
+      <span class="figure-num">{bit.figure}</span>
+      <span class="figure-cap">{bit.figureCap}</span>
+    </p>
 
-  <p>{bit.body}</p>
-  <p class="source">{bit.source}</p>
+    <p>{bit.body}</p>
+    <p class="source">{bit.source}</p>
 
-  <p class="ask">{bit.ask}</p>
-  <ul class="movements">
-    {bit.movements.map((m) => <li>{m}</li>)}
-  </ul>
+    <section class="action">
+      <h2>One small thing</h2>
+      <p class="ask">{bit.ask}</p>
+      <ul class="movements">
+        {bit.movements.map((m, i) => (
+          <li>
+            <button type="button" data-choice={i} aria-pressed="false">{m}</button>
+          </li>
+        ))}
+      </ul>
+    </section>
 
-  <p class="note">
-    Placeholder story: the backend that publishes the daily bit isn't running yet (W2).
-  </p>
+    <p class="note">
+      Placeholder story: the backend that publishes the daily bit isn't running yet (W2).
+    </p>
+  </article>
+
+  <!-- Done, and still tappable: a mistap undoes as easily as it happened.
+       Deliberately not persisted — the wall's cumulative total is the only
+       number this product keeps (P2); a per-day record is a streak. -->
+  <script is:inline>
+    document.querySelector(".movements")?.addEventListener("click", (e) => {
+      const b = e.target.closest("[data-choice]");
+      if (!b) return;
+      const done = b.getAttribute("aria-pressed") !== "true";
+      b.setAttribute("aria-pressed", String(done));
+      b.querySelector(".tick")?.remove();
+      if (done) b.insertAdjacentHTML("afterbegin", '<span class="tick" aria-hidden="true">✓</span>');
+    });
+  </script>
 
   <!-- Empty without JavaScript, and the story above is already the whole
        page — so a first visit with JS off gets today's story rather than

@@ -94,8 +94,11 @@
   /* Cormorant Infant is small on the body and light in colour;
      a heading has to be set large before it reads as a voice
      rather than as a caption. */
-  --headline-size: 46px;
-  --headline-lh: 50px;
+  /* Fluid rather than fixed: 46px is a full third of a 360px phone, and a
+     headline that big turns a five-word sentence into five lines. The floor
+     keeps it a voice on the narrowest phone still shipping (320px). */
+  --headline-size: clamp(30px, 8.5vw, 46px);
+  --headline-lh: 1.1;
   --headline-weight: 400;
   --headline-min: 0px;
 
