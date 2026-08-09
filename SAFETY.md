@@ -88,9 +88,7 @@ cleared when a member is removed or the account is deleted.
 ## The grief gate
 
 Dedicating actions to what someone is carrying is the most powerful thing in this product, which is
-exactly why it ships behind a gate. Grief here is not only bereavement — it covers the loss of a
-person, a relationship, health, a home, or a future someone had counted on, and the copy has to hold
-all of them.
+exactly why it ships behind a gate. The copy says grief and leaves it there.
 
 **Every part of the grief path carries written sign-off from a qualified grief counsellor** before
 release, recorded in [PROGRESS.md](PROGRESS.md) with a name and date, and renewed whenever the copy

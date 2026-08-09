@@ -114,14 +114,17 @@ registration should be filed well before the code that needs it.
   onboarding step 2, along with its `state.carrying` and the summary suffix that showed it. Same
   reasoning as the auto check-in toggle: the name exists to be dedicated to, and the website has no
   wall and no dedications yet, so it collected something with nowhere to go. The paths themselves
-  stay, and so does the line explaining that grief isn't only bereavement. **The app spec keeps the
+  stay. **The app spec keeps the
   field** — it asks at M2, when there's a wall to dedicate against; `techSpec/app/ui.md` now records
   the web/app split explicitly so the two don't read as contradicting each other.
+- **2026-08-08 · The word is grief, and that's the whole definition.** Every doc that glossed it —
+  listing what does and doesn't count as a loss — now just says grief. Whoever taps it knows what
+  they're carrying, and a list either misses their case or makes them audition for it. Files
+  touched: `SAFETY.md`, `product/features.md`, `techSpec/app/ui.md`; onboarding copy was already
+  clean.
 - **2026-08-08 · Canon change, two parts.** **Grief is no longer written as bereavement.** The docs
-  equated it with a person dying — *"someone who died"*, *"whose mother died in March"*,
-  *"widowed"* — which left anyone carrying a loss that isn't a death with no room in the product.
-  Grief now covers a person, a relationship, health, a home, or a future you'd counted on, and
-  onboarding says so on the screen. `grief` stays unchanged as a **data value** (the brief schema,
+  equated it with a person dying, which left anyone carrying a loss that isn't a death with no room
+  in the product. `grief` stays unchanged as a **data value** (the brief schema,
   its tests, `path-grief/` templates, both `PATHS` arrays) — the word was always right; the reading
   was too narrow. The review gate is now **a qualified grief counsellor**, which widens who can sign
   off M9 and A7 without weakening the gate. The flagship agent example moved from *"widowed last

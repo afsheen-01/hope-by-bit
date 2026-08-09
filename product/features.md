@@ -43,9 +43,7 @@ story you chose yourself is stronger than one we picked. That's why the ritual i
 past week two.
 
 **Continuing bonds.** With the grief path on, any action can be dedicated — *"planted this for
-Mum"* — and the wall quietly becomes a record of things done in someone's name. Grief is not only
-bereavement: what you're carrying might be a person, but it might be a relationship, your health, a
-home, or a future you had counted on. The offer comes *after* an action, so what you're carrying
+Mum"* — and the wall quietly becomes a record of things done in someone's name. The offer comes *after* an action, so what you're carrying
 stays a dedication rather than a reason to act. The name is asked once. Gated on
 [review](../SAFETY.md).
 

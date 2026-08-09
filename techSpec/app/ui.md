@@ -67,9 +67,7 @@ requirement arrives when it's relevant. Saved to the variant as `channels`, whic
 fetch asks for.
 
 **2 · Path.** Grief leads, as the deepest path, with illness, burnout, loneliness and worry
-alongside. Up to two. **Grief is not only bereavement** — the screen says so, naming a person, a
-relationship, health, a home or a future you counted on, so a loss that isn't a death finds room.
-Choosing it opens one more field: **who or what you're carrying**, asked once and kept, with the
+alongside. Up to two. Choosing it opens one more field: **who or what you're carrying**, asked once and kept, with the
 screen explaining what the name unlocks — actions can be done in its name, and the wall becomes a
 record of that ([SAFETY.md](../../SAFETY.md)). Moving straight past is an equally ordinary answer.
 
