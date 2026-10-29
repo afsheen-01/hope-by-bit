@@ -151,9 +151,11 @@ and the loop breaker left out.
 
 ## Open questions
 
-1. **Does `/today` need per-person channels signed out?** One well-chosen story for everyone is
-   simpler and arguably better journalism, with personalization arriving when you sign in. Leaning
-   toward the single edition for signed-out visitors.
+1. ~~**Does `/today` need per-person channels signed out?**~~ **Settled 2026-08-09 by not
+   branching.** Choosing today's story is one pure function of the date and a list of channels,
+   deterministic and with no per-person state. Signed out it is handed all eight, signed in the
+   three to five they picked — so the single edition falls out rather than being a special case,
+   and the page has nothing to switch on.
 2. **The archive and the daily path.** A library is right; keeping it clearly a library, one that
    invites a visit rather than a session, needs a design pass of its own.
 3. **Where the prototype lives.** Useful for contributors, so probably `/prototype`, clearly

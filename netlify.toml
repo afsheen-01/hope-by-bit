@@ -2,3 +2,16 @@
 base = "apps/web"
 command = "npm run build"
 publish = "dist"
+
+# The API has to be reached same-origin at /api/*, because the website forbids
+# third-party requests — a strict content policy and a build check both confirm
+# it, so /today cannot fetch across origins for today's story.
+#
+# There is deliberately no redirect here yet. In development the proxy lives in
+# astro.config.mjs, which is the only place that knows where the API is running.
+# A rule pointing at a deployed API belongs here the day one exists — until
+# then, hardcoding an address would make /api/* answer 502 in production while
+# the page still renders from the build, which is a failure nobody would see.
+#
+# ponytail: no deploy proxy. Add one rule here, pointing at the deployed API,
+# when the vendor is settled (techSpec/backend.md).

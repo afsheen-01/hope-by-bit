@@ -1,0 +1,21 @@
+# One service, because one is all the API needs. `npm run dev` brings this up,
+# migrates, and serves — backend.md's "one command brings up Postgres and the
+# functions locally", which is also B9's whole test.
+services:
+  db:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: hope
+      POSTGRES_PASSWORD: hope
+      POSTGRES_DB: hope
+    # DB_PORT from .env, for a machine that already runs Postgres on 5432.
+    ports: ["${DB_PORT:-5432}:5432"]
+    volumes: ["hope-db:/var/lib/postgresql/data"]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U hope"]
+      interval: 2s
+      timeout: 3s
+      retries: 20
+
+volumes:
+  hope-db:

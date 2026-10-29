@@ -7,7 +7,11 @@ device within the hour.**
 A separate spec, because the app and the website share this and describing it twice would let the
 two descriptions drift.
 
-Status: **specification**. No code written.
+Status: **B1–B4 built** in `apps/api` — stories, config, accounts and sync, plus the nightly
+pipeline. B5–B7 (the circle, the check-in, export and delete) are specification here and gated on
+SMS registration ([D9](../PROGRESS.md#4-open-decisions)); their tables do not exist yet, and a test
+holds that shut. **[P9](../product/principles.md) is therefore a promise the code does not keep
+until B7** — there is no `/export` and no `/delete` today.
 
 ## What it does
 
@@ -97,21 +101,49 @@ delivery, which is what the confirmation screen shows.
 ## Data
 
 ```
-account    id · email · provider · createdAt
-entry      id · accountId · at · what · bitId · dedication
-keepsake   accountId · bitId · at
-circle     id · accountId · name · e164 · consent · confirmedAt
-setting    accountId · key · value · updatedAt
-message    id · accountId · circleId · reason · sentAt · status
+account      id · email · provider · createdAt
+session      tokenHash · accountId · createdAt · expiresAt
+signInLink   tokenHash · email · createdAt · expiresAt · usedAt
+entry        id · accountId · at · what · bitId
+keepsake     accountId · bitId · at · removedAt
+setting      accountId · key · value · updatedAt
+
+circle       id · accountId · name · e164 · consent · confirmedAt   — B5
+message      id · accountId · circleId · reason · sentAt · status   — B6
 ```
 
-An entry can hold a name someone is carrying; a circle row holds a third party's phone number.
-Both are treated to the standard in [SAFETY.md](../SAFETY.md): encrypted, purpose-limited, released
-on removal or deletion. `message` keeps what was sent and when, for delivery and for the person's
-own record, and holds nothing about what preceded it.
+`session` and `signInLink` store the **hash** of their token, never the token, so a copy of either
+table is not a set of working ways in. A sign-in link is single use and lives fifteen minutes;
+`usedAt` is what spends it, claimed by the update itself so two clicks race to one winner. Deleting
+an account cascades through everything that references it, which is most of what `/delete` will
+need at B7.
+
+**`entry` holds no dedication.** [D5](../PROGRESS.md#4-open-decisions) was dissolved rather than
+decided: with no name someone is carrying in the schema there is nothing end-to-end encryption was
+protecting, and the grief path has not cleared its counsellor gate, so a column for it would be
+that path shipping ahead of the sign-off. Dedications stay on the device and return with the gate.
+
+**`keepsake` carries `removedAt`.** Keepsakes are a set, and the sync rules above say add and
+remove each carry a time — without a removal field, a device that never saw the removal resurrects
+the row on the next merge. The earlier model omitted it and contradicted its own paragraph.
+
+What is left on an entry is a movement label and a date. Encrypted in transit and at rest per
+[SAFETY.md](../SAFETY.md), which at this size means TLS plus the database's own disk encryption — a
+column cipher over "A glass of water" buys nothing. **`setting.value` is the row that will want
+one**, since it holds the chosen paths and the check-in message in the person's own words; it goes
+in with B5, when the circle's numbers force a key-management story anyway. A circle row holds a
+third party's phone number and is treated to the same standard: purpose-limited, released on
+removal or deletion. `message` keeps what was sent and when, for delivery and for the person's own
+record, and holds nothing about what preceded it.
+
+**The story shape is `Bit`** — `date · headline · figure · figureCap · body · source · ask ·
+movements`, declared in `apps/web/src/lib/today.ts` and re-exported from `apps/api/src/types.ts`.
+It is the contract the pipeline produces, the routes serve and the browser renders, with no
+translation in between; the number splits into `figure` and `figureCap` so it can be shown large.
 
 **Auth is passwordless:** Google, or an emailed sign-in link, with passkeys following as a third way
-onto the same account. Sessions are short-lived tokens with refresh.
+onto the same account. Sessions are short-lived tokens — thirty days, stored as a hash so a copy of
+the table is not a set of working sessions. Refresh follows when re-signing-in annoys somebody.
 
 ## What it costs
 
@@ -168,9 +200,25 @@ during it.
 ## Operating it
 
 One region to start, reads served globally from the edge. Backups nightly with a thirty-day window.
-Migrations run forward through small ordered steps. The pipeline's daily review is a protected route
-with its own sign-in. The messaging number is dedicated, registered for the region it sends in, and
-handles STOP at the provider as well as in our own records.
+Migrations run forward through small ordered steps — `migrations/NNN_*.sql` and twenty lines that
+run the unapplied ones, each in its own transaction. The messaging number is dedicated, registered
+for the region it sends in, and handles STOP at the provider as well as in our own records.
+
+**The daily review is a terminal command**, `npm run review`, not a protected route. It becomes one
+at B8, when somebody other than the maintainer reviews; until then a sign-in would guard a tool
+only one person can already run.
+
+**The API is reached same-origin at `/api/*`.** The website forbids third-party requests — a strict
+content policy and a build check both confirm it — so `/today` cannot fetch across origins to get
+today's story. In development that is a proxy in `astro.config.mjs`. **There is deliberately no
+deploy rule yet**: pointing one at an address before an API is deployed there would make `/api/*`
+answer 502 in production while the page still rendered from the build, which is a failure nobody
+would notice. One rule goes in `netlify.toml` the day the vendor is settled.
+
+**Access is limited by operational control, not by an audit table.** Database roles restrict who
+can read, and the access policy is written down; a reads-logged table earns its place at B8, when
+someone other than the operating maintainer can reach the data. [SAFETY.md](../SAFETY.md) says the
+same, so the promise isn't quietly unmet.
 
 **Self-hosting is a first-class path**: one command brings up Postgres and the functions locally,
 with the messaging provider swappable, and the docs carry the full sequence.
@@ -179,11 +227,11 @@ Milestones B1–B9 are in [progress.md](progress.md).
 
 ## Open questions
 
-1. **End-to-end encryption of wall entries.** Entries hold dedications, so this deserves a real
-   answer. Passwordless sign-in leaves no password to derive a key from, which means a recovery
-   phrase the person keeps — with its own risk of a lost record. Server-side encryption at rest is
-   what's specced. **Decide before B4**, since it shapes the schema. Note that the circle's numbers
-   can't be end-to-end encrypted regardless, because the server sends the messages.
+1. ~~**End-to-end encryption of wall entries.**~~ **Dissolved 2026-08-09.** The question was what to
+   do about dedications; the answer was to take the field out. An entry now holds a movement label
+   and a date, which TLS and encryption at rest cover, and the question returns with the grief gate
+   if dedications ever sync. The circle's numbers were never in scope — the server sends the
+   messages. `setting.value` is the remaining candidate for a column cipher (see Data above).
 2. **What happens when the threshold fires and nobody is confirmed.** Specced as: the setting can't
    be switched on. Whether a member who later replies STOP should silently disable it, or say so
    first, needs deciding at B5.

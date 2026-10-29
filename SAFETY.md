@@ -106,13 +106,20 @@ it is presented as an equally ordinary answer.
 ## User data
 
 The backend holds the wall, Keepsakes, the circle, and settings so a record and its people follow
-their person between devices ([P9](product/principles.md)). A wall entry can hold a name someone is
-carrying, and a circle row holds a third party's phone number; both are treated to that standard.
+their person between devices ([P9](product/principles.md)). **A wall entry holds no name.** A
+dedication stays on the device that made it and syncs nowhere, because the grief path has not
+cleared its review gate and a column for it would be that path shipping ahead of the sign-off
+([D5](PROGRESS.md#4-open-decisions)). A circle row holds a third party's phone number, and that is
+treated to the standard below.
 
 Encrypted in transit and at rest. Used for the purpose they were given for and no other. Access
-limited to the maintainers who operate the service, with reads logged. Export returns the whole
-record as one plain file in a single call. Delete clears the phone and the server together,
-releases every circle member, and returns a receipt.
+limited to the maintainers who operate the service, with reads logged — an operational control
+today (database roles and a written access policy, in
+[backend.md](techSpec/backend.md#operating-it)) rather than an audit table, and named as such so
+the promise isn't quietly unmet. Export returns the whole record as one plain file in a single
+call. Delete clears the phone and the server together, releases every circle member, and returns a
+receipt. **Both of those are B7 and are not built yet**; until they are, P9 is a promise the code
+does not keep, which [progress.md](techSpec/progress.md) says out loud.
 
 The loop breaker's history and anything spoken stay on the device, and the API has nowhere to put
 them. Measurement stays away from the hard-moment flow entirely, including crash reporting, since a

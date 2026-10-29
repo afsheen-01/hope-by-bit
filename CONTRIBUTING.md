@@ -94,6 +94,11 @@ reproduce a decision. They draw on the pipeline alone, which is all the pipeline
 
 ## Starting
 
-There's no code yet. The most useful things right now are in [PROGRESS.md](PROGRESS.md): the
-crisis-line table needs local knowledge, and the classifier's test cases need editorial judgement
-more than TypeScript.
+There is a website (`apps/web`), an agent (`tools/agent`) and a backend (`apps/api`). `npm run dev`
+in `apps/api` brings up Postgres, migrates and serves; stories and config answer with nothing
+configured at all, so `curl localhost:8787/bits/today` works on a fresh clone.
+
+The most useful things right now still need judgement rather than TypeScript, and are in
+[PROGRESS.md](PROGRESS.md): the crisis-line table needs local knowledge — nine of its ten rows are
+unverified, and the API serves the findahelpline.com fallback for every one of them until someone
+checks it — and the classifier's test cases need an editor.
