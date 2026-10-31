@@ -5,18 +5,13 @@
 // what anyone returning sees straight away.
 import Base from "../layouts/Base.astro";
 import { today } from "../lib/today.ts";
-import "../styles/screen.css";
-import "../styles/onboarding.css";
-import "../styles/onboarding-page.css";
-import "../styles/tailwind.css";
 
 const bit = today();
 ---
 
-<Base title="Hope By Bit — today's story">
-  <!-- .bit scopes the story's styles above screen.css, which ships on this
-       page for the onboarding overlay's primitives and shares class names
-       (.figure, .date, .ask…) with the site's own. -->
+<Base title="Hope By Bit — today's story" bodyClass="screen-page">
+  <!-- .bit scopes the story's styles above the onboarding overlay's, which
+       share class names (.figure, .date, .ask…) with the story's own. -->
   <article class="bit">
     <p class="date">{bit.date}</p>
     <h1>{bit.headline}</h1>

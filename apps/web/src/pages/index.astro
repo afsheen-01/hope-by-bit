@@ -5,7 +5,6 @@
 // spec's own `/` still stands at /today. Copy follows product/features.md's tone:
 // plain, specific, warm, proportional praise, no urgency or scarcity.
 import Base from "../layouts/Base.astro";
-import "../styles/landing.css";
 
 // "Get started" is the explicit entry into onboarding, so it clears the
 // "already done this" flag first — a device that finished onboarding
@@ -21,7 +20,7 @@ import "../styles/landing.css";
       A genuinely good piece of news, matched to what you care about. One small thing your body can
       do about it. And a record of it all, quietly adding up in your corner.
     </p>
-    <a class="btn" href="/today" onclick="localStorage.removeItem('hopebybit:onboarded')">Get started</a>
+    <a class="cta" href="/today" onclick="localStorage.removeItem('hopebybit:onboarded')">Get started</a>
   </section>
 
   <section class="features">

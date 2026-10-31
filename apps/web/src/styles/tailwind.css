@@ -1,19 +1,241 @@
-/* Tailwind for new interactive work only — the
-   existing screens stay on tokens.css/site.css/screen.css/onboarding.css
-   unchanged. No preflight: this site already has its own reset in
-   site.css, and Tailwind's would fight it (list/button/heading styles).
+/* ════════════════════════════════════════════════════════════
+   Hope By Bit · every style the website has, in one file.
 
-   `@theme inline` points Tailwind's generated utilities at our *existing*
-   custom properties rather than baking in new values — bg-fill-2 emits
-   `background-color: var(--color-fill-2)`, which resolves to
-   `var(--fill-2)`, which is still the thing that changes under
-   [data-theme]. One set of tokens, Tailwind just gets a fast way to use
-   them for markup that doesn't want its own stylesheet. */
+   Order: the design tokens (plain custom properties, because
+   [data-theme] flips them at runtime), the Tailwind theme that
+   maps utilities onto those tokens, element defaults, then the
+   site's named components rebuilt with @apply.
 
-@layer theme, utilities;
+   The rule for @apply: use a utility where one maps to a token
+   (spacing, colour, radius, type size, weight, layout). Where no
+   utility says the same thing exactly — transition lists, clamp(),
+   font features, a one-off length — the declaration stays as
+   written rather than becoming an arbitrary-value blob.
+
+   No preflight: the reset below is the site's own, and Tailwind's
+   would fight it (list/button/heading styles).
+   ════════════════════════════════════════════════════════════ */
+
+@layer theme, base, components, utilities;
 @import "tailwindcss/theme.css" layer(theme);
 @import "tailwindcss/utilities.css" layer(utilities);
 
+/* ════════════════════════════════════════════════════════════
+   Hope By Bit · design tokens
+   Built to Pavel Kiselev's three-level method:
+   global → system → component.
+   Globals are never used directly by a screen.
+
+   One palette — Grove: oat · forest · apricot.
+
+   Two grounds. Dark uses the last six neutral steps only,
+   with accents desaturated rather than merely lightened.
+
+   The accent names are kept generic at level 2 (--accent,
+   --secondary) so a screen never names a hue. Forest is
+   always "the good bit"; apricot is always "your people".
+   ════════════════════════════════════════════════════════════ */
+
+/* ── LEVEL 1 · GLOBAL ─────────────────────────────────────── */
+:root {
+  --g-n-100: hsl(40 10% 100%);
+  --g-n-98:  hsl(40 10% 97.5%);
+  --g-n-96:  hsl(40 9% 95.5%);
+  --g-n-92:  hsl(40 9% 92%);
+  --g-n-86:  hsl(40 8% 86%);
+  --g-n-78:  hsl(40 8% 78%);
+  --g-n-58:  hsl(40 7% 56%);
+  --g-n-54:  hsl(40 7% 52%);
+  --g-n-38:  hsl(40 9% 36%);
+  --g-n-32:  hsl(40 10% 30%);
+  --g-n-24:  hsl(40 11% 23%);
+  --g-n-18:  hsl(40 12% 17%);
+  --g-n-16:  hsl(40 12% 15%);
+  --g-n-14:  hsl(40 12% 13%);
+  --g-n-10:  hsl(40 13% 9.5%);
+  --g-n-08:  hsl(40 14% 7.5%);
+
+  /* Forest — the good bit. Deep enough that white passes easily. */
+  --g-teal-100: hsl(155 30% 94%);
+  --g-teal-300: hsl(155 30% 30%);
+  --g-teal-400: hsl(155 33% 24%);
+  --g-teal-500: hsl(155 35% 19%);
+  --g-teal-d-300: hsl(155 24% 50%);
+  --g-teal-d-400: hsl(155 26% 60%);
+  --g-teal-d-tint: hsl(155 22% 12%);
+
+  /* Apricot — your people. The chosen 52% swatch is the TINT and
+     the avatar; the button fill drops to 40% so it clears 4.5:1
+     against white with margin (42% lands on 4.50 exactly, which
+     is too tight to ship). The warmth survives; the fill works. */
+  --g-clay-100: hsl(28 62% 94%);
+  --g-clay-300: hsl(28 58% 40%);
+  --g-clay-400: hsl(28 60% 33%);
+  --g-clay-d-300: hsl(28 46% 60%);
+  --g-clay-d-tint: hsl(28 34% 12%);
+
+  /* ── Space ───────────────────────────────────────────────
+     A 4-point grid: every gap is a multiple of four, so spacing
+     is chosen from a scale rather than typed. See product/designSystem.md for
+     the proximity rule that says which step to reach for. */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+
+  /* The container inset — 8 units, and the widest thing on the
+     scale that still leaves a 390px screen a readable column. */
+  --gutter: var(--space-8);
+
+  /* ── Shape ───────────────────────────────────────────────
+     Radii and the tap target are not spacing and do not answer
+     to the grid; --tap is the 44pt accessibility floor rounded
+     up, and the radii are drawn to the device frame. */
+  --radius-control: 14px;
+  --radius-card: 18px;
+  --tap: 56px;
+
+  /* ── Type ────────────────────────────────────────────────
+     Settled: Cormorant Infant heads, Rubik carries body and
+     every control. Two families, which is the ceiling the
+     website build enforces. Declared once here rather than
+     per page, because there is no longer a second answer. */
+  --font-display: 'Cormorant Infant', Georgia, serif;
+  --font-ui: 'Rubik', system-ui, sans-serif;
+
+  /* Rubik is the body face, so it is the reference and needs
+     no x-height correction against itself. */
+  --text-scale: 1;
+  --lh-body: 1.68;
+
+  /* Cormorant Infant is small on the body and light in colour;
+     a heading has to be set large before it reads as a voice
+     rather than as a caption. */
+  /* Fluid rather than fixed: 46px is a full third of a 360px phone, and a
+     headline that big turns a five-word sentence into five lines. The floor
+     keeps it a voice on the narrowest phone still shipping (320px). */
+  --headline-size: clamp(30px, 8.5vw, 46px);
+  --headline-lh: 1.1;
+  --headline-weight: 400;
+  --headline-min: 0px;
+
+  /* The figure is set in the display face. --figure-size is a
+     fixed 64px and does not scale, so the side bearing below
+     is measured against Cormorant at that size. */
+  --figure-weight: 300;
+  --figure-optical: -0.0503em;
+  --display-var: normal;
+}
+
+/* ── LEVEL 2 · SYSTEM · light ground ────────────────────────
+   Built outward from white. Strokes start "shifted right"
+   so they stay visible against the fills. These alias the
+   globals rather than restating any colour.                 */
+:root,
+[data-theme='light'] {
+  /* Syncs native form-control chrome (the time-input popup, scrollbars)
+     to the ground the rest of the page is on. */
+  color-scheme: light;
+
+  --fill-1: var(--g-n-98);
+  --fill-2: var(--g-n-96);
+  --fill-3: var(--g-n-92);
+  --stroke-1: var(--g-n-86);
+  --stroke-2: var(--g-n-78);
+
+  --text-1: var(--g-n-16);
+  --text-2: var(--g-n-38);
+  --text-3: var(--g-n-54);
+
+  --accent: var(--g-teal-300);
+  --accent-contrast: var(--g-teal-400);
+  --accent-press: var(--g-teal-500);
+  --accent-tint: var(--g-teal-100);
+  --on-accent: var(--g-n-100);
+
+  --secondary: var(--g-clay-300);
+  --secondary-tint: var(--g-clay-100);
+  --on-secondary: var(--g-n-100);
+
+  --shade: hsl(35 20% 8% / 0.09);
+  --frame-edge: var(--g-n-86);
+}
+
+/* ── LEVEL 2 · SYSTEM · dark ground ─────────────────────────
+   "Dark elevated": the last six steps only, with the same
+   gradient direction as light. Strokes move the opposite
+   way — more prominence means lighter.
+
+   The media query only matters with JavaScript off: Base.astro's inline
+   script always sets [data-theme] (time-of-day when there's no saved
+   choice — see theme-switch.js), so this is the no-JS fallback and
+   follows the OS setting instead of the clock. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    color-scheme: dark;
+
+    --fill-1: var(--g-n-10);
+    --fill-2: var(--g-n-14);
+    --fill-3: var(--g-n-18);
+    --stroke-1: var(--g-n-24);
+    --stroke-2: var(--g-n-32);
+
+    --text-1: var(--g-n-96);
+    --text-2: var(--g-n-78);
+    --text-3: var(--g-n-58);
+
+    --accent: var(--g-teal-d-300);
+    --accent-contrast: var(--g-teal-d-400);
+    --accent-press: var(--g-teal-d-400);
+    --accent-tint: var(--g-teal-d-tint);
+    --on-accent: var(--g-n-08);
+
+    --secondary: var(--g-clay-d-300);
+    --secondary-tint: var(--g-clay-d-tint);
+    --on-secondary: var(--g-n-08);
+
+    --shade: hsl(0 0% 0% / 0.5);
+    --frame-edge: var(--g-n-24);
+  }
+}
+
+[data-theme='dark'] {
+  color-scheme: dark;
+
+  --fill-1: var(--g-n-10);
+  --fill-2: var(--g-n-14);
+  --fill-3: var(--g-n-18);
+  --stroke-1: var(--g-n-24);
+  --stroke-2: var(--g-n-32);
+
+  --text-1: var(--g-n-96);
+  --text-2: var(--g-n-78);
+  --text-3: var(--g-n-58);
+
+  --accent: var(--g-teal-d-300);
+  --accent-contrast: var(--g-teal-d-400);
+  --accent-press: var(--g-teal-d-400);
+  --accent-tint: var(--g-teal-d-tint);
+  --on-accent: var(--g-n-08);
+
+  --secondary: var(--g-clay-d-300);
+  --secondary-tint: var(--g-clay-d-tint);
+  --on-secondary: var(--g-n-08);
+
+  --shade: hsl(0 0% 0% / 0.5);
+  --frame-edge: var(--g-n-24);
+}
+
+/* ── TAILWIND THEME ───────────────────────────────────────────
+   `inline` points every generated utility at the tokens above
+   rather than baking in values: bg-fill-2 emits var(--fill-2),
+   which is still the thing [data-theme] changes. One set of
+   tokens; Tailwind is a fast way to spell them. */
 @theme inline {
   --color-fill-1: var(--fill-1);
   --color-fill-2: var(--fill-2);
@@ -29,10 +251,12 @@
   --color-accent-tint: var(--accent-tint);
   --color-on-accent: var(--on-accent);
   --color-secondary: var(--secondary);
+  --color-secondary-tint: var(--secondary-tint);
   --color-on-secondary: var(--on-secondary);
 
   --radius-control: var(--radius-control);
   --radius-card: var(--radius-card);
+  --radius-pill: 999px;
 
   --spacing-1: var(--space-1);
   --spacing-2: var(--space-2);
@@ -43,6 +267,552 @@
   --spacing-8: var(--space-8);
   --spacing-10: var(--space-10);
   --spacing-12: var(--space-12);
+  --spacing-gutter: var(--gutter);
+  --spacing-tap: var(--tap);
 
   --font-ui: var(--font-ui);
+  --font-display: var(--font-display);
+}
+
+/* Type sizes that follow --text-scale, so dynamic type works without a
+   second stylesheet. Utilities rather than theme `--text-*` entries,
+   because those also set line-height, and these must not. */
+@utility fs-13 { font-size: calc(13px * var(--text-scale, 1)); }
+@utility fs-14 { font-size: calc(14px * var(--text-scale, 1)); }
+@utility fs-15 { font-size: calc(15px * var(--text-scale, 1)); }
+@utility fs-16 { font-size: calc(16px * var(--text-scale, 1)); }
+@utility fs-17 { font-size: calc(17px * var(--text-scale, 1)); }
+@utility fs-18 { font-size: calc(18px * var(--text-scale, 1)); }
+
+/* ── BASE · element defaults ───────────────────────────────── */
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; }
+
+  body {
+    @apply m-0 bg-fill-1 text-text-1 font-ui fs-16;
+    line-height: var(--lh-body);
+    -webkit-text-size-adjust: 100%;
+  }
+
+  main {
+    @apply mx-auto my-0 px-5 pt-8 pb-12;
+    max-width: 34rem;
+  }
+
+  /* The theme switch is fixed to the top-right corner. Once the column fills
+     the viewport there is no margin for it to sit in, so the page has to
+     leave it room rather than let it land on the first line. */
+  @media (max-width: 44rem) {
+    main { padding-top: 64px; }
+  }
+
+  h1 {
+    @apply m-0 font-display;
+    font-size: var(--headline-size);
+    line-height: var(--headline-lh);
+    font-weight: var(--headline-weight);
+  }
+
+  h2 {
+    @apply mx-0 mt-10 mb-3 font-ui fs-15 font-medium text-text-2;
+  }
+
+  a { @apply text-accent-contrast; }
+
+  footer {
+    @apply mt-12 text-center text-text-3 fs-13;
+  }
+  footer a { @apply text-text-2; }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+}
+
+@layer components {
+  /* ── /today's page ground ──────────────────────────────────
+     Set by today.astro through Base's bodyClass. The story and the
+     onboarding overlay sit on the deeper fill; the landing page
+     keeps fill-1. */
+  .screen-page {
+    @apply m-0 bg-fill-3 font-ui;
+    font-variation-settings: var(--ui-var, normal);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* ── the onboarding layout ─────────────────────────────────
+     A screen that runs long scrolls rather than clipping. Silent
+     truncation is the failure mode here: a story with a long
+     headline would swallow its own action button and look fine. */
+  .screen {
+    @apply flex-1 flex flex-col items-stretch px-gutter pt-0 pb-8 text-left;
+    min-height: 0;
+    overflow-y: auto;
+  }
+
+  /* Flex children default to shrinking. In a fixed-height column that
+     means a long screen compresses every child instead of scrolling —
+     and text does not reflow when its box shrinks, it overflows, so a
+     squeezed heading paints straight over the paragraph beneath it. */
+  .screen > * { @apply shrink-0; }
+
+  .date {
+    @apply pt-6 text-text-3 fs-14;
+    line-height: 1.45;
+  }
+
+  /* The serif heads. Tracking sits at 0: negative tracking suits a
+     sans at 34px, but at 46 it closes a serif's counters and the
+     joins begin to fill in. */
+  .headline {
+    @apply mx-0 mt-5 mb-0 font-display text-text-1 text-balance;
+    font-size: var(--headline-size, 46px);
+    line-height: var(--headline-lh, 50px);
+    font-weight: var(--headline-weight, 400);
+    letter-spacing: 0;
+    font-variation-settings: var(--display-var, normal);
+    min-height: var(--headline-min, 0px);
+    hanging-punctuation: first;
+  }
+
+  /* Caption centred against the number rather than baseline-locked to
+     it — a big number drags a 13px baseline to the floor and the pair
+     stops reading as one unit. */
+  .figure {
+    @apply flex items-center gap-5 mt-5;
+  }
+
+  /* Figures are PROPORTIONAL. Tabular figures give every digit an
+     identical wide advance, which opens a hole inside "13" and centres
+     the 1 in an oversized slot. `lnum` is requested explicitly because
+     some faces default to oldstyle. */
+  .figure-num {
+    @apply flex-none font-display text-accent-contrast;
+    font-size: var(--figure-size, 64px);
+    line-height: 0.94;
+    font-weight: var(--figure-weight, 400);
+    font-variation-settings: var(--display-var, normal);
+    letter-spacing: -0.02em;
+    font-variant-numeric: proportional-nums;
+    font-feature-settings: 'lnum' 1, 'tnum' 0, 'onum' 0;
+    /* side-bearing correction so the numeral's ink sits flush with the
+       text column. Measured against Cormorant at 64px, not guessed. */
+    margin-left: var(--figure-optical, 0);
+  }
+  .figure-cap {
+    @apply flex-1 pt-1 text-text-3 fs-13 text-pretty;
+    line-height: 1.45;
+    max-width: 21ch;
+  }
+
+  .body {
+    @apply mx-0 mt-6 mb-0 text-text-2 fs-16 text-pretty;
+    line-height: var(--lh-body, 1.68);
+  }
+
+  .source {
+    @apply mt-3 text-text-3 fs-13;
+    line-height: 1.45;
+  }
+
+  .spacer { @apply flex-1 min-h-5; }
+
+  /* ── people ──────────────────────────────────────────────── */
+  .people {
+    @apply flex flex-wrap gap-2 mt-4;
+  }
+  .person {
+    @apply inline-flex items-center gap-2 py-1 pr-4 pl-1 rounded-pill bg-secondary-tint
+      border border-stroke-1 text-text-1;
+    font-size: 14px;
+    line-height: 1;
+  }
+  .avatar {
+    @apply flex-none inline-flex items-center justify-center rounded-pill bg-secondary
+      text-on-secondary font-semibold;
+    width: 26px;
+    height: 26px;
+    font-size: 10px;
+    letter-spacing: 0.02em;
+  }
+
+  .crisis {
+    @apply mt-3 text-text-3 text-pretty;
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  /* ── the action ──────────────────────────────────────────── */
+  .ask {
+    @apply m-0 text-text-2 fs-15 text-pretty;
+    line-height: var(--lh-body, 1.62);
+  }
+
+  .btn {
+    @apply flex items-center justify-center w-full h-tap mt-4 rounded-control bg-accent
+      text-on-accent fs-16 font-medium leading-none cursor-pointer;
+    appearance: none;
+    border: 0;
+    font-family: inherit;
+    font-variation-settings: inherit;
+    transition: background 0.16s ease, transform 0.12s ease, filter 0.16s ease;
+  }
+  .btn:hover { @apply bg-accent-press; }
+  .btn:active { transform: scale(0.985); }
+  .btn:focus-visible { @apply outline-2 outline-accent outline-offset-3; }
+
+  .bottom {
+    @apply mt-5 text-text-3 fs-13 text-pretty;
+    line-height: 1.5;
+  }
+
+  /* ── segmented switch ────────────────────────────────────── */
+  .seg {
+    @apply flex rounded-pill bg-fill-2 border border-stroke-1;
+    gap: 3px;
+    padding: 3px;
+  }
+  .seg button {
+    @apply py-2 px-4 rounded-pill text-text-3 cursor-pointer;
+    appearance: none;
+    border: 0;
+    background: none;
+    font: inherit;
+    font-size: 13px;
+    line-height: 1;
+    transition: background 0.16s, color 0.16s;
+  }
+  .seg button[aria-pressed='true'] { @apply bg-accent text-on-accent; }
+  .seg button:focus-visible { @apply outline-2 outline-accent outline-offset-2; }
+
+  /* ── onboarding: the step header ─────────────────────────── */
+  .topbar {
+    @apply flex items-center justify-between gap-3 pt-6;
+    min-height: 32px;
+  }
+
+  .progress {
+    @apply text-text-3 leading-none;
+    font-size: 13px;
+    letter-spacing: 0.02em;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .back {
+    @apply py-2 text-text-3 cursor-pointer;
+    appearance: none;
+    border: 0;
+    background: none;
+    font: inherit;
+    font-size: 13px;
+    line-height: 1;
+    padding-left: 2px;
+    padding-right: 2px;
+    margin: calc(var(--space-2) * -1) -2px;
+    transition: color 0.16s ease;
+  }
+  .back:hover { @apply text-text-1; }
+  .back:focus-visible { @apply outline-2 outline-accent outline-offset-2; border-radius: 4px; }
+
+  /* ── onboarding: chips ───────────────────────────────────────
+     .seg is a single-select pill group with a shared track. Interests
+     and paths are multi-select and wrap over several rows, so they get
+     their own thing rather than bending that one. */
+  .chips {
+    @apply flex flex-wrap gap-2 mt-5;
+  }
+
+  .chip {
+    @apply py-3 px-4 rounded-pill bg-fill-2 border border-stroke-1 text-text-2 cursor-pointer;
+    appearance: none;
+    font: inherit;
+    font-size: 15px;
+    line-height: 1;
+    min-height: 44px;
+    transition: background 0.16s ease, color 0.16s ease, border-color 0.16s ease;
+  }
+  .chip:hover { @apply border-stroke-2; }
+  .chip[aria-pressed='true'] { @apply bg-accent border-accent text-on-accent; }
+  .chip:focus-visible { @apply outline-2 outline-accent outline-offset-2; }
+
+  /* ── onboarding: the counter, and the line that explains the floor */
+  .count {
+    @apply mx-0 mt-5 mb-0 font-medium text-text-1;
+    font-size: 15px;
+    line-height: 1.3;
+    font-variant-numeric: proportional-nums;
+  }
+  .hint {
+    @apply mx-0 mt-1 mb-0 text-text-3;
+    font-size: 13px;
+    line-height: 1.45;
+  }
+
+  /* The ceiling explains itself only when reached. */
+  .notice {
+    @apply mt-3 py-3 px-4 rounded-control bg-accent-tint text-text-1 text-pretty;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  /* ── onboarding: fields ──────────────────────────────────── */
+  .field { @apply mt-5; }
+  .field > label {
+    @apply block mb-2 text-text-3 text-pretty;
+    font-size: 13px;
+    line-height: 1.45;
+  }
+
+  /* Direct children only — the time field's Zag-controlled inputs sit
+     deeper (.field > .time-box > [data-seg] > input) and carry their own
+     utility classes, which this rule would otherwise out-specificity. */
+  .field > input,
+  .field > textarea {
+    @apply block w-full p-4 rounded-control bg-fill-2 border border-stroke-1 text-text-1;
+    font: inherit;
+    font-size: 16px;
+    transition: border-color 0.16s ease;
+  }
+  .field > input { @apply h-tap; }
+  /* Tall enough for the intro message at its full length — a message
+     you are being asked to approve shouldn't arrive already clipped. */
+  .field > textarea {
+    line-height: 1.55;
+    min-height: 148px;
+    resize: vertical;
+  }
+  .field > input::placeholder,
+  .field > textarea::placeholder { @apply text-text-3; }
+  .field > input:focus-visible,
+  .field > textarea:focus-visible {
+    @apply outline-2 outline-accent outline-offset-1 border-accent;
+  }
+
+  .row { @apply flex gap-2 items-end mt-5; }
+  .row .field { @apply flex-1 mt-0; }
+
+  /* ── onboarding: the circle ──────────────────────────────────
+     Apricot is "your people" once the app is running. Onboarding is
+     forest throughout: five questions that change palette halfway read
+     as two products, and the step is still a question like the rest. */
+  button.person {
+    @apply bg-accent-tint cursor-pointer;
+    appearance: none;
+    font: inherit;
+    font-size: 14px;
+    transition: border-color 0.16s ease;
+  }
+  button.person .avatar { @apply bg-accent text-on-accent; }
+  button.person:hover { @apply border-stroke-2; }
+  button.person:focus-visible { @apply outline-2 outline-accent outline-offset-2; }
+
+  /* Consent is the whole point of this step, so it is visible on every
+     person rather than summarised once underneath. */
+  .status-dot {
+    @apply flex-none rounded-pill;
+    width: 7px;
+    height: 7px;
+    background: var(--text-3);
+  }
+  .person[data-consent='confirmed'] .status-dot { background: var(--accent-contrast); }
+  .person[data-consent='declined'] .status-dot { background: var(--stroke-2); }
+  .person-state { @apply text-text-3; font-size: 12px; }
+  .person[data-consent='declined'] .name { @apply line-through; opacity: 0.7; }
+
+  /* ── onboarding: actions ─────────────────────────────────── */
+  .btn[disabled] {
+    @apply cursor-not-allowed;
+    opacity: 0.45;
+  }
+  .btn[disabled]:hover { @apply bg-accent; }
+
+  /* Skipping is an ordinary answer, not a lesser one — so it is a plain
+     control on the same axis, not a whisper in the corner. */
+  .skip {
+    @apply block w-full mt-2 rounded-control text-text-2 cursor-pointer;
+    appearance: none;
+    height: 48px;
+    border: 0;
+    background: none;
+    font: inherit;
+    font-size: 15px;
+    transition: color 0.16s ease, background 0.16s ease;
+  }
+  .skip:hover { @apply text-text-1 bg-fill-2; }
+  .skip:focus-visible { @apply outline-2 outline-accent outline-offset-2; }
+
+  .btn-quiet {
+    @apply bg-fill-2 text-text-1 border border-stroke-1;
+  }
+  .btn-quiet:hover { @apply bg-fill-3; }
+
+  /* ── onboarding: the summary on the handoff screen ───────── */
+  .summary {
+    @apply mt-5;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .summary div {
+    @apply flex gap-3 py-3 px-0 border-b border-b-stroke-1;
+  }
+  .summary div:last-child { border-bottom: 0; }
+  .summary dt {
+    @apply flex-none text-text-3;
+    width: 96px;
+  }
+  .summary dd {
+    @apply flex-1 m-0 text-text-1 text-pretty;
+  }
+
+  /* A stub needs to say it is one, or the prototype quietly overpromises. */
+  .stub {
+    @apply mt-3 text-text-3 italic text-pretty;
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  /* ── onboarding as a full page ───────────────────────────────
+     onboarding.js renders each step inside .screen, which was sized
+     for a phone frame. On the site there's no frame, so this
+     overrides just the sizing; everything else comes from above. */
+  #onboarding {
+    @apply fixed inset-0 bg-fill-1;
+    z-index: 20;
+    overflow-y: auto;
+  }
+
+  .onboarding-page {
+    @apply mx-auto my-0 px-5 pt-6 pb-12;
+    max-width: 34rem;
+    min-height: 100%;
+    /* .screen sets flex/overflow for a fixed box; inside a page that
+       already scrolls, this lays out top to bottom without swallowing
+       height it doesn't have. */
+    height: auto;
+    overflow-y: visible;
+  }
+
+  /* Same reason as main's: the fixed theme switch has nowhere to sit once
+     the column is the whole viewport. */
+  @media (max-width: 44rem) {
+    .onboarding-page { padding-top: 64px; }
+  }
+
+  /* ── the story (/today) ──────────────────────────────────────
+     Scoped under .bit because it shares class names (.figure, .date,
+     .ask, .source) with the onboarding layout above, and the story
+     was never laid out for those sizes. */
+  .bit .date { @apply mx-0 mt-0 mb-3 text-text-3 fs-13; }
+
+  /* Number and caption read as one unit, so they sit on one line. The
+     number takes the body face, not the display serif. */
+  .bit .figure {
+    @apply flex items-center gap-5 mx-0 mt-8 mb-2;
+  }
+
+  .bit .figure-num {
+    @apply flex-none font-ui font-semibold leading-none text-accent-contrast;
+    font-size: clamp(36px, 11vw, 48px);
+  }
+
+  .bit .figure-cap {
+    @apply flex-1 text-text-2 fs-15 text-pretty;
+    max-width: 24ch;
+  }
+
+  /* The action is its own block, not a coda to the story. */
+  .bit .action {
+    @apply mt-8 pt-6 border-t border-t-stroke-1;
+  }
+  .bit .action h2 { @apply mt-0; }
+
+  .bit .ask { @apply mx-0 mt-0 mb-3 text-text-2; }
+
+  .bit .movements { @apply m-0 p-0 grid gap-2; list-style: none; }
+
+  .bit .movements button {
+    @apply w-full flex items-center gap-2 py-3 px-4 rounded-control bg-fill-2
+      border border-stroke-1 text-text-1 text-left cursor-pointer;
+    min-height: 44px;          /* the target size CONTRIBUTING asks for */
+    font: inherit;
+    /* border only: transitioning colour would animate the whole label on a
+       theme swap, since the swap changes the token under it. */
+    transition: border-color 0.16s ease;
+  }
+  .bit .movements button:hover { @apply border-accent; }
+  .bit .movements button:focus-visible { @apply outline-2 outline-accent outline-offset-3; }
+
+  /* Done, and still tappable — undoing should cost what doing cost. */
+  .bit .movements button[aria-pressed="true"] {
+    @apply text-text-3;
+    background: none;
+  }
+  .bit .movements .tick { @apply text-accent-contrast font-semibold; }
+
+  .bit .source, .bit .note { @apply text-text-3 fs-13; }
+
+  .bit .note {
+    @apply mt-10 pt-4 border-t border-t-stroke-1;
+  }
+
+  /* ── the theme switch ────────────────────────────────────────
+     Same joined-pill shape as .seg, fixed to the corner. It does not
+     exist without JavaScript, which is correct: the system preference
+     already carries both grounds. */
+  #theme {
+    @apply fixed top-4 right-4 hidden rounded-pill bg-fill-2 border border-stroke-1;
+    z-index: 30; /* above the onboarding overlay (z-index: 20) */
+    gap: 3px;
+    padding: 3px;
+    box-shadow: 0 2px 12px -4px var(--shade);
+  }
+
+  #theme button {
+    @apply grid place-items-center rounded-pill text-text-3 cursor-pointer;
+    appearance: none;
+    border: 0;
+    background: none;
+    width: 36px;
+    height: 36px;
+    transition: background 0.16s, color 0.16s;
+  }
+
+  #theme button svg { width: 18px; height: 18px; }
+
+  #theme button[aria-pressed="true"] { @apply bg-accent text-on-accent; }
+  #theme button:focus-visible { @apply outline-2 outline-accent outline-offset-2; }
+
+  /* ── the landing page (/) ────────────────────────────────── */
+  .hero { @apply pt-6; }
+
+  .hero h1 {
+    @apply mb-4;
+    font-size: calc(var(--headline-size) * 1.1);
+    line-height: 1.1;
+  }
+
+  .lead {
+    @apply mx-0 mt-0 mb-6 text-text-2 fs-18;
+  }
+
+  /* The landing page's call to action. Its own name, because .btn above
+     is onboarding's full-width primary and the two now share a sheet. */
+  .cta {
+    @apply inline-flex items-center justify-center px-6 py-0 rounded-control bg-accent
+      text-on-accent no-underline cursor-pointer;
+    min-height: 44px;
+    border: 0;
+    font: inherit;
+    font-weight: 500;
+    transition: background 0.16s ease;
+  }
+  .cta:hover { @apply bg-accent-press; }
+
+  .features {
+    @apply grid gap-8 mx-0 mt-12 mb-0 py-10 px-0 border-y border-y-stroke-1;
+  }
+
+  .feature h2 { @apply mx-0 mt-0 mb-2 text-text-1 fs-17; }
+  .feature p { @apply m-0 text-text-2; }
 }

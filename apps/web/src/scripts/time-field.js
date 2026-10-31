@@ -3,7 +3,7 @@
 // reach — confirmed on step 4. Zag's number-input
 // machine gives keyboard/scroll-wheel increment, clamping, and
 // formatting without that popup; the AM/PM toggle is two plain buttons
-// reusing screen.css's existing .seg pattern, since a two-way switch
+// reusing the existing .seg pattern, since a two-way switch
 // doesn't need a state machine.
 import * as numberInput from "@zag-js/number-input";
 import { normalizeProps, spreadProps, VanillaMachine } from "@zag-js/vanilla";
