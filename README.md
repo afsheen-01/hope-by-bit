@@ -28,9 +28,8 @@ the canon is right and the code is a bug.
 | | |
 |---|---|
 | [SAFETY.md](SAFETY.md) | The crisis boundary, the grief review gate, the check-in circle, and how user data is held. |
-| [CONTRIBUTING.md](CONTRIBUTING.md) | How to write code and prompts here. Read before your first change. |
 | [PROGRESS.md](PROGRESS.md) | The cross-track tracker — what's next, what's blocked, what's undecided. |
-| `apps/web/` | The website — Astro pages, Svelte components (`src/components/`), logic in `src/lib/`. `npm install && npm run dev`, `npm test`. |
+| `apps/web/` | The website — Astro pages, Svelte components (`src/components/`), logic in `src/lib/`. `pnpm install && pnpm dev`, `pnpm test`. |
 
 ## The four surfaces
 
@@ -53,8 +52,7 @@ All four use the same core, which is where the thinking lives.
 
 Functional and plain — values in, values out, effects at the edges, everyday TypeScript. Modular, so
 each surface is a thin shell around shared logic. Simple on purpose: a contributor should be able to
-read a change with the vocabulary they already have. Details in
-[CONTRIBUTING.md](CONTRIBUTING.md).
+read a change with the vocabulary they already have.
 
 Documents here stay under 200 lines. A document growing past that is two documents.
 

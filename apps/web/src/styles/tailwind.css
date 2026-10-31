@@ -734,7 +734,7 @@
   .bit .movements button {
     @apply w-full flex items-center gap-2 py-3 px-4 rounded-control bg-fill-2
       border border-stroke-1 text-text-1 text-left cursor-pointer;
-    min-height: 44px;          /* the target size CONTRIBUTING asks for */
+    min-height: 44px;          /* the minimum tap target */
     font: inherit;
     /* border only: transitioning colour would animate the whole label on a
        theme swap, since the swap changes the token under it. */
