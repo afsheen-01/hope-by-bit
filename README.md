@@ -23,18 +23,6 @@ the canon is right and the code is a bug.
 | [principles.md](product/principles.md) | Ten rules, each written so a machine can confirm it. The agent generates code that satisfies all ten. |
 | [designSystem.md](product/designSystem.md) | The spacing scale, the proximity rule, and where colour and type tokens live. |
 
-**`techSpec/`** — how it's built. The root holds what spans surfaces; each folder holds one surface
-and its own progress.
-
-| | |
-|---|---|
-| [architecture.md](techSpec/architecture.md) | The shared core, what it asks of each platform, and how four surfaces share one brain. |
-| [backend.md](techSpec/backend.md) | Stories, accounts, sync, the check-in, and safety config. |
-| [progress.md](techSpec/progress.md) | Core, backend and onboarding milestones. |
-| [agent/](techSpec/agent/instructions.md) | The generator — [instructions](techSpec/agent/instructions.md), [progress](techSpec/agent/progress.md). |
-| [web/](techSpec/web/ui.md) | The website — [ui](techSpec/web/ui.md), [progress](techSpec/web/progress.md). |
-| [app/](techSpec/app/ui.md) | The app, onboarding included — [ui](techSpec/app/ui.md), [progress](techSpec/app/progress.md). |
-
 **Root** — binding everywhere, or about working here.
 
 | | |
@@ -42,9 +30,7 @@ and its own progress.
 | [SAFETY.md](SAFETY.md) | The crisis boundary, the grief review gate, the check-in circle, and how user data is held. |
 | [CONTRIBUTING.md](CONTRIBUTING.md) | How to write code and prompts here. Read before your first change. |
 | [PROGRESS.md](PROGRESS.md) | The cross-track tracker — what's next, what's blocked, what's undecided. |
-| [prototypes/](prototypes/) | The clickable prototype — open `index.html`. Shows the feel; the canon is what holds. |
 | `apps/web/` | The website. `npm install && npm run dev`. |
-| `tools/agent/` | The agent. `npm install && npm test`. |
 
 ## The four surfaces
 
@@ -75,7 +61,7 @@ Documents here stay under 200 lines. A document growing past that is two documen
 ## Status
 
 Specifications complete, and the first code is in: `apps/web` (the website shell, `/` rendering the
-daily unit on a placeholder story) and `tools/agent` (the brief schema, its prompt, and its tests).
+daily unit on a placeholder story).
 See [PROGRESS.md](PROGRESS.md) for what's next and where help is wanted. The
 two things that would move this furthest need no code at all: verified crisis lines per country, and
 a qualified grief counsellor willing to review the grief path.

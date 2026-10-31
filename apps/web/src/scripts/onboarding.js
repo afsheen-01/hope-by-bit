@@ -3,8 +3,6 @@
    Nothing here names a typeface.
 
    Five questions, four of them skippable, and then today's story.
-   The shape is techSpec/app/ui.md — where the two disagree, the
-   spec is right and this is a bug.
 
    The answers object is the prototype's stand-in for the variant: one
    accumulating value, and render(state) is a pure function of it.
@@ -261,9 +259,8 @@
 
   /* ── 4 · notification time ───────────────────────────── */
   /* Built from Zag's number-input machine rather than <input type="time">
-     — that native control's popup is an OS-level widget CSS can't reach
-     (techSpec/web/ui.md). mountTimeField wires it up once this markup is in
-     the DOM; see the call in render() below. */
+     — that native control's popup is an OS-level widget CSS can't reach.
+     mountTimeField wires it up once this markup is in the DOM; see the call in render() below. */
   function stepTime(s) {
     return frame(
       topbar(4) +
@@ -414,7 +411,7 @@
        don't (onInput below): a re-render mid-interaction would lose it.
 
        time-field.js pulls in Zag's number-input machine, which is real
-       weight (techSpec/web/ui.md) — a dynamic import keeps it off every
+       weight — a dynamic import keeps it off every
        page load and fetches it only once someone reaches this step. */
     if (timeField) { timeField.destroy(); timeField = null; }
     if (state.step === 4) {

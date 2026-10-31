@@ -1,9 +1,9 @@
 # Design system
 
-How the surfaces are built. The prototype in [prototypes/](../prototypes/) is the working copy of this
-file; where the two differ, this one holds.
+How the surfaces are built. The website's styles in `apps/web/src/styles/` are the working copy of
+this file; where the two differ, this one holds.
 
-Colour and type live in `prototypes/tokens.css` as three levels — global, system, component —
+Colour and type live in `apps/web/src/styles/tokens.css` as three levels — global, system, component —
 following [Pavel Kiselev's method](https://www.designsystems.com/), where globals are never used
 directly by a screen. This file records the third axis: **space**.
 

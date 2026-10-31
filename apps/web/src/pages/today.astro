@@ -1,5 +1,5 @@
 ---
-// The daily unit in a browser (techSpec/web/ui.md's /today) — headline,
+// The daily unit in a browser — headline,
 // figure, body, source, the day's movements. A first visit runs onboarding
 // first (O7); the story underneath is what onboarding hands off to, and
 // what anyone returning sees straight away.
@@ -62,7 +62,7 @@ const bit = today();
 
   <!-- Empty without JavaScript, and the story above is already the whole
        page — so a first visit with JS off gets today's story rather than
-       a flow it can't run (the read-with-JS-off rule in techSpec/web/ui.md). -->
+       a flow it can't run (the read-with-JS-off rule). -->
   <div id="onboarding"></div>
   <script src="../scripts/mount-onboarding.js"></script>
 </Base>

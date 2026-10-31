@@ -75,7 +75,7 @@ and messages are the one line that grows with how hard people's days are — the
 *Why:* free is a design constraint, and starting on free tiers keeps the early decisions honest.
 Knowing which cost grows first is what tells you where to look later.
 *Check:* any change to what it costs to run updates the table in
-[techSpec/backend.md](../techSpec/backend.md) and carries a maintainer's sign-off. Every paid service
+the backend spec and carries a maintainer's sign-off. Every paid service
 carries an open alternative in that table.
 
 ---

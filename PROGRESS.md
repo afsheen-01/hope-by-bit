@@ -12,19 +12,18 @@ the whole state of the project. Once more than three people are working here at 
 become issues (the ids are stable so they import cleanly) and this file keeps the milestones and the
 open decisions.
 
-This page holds what spans tracks. Milestones live with the thing being built:
+This page holds what spans tracks.
 
-| Track | Milestones | Progress |
-|---|---|---|
-| Website | W1–W7 | [techSpec/web/progress.md](techSpec/web/progress.md) |
-| App | M1–M9 | [techSpec/app/progress.md](techSpec/app/progress.md) |
-| Agent | A1–A7 | [techSpec/agent/progress.md](techSpec/agent/progress.md) |
-| Core, backend, onboarding | C1–C8, B1–B9, O1–O7 | [techSpec/progress.md](techSpec/progress.md) |
+| Track | Milestones |
+|---|---|
+| Website | W1–W7 |
+| App | M1–M9 |
+| Agent | A1–A7 |
+| Core, backend, onboarding | C1–C8, B1–B9, O1–O7 |
 
 ## 1. Now
 
-Onboarding is the first flow being built — the Onboarding section of
-[techSpec/app/ui.md](techSpec/app/ui.md).
+Onboarding is the first flow being built.
 
 | | | Why first |
 |---|---|---|
@@ -52,7 +51,7 @@ Work that ships once these clear. Record sign-off here with a name and date.
 2. **Editorial judgement.** Forty real stories labelled accept or reject against
    [the bar](product/features.md). Needs judgement, not TypeScript.
 3. **A qualified grief counsellor** willing to review the grief path — or an introduction to one.
-4. **Multi-recipient messaging tested on real iPhones** ([why](techSpec/app/ui.md)).
+4. **Multi-recipient messaging tested on real iPhones**.
 5. **The breathing haptic pattern** — the one genuinely fiddly piece of native code here.
 
 ## 4. Open decisions
@@ -94,8 +93,7 @@ misread count somewhere to go. It also means the closing screen names the circle
 attention is thin. Worth watching in the first real use, and cheap to remove.
 
 **D7 · Messaging cost as a signal.** SMS is the one line that grows with distress rather than with
-size, and the only one with no open substitute
-([backend](techSpec/backend.md#what-it-costs)). A jump in it means either growth or a worse month
+size, and the only one with no open substitute. A jump in it means either growth or a worse month
 for a lot of people. Deciding how to tell those apart, without measuring individuals, is worth
 thinking about before B6 rather than after.
 
@@ -110,6 +108,8 @@ registration should be filed well before the code that needs it.
 
 ## 5. Log
 
+- **2026-11-01** — Removed `tools/agent`, `techSpec/` and `prototypes/`. Milestones are tracked
+  here only now; references to them across the docs and code comments were unlinked.
 - **2026-08-08** — Removed the "who or what you're carrying" name field from the website's
   onboarding step 2, along with its `state.carrying` and the summary suffix that showed it. Same
   reasoning as the auto check-in toggle: the name exists to be dedicated to, and the website has no

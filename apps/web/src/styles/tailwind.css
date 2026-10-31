@@ -1,4 +1,4 @@
-/* Tailwind for new interactive work only (see techSpec/web/ui.md) — the
+/* Tailwind for new interactive work only — the
    existing screens stay on tokens.css/site.css/screen.css/onboarding.css
    unchanged. No preflight: this site already has its own reset in
    site.css, and Tailwind's would fight it (list/button/heading styles).

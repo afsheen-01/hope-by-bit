@@ -18,7 +18,7 @@ const { title, description } = Astro.props;
     <!-- Auto follows the local clock (6am–6pm is light, else dark); a saved
          choice or the auto read has to land before first paint or the page
          flashes the wrong ground (O6). theme-switch.js re-runs this same
-         6/18 split — kept in sync there, see techSpec/web/ui.md. -->
+         6/18 split — kept in sync there. -->
     <script is:inline>
       var t = localStorage.getItem("theme");
       if (t !== "light" && t !== "dark") {

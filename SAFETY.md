@@ -18,7 +18,7 @@ shows the crisis line. Quiet, always there, sized to sit under whatever the scre
 everywhere else, so the core looks it up by region, from the device's language and overridable in
 settings, falling back to findahelpline.com so there's always somewhere to go.
 
-The table lives in [backend config](techSpec/backend.md), fetched on launch and cached, so a
+The table lives in backend config, fetched on launch and cached, so a
 correction reaches every device within the hour rather than waiting on an app store review. Every
 row needs someone with local knowledge to verify it:
 

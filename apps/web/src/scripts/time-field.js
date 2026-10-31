@@ -1,6 +1,6 @@
 // The hour/minute segments of onboarding's time field. Native
 // <input type="time"> renders its picker as an OS-level widget CSS can't
-// reach — confirmed on step 4 (techSpec/web/ui.md). Zag's number-input
+// reach — confirmed on step 4. Zag's number-input
 // machine gives keyboard/scroll-wheel increment, clamping, and
 // formatting without that popup; the AM/PM toggle is two plain buttons
 // reusing screen.css's existing .seg pattern, since a two-way switch
