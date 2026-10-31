@@ -5,15 +5,18 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "test": "node --test --experimental-strip-types"
   },
   "dependencies": {
+    "@astrojs/svelte": "^7.2.5",
     "@phosphor-icons/core": "^2.1.1",
     "@tailwindcss/vite": "^4.3.3",
     "@zag-js/core": "^1.43.0",
     "@zag-js/number-input": "^1.43.0",
     "@zag-js/vanilla": "^1.43.0",
     "astro": "^5.13.0",
+    "svelte": "^5.57.3",
     "tailwindcss": "^4.3.3"
   }
 }

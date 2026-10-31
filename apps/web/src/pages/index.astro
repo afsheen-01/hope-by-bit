@@ -4,65 +4,13 @@
 // the user asked for instead — hero, features, one CTA into the app. The
 // spec's own `/` still stands at /today. Copy follows product/features.md's tone:
 // plain, specific, warm, proportional praise, no urgency or scarcity.
+// Both sections render at build time; this page ships no JavaScript of its own.
 import Base from "../layouts/Base.astro";
-
-// "Get started" is the explicit entry into onboarding, so it clears the
-// "already done this" flag first — a device that finished onboarding
-// once (in testing, or a returning visitor bookmarking /today directly)
-// still gets it again from here. Key has to match mount-onboarding.js's
-// KEY constant.
+import FeatureList from "../components/landing/FeatureList.svelte";
+import Hero from "../components/landing/Hero.svelte";
 ---
 
 <Base title="Hope By Bit — one good thing, one small thing, every day">
-  <section class="hero">
-    <h1>One good thing. One small thing. Every day.</h1>
-    <p class="lead">
-      A genuinely good piece of news, matched to what you care about. One small thing your body can
-      do about it. And a record of it all, quietly adding up in your corner.
-    </p>
-    <a class="cta" href="/today" onclick="localStorage.removeItem('hopebybit:onboarded')">Get started</a>
-  </section>
-
-  <section class="features">
-    <article class="feature">
-      <h2>One story a day</h2>
-      <p>
-        Matched to three to five things you pick — medicine, climate, wild places, kindness,
-        science, your city, rights, food. One story, then the screen ends. You're done, and
-        that's the point.
-      </p>
-    </article>
-
-    <article class="feature">
-      <h2>Something your body can do</h2>
-      <p>
-        A glass of water. Stand up and stretch. Ninety seconds outside. Nothing costs anything,
-        nothing needs a signup, and none of it asks you to wait for a better week.
-      </p>
-    </article>
-
-    <article class="feature">
-      <h2>Keep the ones that matter</h2>
-      <p>
-        The wall is everything you did and kept, newest first — a total that only grows. On a bad
-        day it's proof you were here for it, and it belongs to you.
-      </p>
-    </article>
-
-    <article class="feature">
-      <h2>Break the loop</h2>
-      <p>
-        For your head, alone, open as often as the day needs. Sixty seconds: a breath, one of
-        your own kept stories, one sensory question. It costs nothing and never leaves your phone.
-      </p>
-    </article>
-
-    <article class="feature">
-      <h2>Check in</h2>
-      <p>
-        For your people. Two or three chosen in advance, each one agreeing first. One tap sends
-        the message you wrote while it was calm — so there's nothing to find the words for now.
-      </p>
-    </article>
-  </section>
+  <Hero />
+  <FeatureList />
 </Base>

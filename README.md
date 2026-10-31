@@ -30,7 +30,7 @@ the canon is right and the code is a bug.
 | [SAFETY.md](SAFETY.md) | The crisis boundary, the grief review gate, the check-in circle, and how user data is held. |
 | [CONTRIBUTING.md](CONTRIBUTING.md) | How to write code and prompts here. Read before your first change. |
 | [PROGRESS.md](PROGRESS.md) | The cross-track tracker — what's next, what's blocked, what's undecided. |
-| `apps/web/` | The website. `npm install && npm run dev`. |
+| `apps/web/` | The website — Astro pages, Svelte components (`src/components/`), logic in `src/lib/`. `npm install && npm run dev`, `npm test`. |
 
 ## The four surfaces
 
@@ -41,7 +41,7 @@ tuned to that person. What ships here is boilerplate, built to be overridden.
 **The app** is Expo, on iOS and Android. It owns the ritual: the morning notification, haptics,
 voice, and the loop breaker. Local-first, so it works offline for as long as you like.
 
-**The website** is Astro, static. The front door, the public record of the editorial standard, the
+**The website** is Astro, static, with its UI in Svelte components. The front door, the public record of the editorial standard, the
 self-hosting docs, and the full product for anyone who reads in a browser.
 
 **The backend** is one TypeScript service behind the app and the site: the stories, your account,

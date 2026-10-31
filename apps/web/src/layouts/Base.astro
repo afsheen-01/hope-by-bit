@@ -1,6 +1,7 @@
 ---
 // The shell every page sits in. Styles are inlined by the build, so a
 // page is one request; nothing here reaches a third party.
+import ThemeSwitch from "../components/ThemeSwitch.svelte";
 import "../styles/tailwind.css";
 
 const { title, description, bodyClass } = Astro.props;
@@ -15,8 +16,8 @@ const { title, description, bodyClass } = Astro.props;
     {description && <meta name="description" content={description} />}
     <!-- Auto follows the local clock (6am–6pm is light, else dark); a saved
          choice or the auto read has to land before first paint or the page
-         flashes the wrong ground (O6). theme-switch.js re-runs this same
-         6/18 split — kept in sync there. -->
+         flashes the wrong ground (O6). lib/theme.ts's autoTheme() is the
+         same 6/18 split — kept in sync there; this copy can't import. -->
     <script is:inline>
       var t = localStorage.getItem("theme");
       if (t !== "light" && t !== "dark") {
@@ -34,8 +35,10 @@ const { title, description, bodyClass } = Astro.props;
       </footer>
     </main>
 
-    <!-- Rendered by script so it never appears without something behind it. -->
-    <div id="theme" role="group" aria-label="Theme"></div>
-    <script src="../scripts/theme-switch.js"></script>
+    <ThemeSwitch />
+    <script>
+      import { initThemeSwitch } from "../lib/theme.ts";
+      initThemeSwitch(document.getElementById("theme")!);
+    </script>
   </body>
 </html>

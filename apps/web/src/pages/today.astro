@@ -1,63 +1,34 @@
 ---
-// The daily unit in a browser — headline,
-// figure, body, source, the day's movements. A first visit runs onboarding
-// first (O7); the story underneath is what onboarding hands off to, and
-// what anyone returning sees straight away.
+// The daily unit in a browser. A first visit runs onboarding first (O7);
+// the story underneath is what onboarding hands off to, and what anyone
+// returning sees straight away.
+//
+// Everything renders at build time, so the story reads with JavaScript off.
+// The script below adds the movement toggle and, on a first visit only,
+// fetches onboarding — the one part that needs Svelte in the browser.
 import Base from "../layouts/Base.astro";
+import Movements from "../components/story/Movements.svelte";
+import Story from "../components/story/Story.svelte";
 import { today } from "../lib/today.ts";
 
 const bit = today();
 ---
 
 <Base title="Hope By Bit — today's story" bodyClass="screen-page">
-  <!-- .bit scopes the story's styles above the onboarding overlay's, which
-       share class names (.figure, .date, .ask…) with the story's own. -->
-  <article class="bit">
-    <p class="date">{bit.date}</p>
-    <h1>{bit.headline}</h1>
-
-    <p class="figure">
-      <span class="figure-num">{bit.figure}</span>
-      <span class="figure-cap">{bit.figureCap}</span>
-    </p>
-
-    <p>{bit.body}</p>
-    <p class="source">{bit.source}</p>
-
-    <section class="action">
-      <h2>One small thing</h2>
-      <p class="ask">{bit.ask}</p>
-      <ul class="movements">
-        {bit.movements.map((m, i) => (
-          <li>
-            <button type="button" data-choice={i} aria-pressed="false">{m}</button>
-          </li>
-        ))}
-      </ul>
-    </section>
-
-    <p class="note">
-      Placeholder story: the backend that publishes the daily bit isn't running yet (W2).
-    </p>
-  </article>
-
-  <!-- Done, and still tappable: a mistap undoes as easily as it happened.
-       Deliberately not persisted — the wall's cumulative total is the only
-       number this product keeps (P2); a per-day record is a streak. -->
-  <script is:inline>
-    document.querySelector(".movements")?.addEventListener("click", (e) => {
-      const b = e.target.closest("[data-choice]");
-      if (!b) return;
-      const done = b.getAttribute("aria-pressed") !== "true";
-      b.setAttribute("aria-pressed", String(done));
-      b.querySelector(".tick")?.remove();
-      if (done) b.insertAdjacentHTML("afterbegin", '<span class="tick" aria-hidden="true">✓</span>');
-    });
-  </script>
-
-  <!-- Empty without JavaScript, and the story above is already the whole
-       page — so a first visit with JS off gets today's story rather than
-       a flow it can't run (the read-with-JS-off rule). -->
-  <div id="onboarding"></div>
-  <script src="../scripts/mount-onboarding.js"></script>
+  <Story bit={bit}>
+    <Movements items={bit.movements} />
+  </Story>
 </Base>
+
+<script>
+  import { initMovements } from "../lib/movements.ts";
+  import { shouldOnboard } from "../lib/onboarding/gate.ts";
+
+  initMovements(document.querySelector<HTMLElement>(".movements")!);
+
+  if (shouldOnboard()) {
+    import("../lib/onboarding/mount.ts").then(({ mountOnboarding }) =>
+      mountOnboarding(document.querySelector("main")!),
+    );
+  }
+</script>

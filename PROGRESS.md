@@ -108,6 +108,13 @@ registration should be filed well before the code that needs it.
 
 ## 5. Log
 
+- **2026-11-01** — The website's UI is now Svelte components rendered by Astro: `components/ui`
+  (Button, ChipGroup, Field, StepHeader, Notice), one component per onboarding step, the story,
+  the landing sections and the theme switch. Onboarding's rules and state live in
+  `src/lib/onboarding/` (with tests); the 551-line `scripts/onboarding.js` is gone. Only onboarding
+  runs Svelte in the browser, and only on a first visit, so `/` ships 0.5KB of JS, `/today` 1.5KB
+  for a returning visitor and 24.4KB once per device. Fixed on the way: the time step's markup
+  left a `<div>` unclosed, so its Continue button sat mid-screen instead of at the bottom.
 - **2026-11-01** — Removed `tools/agent`, `techSpec/` and `prototypes/`. Milestones are tracked
   here only now; references to them across the docs and code comments were unlinked.
 - **2026-08-08** — Removed the "who or what you're carrying" name field from the website's
