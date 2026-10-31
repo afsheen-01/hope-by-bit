@@ -9,13 +9,13 @@
     "test": "node --test --experimental-strip-types"
   },
   "dependencies": {
-    "@astrojs/svelte": "^7.2.5",
+    "@astrojs/svelte": "^9.1.2",
     "@phosphor-icons/core": "^2.1.1",
     "@tailwindcss/vite": "^4.3.3",
     "@zag-js/core": "^1.43.0",
     "@zag-js/number-input": "^1.43.0",
     "@zag-js/vanilla": "^1.43.0",
-    "astro": "^5.13.0",
+    "astro": "^7.4.4",
     "svelte": "^5.57.3",
     "tailwindcss": "^4.3.3"
   }
