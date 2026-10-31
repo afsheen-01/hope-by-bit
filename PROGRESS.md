@@ -1,8 +1,7 @@
 # Progress
 
-**Updated 2026-10-29 · The backend is up. Stories, config, accounts, sync and the nightly pipeline
-run; the website reads today's story from them and has been tested end to end against it. The
-circle and the check-in wait on paperwork.**
+**Updated 2026-08-08 · Specifications complete. First code: the website shell and the agent's
+brief schema.**
 
 `☐` not started · `◐` in progress · `☑` done · `⊘` waiting, on what's named
 
@@ -29,12 +28,10 @@ Onboarding is the first flow being built — the Onboarding section of
 
 | | | Why first |
 |---|---|---|
-| ◐ | **W1 · Website shell** | Astro up, tokens and both themes, `/` rendering the daily unit. W2 is done: `/today` is live from the backend. |
+| ◐ | **W1 · Website shell** | Astro up, tokens and both themes, `/` rendering the daily unit. Placeholder story until B1. |
 | ◐ | **A1 · Brief schema and prompt** | Schema, prompt file and tests in; D2 settled, so it was unblocked. |
-| ◐ | **B2 · Crisis lines by region** | The mechanism ships; ten rows are seeded and none verified, so every region gets the fallback. **No code needed to finish it.** |
 | ☐ | **C1 · Core types and interfaces** | Everything reaches into it, onboarding included. |
 | ☐ | **C2 · Principle tests P1–P10** | Written *before* the surfaces, so the constraints stand while the code is still soft. |
-| ☐ | **D9 · Start SMS registration** | B5 and B6 are written down and unbuildable until it clears. Days of filing, and nothing else moves it. |
 | ☐ | **O1 · The five onboarding steps** | The first flow, and it settles the variant's shape. |
 | ☐ | **D1 · License split** | Easiest to settle before contributors arrive. |
 
@@ -85,21 +82,11 @@ or plain open source with a run-your-own path. Open source fits *I just want thi
 because it survives the maintainer stopping. Needs settling before anyone sends money for the
 backend.
 
-**D5 · End-to-end encryption of wall entries — dissolved 2026-08-09, not decided.** The question
-was always about dedications: a recovery phrase the person keeps, with its own risk of a lost
-record, against server-side encryption at rest. **The field came out of the backend instead.** With
-no name someone is carrying in the schema there is nothing end-to-end encryption was protecting,
-and the grief path has not cleared its counsellor gate — so a dedication column would have been
-that path shipping ahead of its sign-off, which is the thing the gate exists to prevent. Same
-reasoning as removing the "carrying" field from the website's onboarding on 2026-08-08: it
-collected something with nowhere to go.
-
-An entry is now a movement label and a date, which TLS and encryption at rest cover honestly.
-**Dedications stay on the device that made them and sync nowhere**, which is a real cost — it is
-[P9](product/principles.md) narrowed, and it returns with the gate. `setting.value` is the
-remaining candidate for a column cipher, since it holds the chosen paths and the check-in message
-in someone's own words; it goes in with B5, when the circle's numbers force a key-management story
-anyway. Circle numbers were never in scope either way — the server sends the messages.
+**D5 · End-to-end encryption of wall entries.** *Shapes B4, so decide before the schema lands.*
+Entries hold dedications, which makes this worth a real answer. Passwordless sign-in leaves no
+password to derive a key from, so the honest options are a recovery phrase the person keeps — with
+its own risk of a lost record — or server-side encryption at rest, which is what's specced today.
+Circle numbers sit outside this either way, since the server sends the messages.
 
 **D6 · Whether the twenty-second window stays.** *Shapes O5.* Automatic sending was chosen so that
 someone past acting still gets help. The window keeps that — doing nothing sends — while giving a
@@ -123,44 +110,6 @@ registration should be filed well before the code that needs it.
 
 ## 5. Log
 
-- **2026-10-29 · Ran the website end to end against the live API.** `/bits/today` now falls back
-  to the newest story on or before today — the same fallback the website builds with — instead of
-  answering 404 on a night the pipeline didn't publish (`src/bits.test.ts` holds it).
-  `docker-compose.yml` takes `DB_PORT` from `.env`, for a machine already running Postgres on 5432.
-  A headless-Chrome pass at 390px and 1280px passed all 32 checks: onboarding through to the story,
-  `/today` from the API same-origin, the swap when the API has a newer day, a 404 or a dead API
-  leaving the built story readable, the dark theme, JavaScript off, and zero third-party requests.
-  **Two things found, not yet fixed:** the fixed theme switch covers story text when scrolling on a
-  phone (`apps/web/src/styles/theme-switch.css`), and there is no favicon, so every page logs a
-  `/favicon.ico` 404.
-- **2026-08-09 · The backend exists.** `apps/api` is a Hono service: stories and safety config
-  (B1, B2), accounts by Google and emailed link (B3), sync (B4), and the nightly pipeline —
-  fetch, keyword prefilter, Haiku classification against the five tests, a terminal review, and
-  publish. **Stories and config answer with nothing configured at all**, so a fresh clone can
-  `curl localhost:8787/bits/today` before it has a database, a key, or an account; `npm run dev`
-  brings up Postgres and migrates for the rest. Written against Web-standard requests with the
-  server in one file, so the deploy vendor stays undecided. Four dependencies — Hono, its Node
-  server, `postgres`, and the `zod` already here. **B5 and B6 are deliberately absent**: their
-  tables would be surface with no code behind them while D9 is unfiled, and a test fails if one
-  appears. **B7 is absent too, so P9 is a promise the code does not keep yet** — said out loud in
-  `SAFETY.md`, `backend.md` and `techSpec/progress.md` rather than left to read as shipped.
-- **2026-08-09 · D5 dissolved: `entry` has no dedication.** See D5 above. Two canon corrections
-  came with it. `architecture.md` claimed the backend already ran the shared core for merging; it
-  doesn't — `@hope/core` isn't written, so the merge lives in `apps/api/src/sync/merge.ts` as a
-  module importing nothing at all, which makes C8 a rename. And `backend.md`'s `keepsake` had no
-  removal field while the paragraph above it said add and remove each carry a time; `removedAt` is
-  in, because without it a device that never saw a removal resurrects the row on the next merge.
-- **2026-08-09 · W2: `/today` is live from the backend.** The published day file renders at build
-  time so the page still reads with JavaScript off, then a fetch of `/api/bits/today` swaps only
-  when the date has moved — the HTML is from the last nightly build, so a tab left open overnight
-  is showing *yesterday's* story rather than a different spelling of today's. **The API has to be
-  same-origin at `/api/*`** — the zero-third-party-request rule requires it and no spec had
-  recorded it — so development proxies it in `astro.config.mjs`, and the deploy rule waits until
-  there is a deployed API rather than pointing at an address that would 502 while the page went on
-  rendering. `/today` now ships about 6.6KB gzip against a 12KB budget. **Settled web/ui.md's
-  first open question by not branching**: choosing today's story is one deterministic function of
-  the date and a channel list, handed all eight signed out and three to five signed in, so the
-  single edition falls out instead of being a special case.
 - **2026-08-08** — Removed the "who or what you're carrying" name field from the website's
   onboarding step 2, along with its `state.carrying` and the summary suffix that showed it. Same
   reasoning as the auto check-in toggle: the name exists to be dedicated to, and the website has no

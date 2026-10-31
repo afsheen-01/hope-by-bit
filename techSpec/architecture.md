@@ -33,14 +33,13 @@ type Action =
   | { kind: "give" | "join"; ask: string; url: Url };
 
 type WallEntry = Readonly<{
-  id: EntryId; at: Instant; what: string; bit: BitId | null;
+  id: EntryId; at: Instant; what: string;
+  bit: BitId | null; dedication: Dedication | null;
 }>;
 ```
 
 A wall entry carries what happened and when, and that's all it carries — which is how
-[P7](../product/principles.md) is held by the type rather than by discipline. It carried a
-dedication until 2026-08-09; that field now lives only on the device, and comes back when the grief
-path clears its review gate ([D5](../PROGRESS.md#4-open-decisions)).
+[P7](../product/principles.md) is held by the type rather than by discipline.
 
 Functions take values and return values: choosing today's story; offering the day's actions; recording one;
 keeping one; finding grounding evidence; deciding whether to offer the third-run check-in; matching
@@ -83,12 +82,7 @@ One TypeScript service behind the app and the website — stories, accounts, syn
 circle, the check-in, and safety config that reaches every device within the hour. Full spec:
 [backend.md](backend.md).
 
-It is meant to run the same core, so merging two devices' records uses the same function the app
-uses locally. **That is not true yet.** The merge lives in `apps/api/src/sync/merge.ts` as a module
-that imports nothing at all — no `node:`, no database, no framework — so moving it to the core at
-C8 is a rename plus one import path, and its tests come with it. Creating `@hope/core` now, with C1
-unwritten, would mean a core that is only sync, which the real one would then have to reconcile
-against.
+It runs the same core, so merging two devices' records uses the same function the app uses locally.
 
 **What the device keeps to itself:** loop-breaker runs and anything spoken. When the count reaches
 the number the person set, the phone asks the backend to send a check-in — a message goes out, and

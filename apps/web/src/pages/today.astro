@@ -4,7 +4,7 @@
 // first (O7); the story underneath is what onboarding hands off to, and
 // what anyone returning sees straight away.
 import Base from "../layouts/Base.astro";
-import { placeholder, today } from "../lib/today.ts";
+import { today } from "../lib/today.ts";
 import "../styles/screen.css";
 import "../styles/onboarding.css";
 import "../styles/onboarding-page.css";
@@ -26,7 +26,7 @@ const bit = today();
       <span class="figure-cap">{bit.figureCap}</span>
     </p>
 
-    <p class="body">{bit.body}</p>
+    <p>{bit.body}</p>
     <p class="source">{bit.source}</p>
 
     <section class="action">
@@ -41,57 +41,10 @@ const bit = today();
       </ul>
     </section>
 
-    {bit === placeholder && (
-      <p class="note">
-        Example story: nothing has been published here yet. The nightly pipeline fills this in.
-      </p>
-    )}
+    <p class="note">
+      Placeholder story: the backend that publishes the daily bit isn't running yet (W2).
+    </p>
   </article>
-
-  <!-- W2 · the story above came from the last nightly build, so a tab left
-       open overnight is showing yesterday's. Fetch today's and swap only if
-       the date has moved — which is also how a correction to a published
-       story reaches a reader the same morning rather than at the next build.
-       Same-origin `/api`, so the no-third-party-request rule still holds. -->
-  <script is:inline>
-    fetch("/api/bits/today")
-      .then((r) => (r.ok ? r.json() : null))
-      .then((bit) => {
-        const article = document.querySelector(".bit");
-        if (!bit || !article || bit.date === article.querySelector(".date")?.textContent) return;
-        const put = (sel, text) => {
-          const el = article.querySelector(sel);
-          if (el) el.textContent = text;
-        };
-        put(".date", bit.date);
-        put("h1", bit.headline);
-        put(".figure-num", bit.figure);
-        put(".figure-cap", bit.figureCap);
-        put(".body", bit.body);
-        put(".source", bit.source);
-        put(".ask", bit.ask);
-        // Rebuild the buttons rather than relabel them: a movement someone
-        // already ticked is not the same movement once the day has changed.
-        const list = article.querySelector(".movements");
-        if (list) {
-          list.innerHTML = "";
-          bit.movements.forEach((m, i) => {
-            const li = document.createElement("li");
-            const b = document.createElement("button");
-            b.type = "button";
-            b.dataset.choice = String(i);
-            b.setAttribute("aria-pressed", "false");
-            b.textContent = m;
-            li.append(b);
-            list.append(li);
-          });
-        }
-        article.querySelector(".note")?.remove();
-      })
-      // Offline is a normal state here: the story on the page is already
-      // today's as far as this device knows, and it stays readable.
-      .catch(() => {});
-  </script>
 
   <!-- Done, and still tappable: a mistap undoes as easily as it happened.
        Deliberately not persisted — the wall's cumulative total is the only
