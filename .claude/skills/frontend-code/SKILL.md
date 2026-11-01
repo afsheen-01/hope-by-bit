@@ -12,5 +12,6 @@ description: Practices for frontend code in apps/web (Astro + Svelte 5 + Tailwin
 - Use Svelte 5 runes, `{@attach}`, keyed `{#each}` by a real id, and clsx-style class arrays.
 - Use Tailwind for tokens only in `global.css`; components style themselves with utilities and variants.
 - Prefer named theme tokens over arbitrary values, and remove redundant utilities and unused tokens.
+- Put tests in `apps/web/tests/`, mirroring `src/lib/`, importing through `#/`.
 - Keep comments concise and meaningful.
 - Run `pnpm verify` and `pnpm test` before finishing; refactors must render identically.
