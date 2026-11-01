@@ -31,7 +31,7 @@
   --g-n-10:  hsl(40 13% 9.5%);
   --g-n-08:  hsl(40 14% 7.5%);
 
-  /* Forest — the good bit. Deep enough that white passes easily. */
+  /* Forest — the good bit. Dark enough for white text. */
   --g-teal-100: hsl(155 30% 94%);
   --g-teal-300: hsl(155 30% 30%);
   --g-teal-400: hsl(155 33% 24%);
@@ -580,8 +580,7 @@
     @apply flex-1 m-0 text-text-1 text-pretty;
   }
 
-  /* Notes on features that aren't built yet, so the page doesn't promise
-     more than it does. */
+  /* Notes on features that aren't built yet. */
   .stub {
     @apply mt-3 text-text-3 italic text-pretty;
     font-size: 12px;
@@ -628,7 +627,7 @@
     max-width: 24ch;
   }
 
-  /* The action is its own block, not a coda to the story. */
+  /* Divider between the story and the action. */
   .bit .action {
     @apply mt-8 pt-6 border-t border-t-stroke-1;
   }
@@ -649,7 +648,7 @@
   .bit .movements button:hover { @apply border-accent; }
   .bit .movements button:focus-visible { @apply outline-2 outline-accent outline-offset-3; }
 
-  /* Done, and still tappable — undoing should cost what doing cost. */
+  /* Done, but still tappable to undo. */
   .bit .movements button[aria-pressed="true"] {
     @apply text-text-3;
     background: none;

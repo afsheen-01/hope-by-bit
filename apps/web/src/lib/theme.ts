@@ -14,7 +14,7 @@ export function autoTheme(): Theme {
 export function initThemeSwitch(el: HTMLElement) {
   const root = document.documentElement;
   const buttons = [...el.querySelectorAll<HTMLButtonElement>("[data-choice]")];
-  // Hidden in the markup: it only means something once this has run.
+  // Hidden in the markup until it works.
   el.style.display = "flex";
 
   let pollId: ReturnType<typeof setInterval> | undefined;
