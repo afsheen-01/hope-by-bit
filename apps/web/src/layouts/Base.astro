@@ -1,6 +1,6 @@
 ---
-// The shell every page sits in. Styles are inlined by the build, so a
-// page is one request; nothing here reaches a third party.
+// The layout every page shares: head, main column, footer and theme switch.
+// Nothing here loads from a third-party server.
 import ThemeSwitch from "../components/ThemeSwitch.svelte";
 import "../styles/tailwind.css";
 
@@ -14,10 +14,11 @@ const { title, description, bodyClass } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     {description && <meta name="description" content={description} />}
-    <!-- Auto follows the local clock (6am–6pm is light, else dark); a saved
-         choice or the auto read has to land before first paint or the page
-         flashes the wrong ground (O6). lib/theme.ts's autoTheme() is the
-         same 6/18 split — kept in sync there; this copy can't import. -->
+    <!-- Picks the theme before the page first paints, so it never flashes the
+         wrong colours: the saved choice if there is one, otherwise light from
+         6am to 6pm and dark the rest of the time. This repeats autoTheme() in
+         lib/theme.ts (keep the two in sync), because an inline script that
+         must run this early can't import a module. -->
     <script is:inline>
       const saved = localStorage.getItem("theme");
       const h = new Date().getHours();

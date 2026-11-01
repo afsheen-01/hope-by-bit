@@ -1,9 +1,9 @@
-// The hour/minute segments of onboarding's time field. Native
-// <input type="time"> renders its picker as an OS-level widget CSS can't
-// reach — confirmed on step 4. Zag's number-input machine gives
-// keyboard/scroll-wheel increment, clamping, and formatting without that
-// popup; the AM/PM toggle is two plain buttons, reusing the existing .seg
-// pattern, since a two-way switch doesn't need a state machine.
+// The hour and minute boxes in onboarding's "when should it arrive" step.
+// We don't use <input type="time"> because its picker is drawn by the
+// operating system and can't be styled to match the page. Zag's number-input
+// gives the same keyboard and scroll-wheel stepping, keeps values in range and
+// pads them to two digits. AM/PM is just two buttons (the .seg style), since
+// a two-way choice doesn't need anything more.
 import * as numberInput from "@zag-js/number-input";
 import { normalizeProps, spreadProps, VanillaMachine } from "@zag-js/vanilla";
 import { to12, to24, type Meridiem } from "./onboarding/rules.ts";
@@ -42,7 +42,7 @@ function mountSegment(rootEl: HTMLElement, { value, min, max, onValueChange }: S
 // mountTimeField(container, "HH:MM", onChange) -> { destroy() }
 // `container` holds [data-seg="hour"], [data-seg="minute"], each with one
 // [data-part="input"] child, plus [data-meridiem="AM"/"PM"] buttons — the
-// markup TimeStep.svelte renders.
+// markup components/onboarding/steps/Time.svelte renders.
 export function mountTimeField(container: HTMLElement, initialTime: string, onChange: (hhmm: string) => void) {
   const state = to12(initialTime);
   const emit = () => onChange(to24(state.hour, state.minute, state.meridiem));

@@ -10,7 +10,7 @@ import { markOnboarded } from "./gate.ts";
 // accepts it as is. The cast restores what the component actually is.
 const component = Onboarding as unknown as Component<{ onfinish: () => void }>;
 
-// Inserted into <main> before the footer, where the overlay always sat.
+// Added inside <main>, just before the footer.
 export function mountOnboarding(main: HTMLElement) {
   mount(component, {
     target: main,

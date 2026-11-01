@@ -1,6 +1,6 @@
-<!-- The Auto/Light/Dark control. Rendered at build time and hidden until
-     lib/theme.ts wires it up — without JavaScript it stays hidden, which is
-     correct: the system preference already carries both grounds. -->
+<!-- The Auto/Light/Dark buttons. Built into the page but hidden until
+     lib/theme.ts makes them work. Without JavaScript they stay hidden and
+     the site follows the system's light/dark setting instead. -->
 <script lang="ts">
   import circleHalf from "@phosphor-icons/core/assets/regular/circle-half.svg?raw";
   import moon from "@phosphor-icons/core/assets/regular/moon.svg?raw";

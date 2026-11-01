@@ -1,6 +1,6 @@
-<!-- The daily unit — headline, figure, body, source, then one small thing.
-     Rendered at build time with no JavaScript; the movement buttons arrive
-     as `children` so the page can hydrate just them.
+<!-- Today's story: headline, key figure, body, source, then "one small
+     thing" to do. Built to static HTML. The page passes the movement buttons
+     in as `children`, and a small script there makes them tappable.
 
      .bit scopes the story's styles above the onboarding overlay's, which
      share class names (.figure, .date, .ask…) with the story's own. -->
@@ -30,6 +30,6 @@
   </section>
 
   <p class="note">
-    Placeholder story: the backend that publishes the daily bit isn't running yet (W2).
+    Placeholder story: daily stories aren't being published yet.
   </p>
 </article>

@@ -1,6 +1,7 @@
-// Done, and still tappable: a mistap undoes as easily as it happened.
-// Deliberately not persisted — the wall's cumulative total is the only
-// number this product keeps (P2); a per-day record is a streak.
+// Tapping a movement marks it done with a tick; tapping again undoes it, so
+// a mistap is easy to take back. Nothing is saved: the product deliberately
+// keeps no per-day record, because that would turn into a streak (see P2 in
+// product/principles.md).
 export function initMovements(list: HTMLElement) {
   list.addEventListener("click", (e) => {
     const b = (e.target as HTMLElement).closest("button");

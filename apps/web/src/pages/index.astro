@@ -1,10 +1,8 @@
 ---
-// The front door. The original spec had the hero *be* the live
-// story rather than describe it; this page is the marketing alternative
-// the user asked for instead — hero, features, one CTA into the app. The
-// spec's own `/` still stands at /today. Copy follows product/features.md's tone:
-// plain, specific, warm, proportional praise, no urgency or scarcity.
-// Both sections render at build time; this page ships no JavaScript of its own.
+// The landing page: what the product is, its features, and one button into
+// the app at /today. The copy follows the tone in product/features.md —
+// plain, specific and warm, with no urgency or scarcity tricks.
+// It is built to static HTML and ships no JavaScript of its own.
 import Base from "../layouts/Base.astro";
 import FeatureList from "../components/landing/FeatureList.svelte";
 import Hero from "../components/landing/Hero.svelte";

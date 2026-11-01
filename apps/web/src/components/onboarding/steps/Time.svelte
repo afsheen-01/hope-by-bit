@@ -1,6 +1,6 @@
 <!-- 4 · notification time. Built from Zag's number-input machine rather than
-     <input type="time">, whose popup is an OS widget CSS can't reach. Zag is
-     real weight, so the action imports it only once someone reaches this step. -->
+     <input type="time">, whose picker can't be styled. Zag adds about 16KB,
+     so it is only downloaded when someone reaches this step. -->
 <script lang="ts">
   import Button from "../../ui/Button.svelte";
   import StepHeader from "../../ui/StepHeader.svelte";

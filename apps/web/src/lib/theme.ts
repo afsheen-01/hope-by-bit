@@ -24,7 +24,7 @@ export function initThemeSwitch(el: HTMLElement) {
 
   let pollId: ReturnType<typeof setInterval> | undefined;
   const stopPolling = () => clearInterval(pollId);
-  // The 6/18 boundary can fall while the tab stays open; recheck
+  // The 6am or 6pm switch-over can happen while the tab is open, so recheck
   // occasionally rather than only on load.
   const startPolling = () => {
     stopPolling();

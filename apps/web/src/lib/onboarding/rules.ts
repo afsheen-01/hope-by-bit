@@ -33,9 +33,9 @@ export const HARD_MESSAGE =
 export type Consent = "pending" | "confirmed" | "declined";
 export type Person = Readonly<{ name: string; phone: string; consent: Consent }>;
 
-/* toggle : ([a], a, Int) -> { list: [a], refused: Bool }
-   Reaching past the ceiling keeps what's there and reports the
-   refusal, so the caller can explain it rather than fail silently. */
+/* Adds or removes a value. Adding past `max` leaves the list unchanged and
+   sets `refused`, so the screen can explain why instead of silently
+   ignoring the tap. */
 export function toggle<T>(list: readonly T[], value: T, max: number) {
   if (list.includes(value)) return { list: list.filter((v) => v !== value), refused: false };
   if (list.length >= max) return { list, refused: true };

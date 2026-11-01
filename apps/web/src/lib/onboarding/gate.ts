@@ -1,8 +1,8 @@
 // Whether this visit runs onboarding. Kept apart from mount.ts so the check
 // itself never pulls in Svelte: only a device that needs onboarding fetches it.
 //
-// It runs once per device — there's no account yet (O3), so "once" means
-// "on this device", the same thing signing out returns you to.
+// It runs once per device: there are no accounts yet, so "already done" is
+// remembered in this browser's localStorage.
 const ONBOARDED = "hopebybit:onboarded";
 
 // The landing page's "Get started" links to /today?start, which runs

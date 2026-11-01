@@ -1,6 +1,6 @@
-// Today's story. W2 replaces the body of `today()` with a fetch of
-// `/bits/today` from the backend; the shape it returns is the contract.
-// Placeholder until then — there is no backend yet, and the page says so.
+// Today's story. For now this returns a fixed example, and the page labels
+// it as a placeholder. When a backend publishes real stories, only the body
+// of `today()` should change: the `Bit` shape is what the page relies on.
 
 export type Bit = Readonly<{
   date: string;
@@ -10,7 +10,8 @@ export type Bit = Readonly<{
   body: string;
   source: string;
   ask: string;
-  // Two or three, all body-sized: free, no signup, finishable now (P7).
+  // Two or three small physical actions: free, no signup, doable right now
+  // (P7 in product/principles.md).
   movements: readonly string[];
 }>;
 

@@ -28,7 +28,7 @@
 
    One palette — Grove: oat · forest · apricot.
 
-   Two grounds. Dark uses the last six neutral steps only,
+   Two themes. Dark uses the last six neutral steps only,
    with accents desaturated rather than merely lightened.
 
    The accent names are kept generic at level 2 (--accent,
@@ -94,17 +94,15 @@
 
   /* ── Shape ───────────────────────────────────────────────
      Radii and the tap target are not spacing and do not answer
-     to the grid; --tap is the 44pt accessibility floor rounded
-     up, and the radii are drawn to the device frame. */
+     to the grid. --tap is the 44pt minimum touch target rounded
+     up; the radii were chosen to match a phone's rounded corners. */
   --radius-control: 14px;
   --radius-card: 18px;
   --tap: 56px;
 
   /* ── Type ────────────────────────────────────────────────
-     Settled: Cormorant Infant heads, Rubik carries body and
-     every control. Two families, which is the ceiling the
-     website build enforces. Declared once here rather than
-     per page, because there is no longer a second answer. */
+     Cormorant Infant for headings, Rubik for body text and every
+     control. Two font families at most, to keep pages light. */
   --font-display: 'Cormorant Infant', Georgia, serif;
   --font-ui: 'Rubik', system-ui, sans-serif;
 
@@ -114,11 +112,10 @@
   --lh-body: 1.68;
 
   /* Cormorant Infant is small on the body and light in colour;
-     a heading has to be set large before it reads as a voice
-     rather than as a caption. */
+     headings have to be set large or they read like captions. */
   /* Fluid rather than fixed: 46px is a full third of a 360px phone, and a
-     headline that big turns a five-word sentence into five lines. The floor
-     keeps it a voice on the narrowest phone still shipping (320px). */
+     headline that big turns a five-word sentence into five lines. The
+     30px minimum keeps it reading as a headline on a 320px screen. */
   --headline-size: clamp(30px, 8.5vw, 46px);
   --headline-lh: 1.1;
   --headline-weight: 400;
@@ -132,14 +129,14 @@
   --display-var: normal;
 }
 
-/* ── LEVEL 2 · SYSTEM · light ground ────────────────────────
+/* ── LEVEL 2 · SYSTEM · light theme ─────────────────────────
    Built outward from white. Strokes start "shifted right"
    so they stay visible against the fills. These alias the
    globals rather than restating any colour.                 */
 :root,
 [data-theme='light'] {
-  /* Syncs native form-control chrome (the time-input popup, scrollbars)
-     to the ground the rest of the page is on. */
+  /* Makes the browser's own controls (scrollbars, form popups) match
+     the theme. */
   color-scheme: light;
 
   --fill-1: var(--g-n-98);
@@ -166,14 +163,14 @@
   --frame-edge: var(--g-n-86);
 }
 
-/* ── LEVEL 2 · SYSTEM · dark ground ─────────────────────────
+/* ── LEVEL 2 · SYSTEM · dark theme ──────────────────────────
    "Dark elevated": the last six steps only, with the same
    gradient direction as light. Strokes move the opposite
    way — more prominence means lighter.
 
    The media query only matters with JavaScript off: Base.astro's inline
    script always sets [data-theme] (time-of-day when there's no saved
-   choice — see theme-switch.js), so this is the no-JS fallback and
+   choice — see lib/theme.ts), so this is the no-JS fallback and
    follows the OS setting instead of the clock. */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme='light']) {
@@ -330,10 +327,9 @@
 }
 
 @layer components {
-  /* ── /today's page ground ──────────────────────────────────
-     Set by today.astro through Base's bodyClass. The story and the
-     onboarding overlay sit on the deeper fill; the landing page
-     keeps fill-1. */
+  /* ── /today's page background ──────────────────────────────
+     Set by today.astro through Base's bodyClass. /today uses the
+     slightly darker fill-3; the landing page keeps fill-1. */
   .screen-page {
     @apply m-0 bg-fill-3 font-ui;
     font-variation-settings: var(--ui-var, normal);
@@ -536,7 +532,7 @@
   .chip[aria-pressed='true'] { @apply bg-accent border-accent text-on-accent; }
   .chip:focus-visible { @apply outline-2 outline-accent outline-offset-2; }
 
-  /* ── onboarding: the counter, and the line that explains the floor */
+  /* ── onboarding: "3 chosen" and the hint about picking at least three */
   .count {
     @apply mx-0 mt-5 mb-0 font-medium text-text-1;
     font-size: 15px;
@@ -549,7 +545,7 @@
     line-height: 1.45;
   }
 
-  /* The ceiling explains itself only when reached. */
+  /* Shown only when someone hits a limit, to say why the tap did nothing. */
   .notice {
     @apply mt-3 py-3 px-4 rounded-control bg-accent-tint text-text-1 text-pretty;
     font-size: 13px;
@@ -666,7 +662,8 @@
     @apply flex-1 m-0 text-text-1 text-pretty;
   }
 
-  /* A stub needs to say it is one, or the prototype quietly overpromises. */
+  /* Notes on features that aren't built yet, so the page doesn't promise
+     more than it does. */
   .stub {
     @apply mt-3 text-text-3 italic text-pretty;
     font-size: 12px;
@@ -674,9 +671,9 @@
   }
 
   /* ── onboarding as a full page ───────────────────────────────
-     onboarding.js renders each step inside .screen, which was sized
-     for a phone frame. On the site there's no frame, so this
-     overrides just the sizing; everything else comes from above. */
+     Onboarding.svelte wraps each step in .screen, a layout first made
+     for a fixed-size phone mock-up. Here it fills the page instead, so
+     this overrides only the sizing; everything else comes from above. */
   #onboarding {
     @apply fixed inset-0 bg-fill-1;
     z-index: 20;
@@ -758,9 +755,9 @@
   }
 
   /* ── the theme switch ────────────────────────────────────────
-     Same joined-pill shape as .seg, fixed to the corner. It does not
-     exist without JavaScript, which is correct: the system preference
-     already carries both grounds. */
+     Same joined-pill shape as .seg, fixed to the corner. Hidden until
+     its script runs; without JavaScript the system's light/dark setting
+     applies instead. */
   #theme {
     @apply fixed top-4 right-4 hidden rounded-pill bg-fill-2 border border-stroke-1;
     z-index: 30; /* above the onboarding overlay (z-index: 20) */
@@ -798,7 +795,7 @@
   }
 
   /* The landing page's call to action. Its own name, because .btn above
-     is onboarding's full-width primary and the two now share a sheet. */
+     is onboarding's full-width primary and both live in this file. */
   .cta {
     @apply inline-flex items-center justify-center px-6 py-0 rounded-control bg-accent
       text-on-accent no-underline cursor-pointer;
