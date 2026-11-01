@@ -1,4 +1,5 @@
 import js from "@eslint/js";
+import prettier from "eslint-config-prettier";
 import { defineConfig } from "eslint/config";
 import { configs as astroConfigs } from "eslint-plugin-astro";
 import { createTypeScriptImportResolver } from "eslint-import-resolver-typescript";
@@ -29,4 +30,6 @@ export default defineConfig(
       "import-x/no-cycle": "error",
     },
   },
+  // Last, so Prettier alone decides formatting.
+  prettier,
 );
