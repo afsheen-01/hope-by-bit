@@ -6,17 +6,17 @@
 </script>
 
 <button
-  class="group inline-flex cursor-pointer items-center gap-2 rounded-pill border border-stroke-1 bg-accent-tint py-1 pr-4 pl-1 fs-14 text-text-1 transition hover:border-stroke-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+  class="group inline-flex cursor-pointer items-center gap-2 rounded-pill border border-stroke-1 bg-accent-tint py-1 pr-4 pl-1 fs-14 text-fg transition hover:border-stroke-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
   data-consent={person.consent}
   aria-label="{person.name} — {person.consent}. Tap to change."
   {onclick}
 >
   <span
-    class="inline-flex size-[26px] flex-none items-center justify-center rounded-pill bg-accent fs-10 font-semibold tracking-[0.02em] text-on-accent"
+    class="inline-flex size-6.5 flex-none items-center justify-center rounded-pill bg-accent fs-10 font-semibold tracking-label text-on-accent"
     >{initials(person.name)}</span
   ><span class="group-data-[consent=declined]:line-through group-data-[consent=declined]:opacity-70"
     >{person.name}</span
   ><span
-    class="size-[7px] flex-none rounded-pill bg-text-3 group-data-[consent=confirmed]:bg-accent-contrast group-data-[consent=declined]:bg-stroke-2"
-  ></span><span class="fs-12 text-text-3">{person.consent}</span>
+    class="size-1.75 flex-none rounded-pill bg-fg-subtle group-data-[consent=confirmed]:bg-accent-contrast group-data-[consent=declined]:bg-stroke-2"
+  ></span><span class="fs-12 text-fg-subtle">{person.consent}</span>
 </button>

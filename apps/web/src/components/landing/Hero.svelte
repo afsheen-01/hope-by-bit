@@ -1,10 +1,8 @@
 <!-- Headline and call to action. /today?start reruns onboarding even if
      this device has finished it. -->
 <section class="pt-6">
-  <h1 class="mb-4 font-display text-hero font-normal">
-    One good thing. One small thing. Every day.
-  </h1>
-  <p class="mb-6 fs-18 text-text-2">
+  <h1 class="mb-4 font-display text-hero">One good thing. One small thing. Every day.</h1>
+  <p class="mb-6 fs-18 text-fg-muted">
     A genuinely good piece of news, matched to what you care about. One small thing your body can do
     about it. And a record of it all, quietly adding up in your corner.
   </p>

@@ -22,10 +22,10 @@
   ];
   const VARIANTS = {
     primary: [filled, "bg-accent text-on-accent enabled:hover:bg-accent-press"],
-    quiet: [filled, "border border-stroke-1 bg-fill-2 text-text-1 enabled:hover:bg-fill-3"],
+    quiet: [filled, "border border-stroke-1 bg-fill-2 text-fg enabled:hover:bg-fill-3"],
     skip: [
-      "mt-2 block h-12 w-full rounded-control fs-15 text-text-2",
-      "hover:bg-fill-2 hover:text-text-1",
+      "mt-2 block h-12 w-full rounded-control fs-15 text-fg-muted",
+      "hover:bg-fill-2 hover:text-fg",
       focus,
       "focus-visible:outline-offset-2",
     ],

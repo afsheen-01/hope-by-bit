@@ -22,17 +22,18 @@
 
   const id = $derived(`f-${name}`);
   const control = [
-    "block w-full rounded-control border border-stroke-1 bg-fill-2 p-4 fs-16 text-text-1",
-    "transition placeholder:text-text-3",
+    "block w-full rounded-control border border-stroke-1 bg-fill-2 p-4 fs-16 text-fg",
+    "transition placeholder:text-fg-subtle",
     "focus-visible:border-accent focus-visible:outline-2 focus-visible:outline-offset-1",
     "focus-visible:outline-accent",
   ];
 </script>
 
 <div class={outer}>
-  <label for={id} class="mb-2 block fs-13 leading-caption text-pretty text-text-3">{label}</label>
+  <label for={id} class="mb-2 block fs-13 leading-caption text-pretty text-fg-subtle">{label}</label
+  >
   {#if multiline}
-    <textarea {id} rows="3" class={[control, "min-h-[148px] resize-y leading-[1.55]"]} bind:value
+    <textarea {id} rows="3" class={[control, "min-h-37 resize-y leading-[1.55]"]} bind:value
     ></textarea>
   {:else}
     <input {id} {type} {placeholder} class={[control, "h-tap"]} bind:value />

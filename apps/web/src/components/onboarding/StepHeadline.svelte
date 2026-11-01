@@ -5,8 +5,6 @@
   let { children }: { children: Snippet } = $props();
 </script>
 
-<h1
-  class="mt-5 font-display text-headline font-normal text-balance text-text-1 [hanging-punctuation:first]"
->
+<h1 class="mt-5 font-display text-headline text-balance text-fg">
   {@render children()}
 </h1>

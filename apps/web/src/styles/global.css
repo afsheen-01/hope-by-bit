@@ -74,13 +74,9 @@
      five lines on small phones. */
   --headline-size: clamp(30px, 8.5vw, 46px);
   --headline-lh: 1.1;
-  --headline-weight: 400;
-  --headline-min: 0px;
 
   /* The optical offset is measured for Cormorant at 64px. */
-  --figure-weight: 300;
   --figure-optical: -0.0503em;
-  --display-var: normal;
 }
 
 /* ── LEVEL 2 · SYSTEM · light theme ───────────────────────── */
@@ -111,7 +107,6 @@
   --on-secondary: var(--g-n-100);
 
   --shade: hsl(35 20% 8% / 0.09);
-  --frame-edge: var(--g-n-86);
 }
 
 /* ── LEVEL 2 · SYSTEM · dark theme ────────────────────────────
@@ -142,7 +137,6 @@
     --on-secondary: var(--g-n-08);
 
     --shade: hsl(0 0% 0% / 0.5);
-    --frame-edge: var(--g-n-24);
   }
 }
 
@@ -170,7 +164,6 @@
   --on-secondary: var(--g-n-08);
 
   --shade: hsl(0 0% 0% / 0.5);
-  --frame-edge: var(--g-n-24);
 }
 
 /* ── TAILWIND THEME ───────────────────────────────────────────
@@ -182,9 +175,10 @@
   --color-fill-3: var(--fill-3);
   --color-stroke-1: var(--stroke-1);
   --color-stroke-2: var(--stroke-2);
-  --color-text-1: var(--text-1);
-  --color-text-2: var(--text-2);
-  --color-text-3: var(--text-3);
+  /* Text colours by role: body, secondary, subtle. */
+  --color-fg: var(--text-1);
+  --color-fg-muted: var(--text-2);
+  --color-fg-subtle: var(--text-3);
   --color-accent: var(--accent);
   --color-accent-contrast: var(--accent-contrast);
   --color-accent-press: var(--accent-press);
@@ -218,9 +212,18 @@
   --text-headline--line-height: var(--headline-lh);
   --text-hero: calc(var(--headline-size) * 1.1);
   --text-hero--line-height: 1.1;
+  --text-figure: clamp(36px, 11vw, 48px);
+  --text-figure--line-height: 1;
 
   --leading-body: var(--lh-body);
   --leading-caption: 1.45;
+  --tracking-label: 0.02em;
+
+  /* The page column, and the width below which it fills the screen. */
+  --container-column: 34rem;
+  --breakpoint-wide: 44rem;
+
+  --shadow-float: 0 2px 12px -4px var(--shade);
 
   --default-transition-duration: 160ms;
   --default-transition-timing-function: ease;
@@ -251,6 +254,9 @@
 }
 @utility fs-18 {
   font-size: calc(18px * var(--text-scale, 1));
+}
+@utility fs-22 {
+  font-size: calc(22px * var(--text-scale, 1));
 }
 
 @layer base {

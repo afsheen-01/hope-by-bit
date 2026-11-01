@@ -13,11 +13,11 @@
   const yes = $derived(confirmed(s.circle).length);
 
   const rowCls = "flex gap-3 border-b border-b-stroke-1 py-3 last:border-b-0";
-  const termCls = "w-24 flex-none text-text-3";
-  const valueCls = "flex-1 text-pretty text-text-1";
+  const termCls = "w-24 flex-none text-fg-subtle";
+  const valueCls = "flex-1 text-pretty text-fg";
 </script>
 
-{#snippet muted(text: string)}<span class="fs-12 text-text-3">{text}</span>{/snippet}
+{#snippet muted(text: string)}<span class="fs-12 text-fg-subtle">{text}</span>{/snippet}
 
 <StepHeader step="done" onback={s.back} />
 <StepHeadline>That’s everything.</StepHeadline>

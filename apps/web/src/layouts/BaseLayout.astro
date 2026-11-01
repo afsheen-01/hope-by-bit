@@ -23,13 +23,13 @@ const { title, description, bodyClass = "bg-fill-1" } = Astro.props;
         saved === "light" || saved === "dark" ? saved : h >= 6 && h < 18 ? "light" : "dark";
     </script>
   </head>
-  <body class:list={["font-ui fs-16 leading-body text-text-1", bodyClass]}>
-    <main class="mx-auto max-w-[34rem] px-5 pt-8 pb-12 max-[44rem]:pt-16">
+  <body class:list={["font-ui fs-16 leading-body text-fg", bodyClass]}>
+    <main class="mx-auto max-w-column px-5 pt-8 pb-12 max-wide:pt-16">
       <slot />
       {/* Kept on one line: wrapping would put spaces inside the link. */}
       <!-- prettier-ignore -->
-      <footer class="mt-12 text-center fs-13 text-text-3">
-        with love and support from <a class="text-text-2 underline" href="https://x.com/_afsheen_a" target="_blank">afsheen</a> ♥
+      <footer class="mt-12 text-center fs-13 text-fg-subtle">
+        with love and support from <a class="text-fg-muted underline" href="https://x.com/_afsheen_a" target="_blank">afsheen</a> ♥
       </footer>
     </main>
 

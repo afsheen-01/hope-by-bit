@@ -21,16 +21,13 @@
   }
 
   const seg = [
-    "inline-flex w-16 h-16 items-center justify-center bg-fill-2 border border-stroke-1",
-    "rounded-control focus-within:outline focus-within:outline-2 focus-within:outline-offset-2",
-    "focus-within:outline-[var(--accent)]",
+    "inline-flex size-16 items-center justify-center bg-fill-2 border border-stroke-1",
+    "rounded-control focus-within:outline-2 focus-within:outline-offset-2",
+    "focus-within:outline-accent",
   ];
-  const input = [
-    "w-full h-full bg-transparent border-0 text-center text-[22px] font-ui tabular-nums",
-    "text-text-1 outline-none",
-  ];
+  const input = ["size-full text-center fs-22 tabular-nums", "text-fg outline-none"];
   const meridiem = [
-    "cursor-pointer rounded-pill px-4 py-2 fs-13 leading-none text-text-3",
+    "cursor-pointer rounded-pill px-4 py-2 fs-13 leading-none text-fg-subtle",
     "transition focus-visible:outline-2 focus-visible:outline-offset-2",
     "focus-visible:outline-accent aria-pressed:bg-accent aria-pressed:text-on-accent",
   ];
@@ -41,7 +38,7 @@
 <StepText variant="body">One arrival a day.</StepText>
 <div class="mt-5">
   <!-- Labels the group: Zag owns the inputs' ids. -->
-  <span class="mb-2 block fs-13 leading-caption text-pretty text-text-3" id="time-label"
+  <span class="mb-2 block fs-13 leading-caption text-pretty text-fg-subtle" id="time-label"
     >Every day at</span
   >
   <div
@@ -53,12 +50,12 @@
     <div data-seg="hour" class={seg}>
       <input data-part="input" aria-label="Hour" class={input} />
     </div>
-    <span class="text-[22px] text-text-2">:</span>
+    <span class="fs-22 text-fg-muted">:</span>
     <div data-seg="minute" class={seg}>
       <input data-part="input" aria-label="Minute" class={input} />
     </div>
     <div
-      class="ml-1 flex gap-[3px] rounded-pill border border-stroke-1 bg-fill-2 p-[3px]"
+      class="ml-1 flex gap-0.75 rounded-pill border border-stroke-1 bg-fill-2 p-0.75"
       role="group"
       aria-label="AM or PM"
     >

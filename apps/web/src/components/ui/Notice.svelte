@@ -5,7 +5,7 @@
 
 {#if text}
   <div
-    class="mt-3 rounded-control bg-accent-tint px-4 py-3 fs-13 leading-normal text-pretty text-text-1"
+    class="mt-3 rounded-control bg-accent-tint px-4 py-3 fs-13 leading-normal text-pretty text-fg"
   >
     {text}
   </div>
