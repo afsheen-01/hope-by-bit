@@ -22,9 +22,12 @@
 </script>
 
 {#if open}
-  <!-- Overlays the story until onboarding is done. -->
-  <div id="onboarding">
-    <div class="screen onboarding-page">
+  <!-- Overlays the story until onboarding is done. The overlay scrolls, and
+       children never shrink, so long steps scroll instead of overlapping. -->
+  <div id="onboarding" class="fixed inset-0 z-20 overflow-y-auto bg-fill-1">
+    <div
+      class="mx-auto flex min-h-full max-w-[34rem] flex-col px-5 pt-6 pb-12 text-left *:shrink-0 max-[44rem]:pt-16"
+    >
       {#if Step}<Step />{:else}<Done onhome={finish} />{/if}
     </div>
   </div>

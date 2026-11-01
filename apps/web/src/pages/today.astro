@@ -9,7 +9,10 @@ import { today } from "../lib/today.ts";
 const bit = today();
 ---
 
-<Base title="Hope By Bit — today's story" bodyClass="screen-page">
+<Base
+  title="Hope By Bit — today's story"
+  bodyClass="bg-fill-3 antialiased [text-rendering:optimizeLegibility]"
+>
   <Story bit={bit}>
     <Movements items={bit.movements} />
   </Story>
@@ -19,7 +22,7 @@ const bit = today();
   import { initMovements } from "../lib/movements.ts";
   import { shouldOnboard } from "../lib/onboarding/gate.ts";
 
-  initMovements(document.querySelector<HTMLElement>(".movements")!);
+  initMovements(document.getElementById("movements")!);
 
   if (shouldOnboard()) {
     import("../lib/onboarding/mount.ts").then(({ mountOnboarding }) =>

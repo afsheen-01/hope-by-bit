@@ -2,8 +2,11 @@
 <script lang="ts">
   import Button from "../../ui/Button.svelte";
   import Field from "../../ui/Field.svelte";
+  import Headline from "../../ui/Headline.svelte";
   import Notice from "../../ui/Notice.svelte";
+  import Spacer from "../../ui/Spacer.svelte";
   import StepHeader from "../../ui/StepHeader.svelte";
+  import Text from "../../ui/Text.svelte";
   import Person from "../Person.svelte";
   import { MAX_CIRCLE } from "../../../lib/onboarding/rules.ts";
   import { onboarding as s } from "../../../lib/onboarding/state.svelte.ts";
@@ -12,41 +15,48 @@
 </script>
 
 <StepHeader step={3} onback={s.back} />
-<h1 class="headline">Who should we tell, if you ask?</h1>
-<p class="body">
+<Headline>Who should we tell, if you ask?</Headline>
+<Text variant="body">
   Two to four people. Each one is asked first — only a YES makes someone reachable.
-</p>
+</Text>
 
 {#if n}
-  <div class="people">
+  <div class="mt-4 flex flex-wrap gap-2">
     {#each s.circle as person, i (i)}
       <Person {person} onclick={() => s.cycleConsent(i)} />
     {/each}
   </div>
-  <p class="stub">
+  <Text variant="stub">
     There’s no backend yet to send the ask or hear back — tap a person to move them through pending
     → confirmed → declined, standing in for a reply arriving.
-  </p>
+  </Text>
 {/if}
 
 <Notice text={s.notice} />
 
 {#if n < MAX_CIRCLE}
-  <div class="row">
-    <Field name="draftName" label="Name" placeholder="Sam" bind:value={s.draftName} />
+  <div class="mt-5 flex items-end gap-2">
+    <Field
+      name="draftName"
+      label="Name"
+      placeholder="Sam"
+      class="flex-1"
+      bind:value={s.draftName}
+    />
     <Field
       name="draftPhone"
       label="Number"
       placeholder="Optional"
       type="tel"
+      class="flex-1"
       bind:value={s.draftPhone}
     />
   </div>
   <Button variant="quiet" act="add" onclick={s.addPerson}>Add</Button>
   <Button variant="quiet" act="pick" onclick={s.pickContacts}>Choose from contacts</Button>
-  <p class="stub">
+  <Text variant="stub">
     The picker belongs to the phone — the app receives the contacts you select and nothing else.
-  </p>
+  </Text>
 {/if}
 
 <Field name="intro" label="What each of them receives now:" multiline bind:value={s.intro} />
@@ -57,10 +67,10 @@
   bind:value={s.hardMessage}
 />
 
-<div class="spacer"></div>
+<Spacer />
 <Button act="next" disabled={n === 0} onclick={s.next}>Send the asks</Button>
 <Button variant="skip" act="skip" onclick={s.next}>Skip for now</Button>
-<div class="crisis">
+<Text variant="crisis">
   Numbers are held encrypted, used for this and nothing else, and released when someone is removed
   or the account is deleted.
-</div>
+</Text>

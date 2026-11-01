@@ -3,11 +3,11 @@
   import { FEATURES } from "../../data/constants.ts";
 </script>
 
-<section class="features">
+<section class="mt-12 grid gap-8 border-y border-y-stroke-1 py-10">
   {#each FEATURES as f (f.title)}
-    <article class="feature">
-      <h2>{f.title}</h2>
-      <p>{f.body}</p>
+    <article>
+      <h2 class="mb-2 fs-17 font-medium text-text-1">{f.title}</h2>
+      <p class="text-text-2">{f.body}</p>
     </article>
   {/each}
 </section>

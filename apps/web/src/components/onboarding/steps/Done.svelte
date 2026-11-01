@@ -1,57 +1,68 @@
 <!-- Summary of the answers before showing today's story. -->
 <script lang="ts">
   import Button from "../../ui/Button.svelte";
+  import Headline from "../../ui/Headline.svelte";
+  import Spacer from "../../ui/Spacer.svelte";
   import StepHeader from "../../ui/StepHeader.svelte";
+  import Text from "../../ui/Text.svelte";
   import { confirmed, names, plural } from "../../../lib/onboarding/rules.ts";
   import { onboarding as s } from "../../../lib/onboarding/state.svelte.ts";
 
   let { onhome }: { onhome: () => void } = $props();
 
   const yes = $derived(confirmed(s.circle).length);
+
+  const rowCls = "flex gap-3 border-b border-b-stroke-1 py-3 last:border-b-0";
+  const termCls = "w-24 flex-none text-text-3";
+  const valueCls = "flex-1 text-pretty text-text-1";
 </script>
 
+{#snippet muted(text: string)}<span class="fs-12 text-text-3">{text}</span>{/snippet}
+
 <StepHeader step="done" onback={s.back} />
-<h1 class="headline">That’s everything.</h1>
-<p class="body">
+<Headline>That’s everything.</Headline>
+<Text variant="body">
   One good thing, one small thing, every day — starting tomorrow at {s.time}. We’re glad you’re
   here.
-</p>
-<dl class="summary">
-  <div>
-    <dt>proof about</dt>
-    <dd>{s.channels.join(", ")}</dd>
+</Text>
+<!-- Bottom margin matches the 1em a <dl> had before Tailwind's reset. -->
+<dl class="mt-5 mb-[1em] fs-14 leading-[1.6]">
+  <div class={rowCls}>
+    <dt class={termCls}>proof about</dt>
+    <dd class={valueCls}>{s.channels.join(", ")}</dd>
   </div>
-  <div>
-    <dt>carrying</dt>
-    <dd>
-      {#if s.paths.length}{s.paths.join(", ")}{:else}<span class="person-state">nothing set</span
-        >{/if}
+  <div class={rowCls}>
+    <dt class={termCls}>carrying</dt>
+    <dd class={valueCls}>
+      {#if s.paths.length}{s.paths.join(", ")}{:else}{@render muted("nothing set")}{/if}
     </dd>
   </div>
-  <div>
-    <dt>your people</dt>
-    <dd>
-      {#if s.circle.length}{names(s.circle)}
-        <span class="person-state">({yes} {plural(yes, "reply", "replies")} in)</span>{:else}<span
-          class="person-state">none yet</span
-        >{/if}
+  <div class={rowCls}>
+    <dt class={termCls}>your people</dt>
+    <dd class={valueCls}>
+      {#if s.circle.length}
+        {names(s.circle)}
+        {@render muted(`(${yes} ${plural(yes, "reply", "replies")} in)`)}
+      {:else}
+        {@render muted("none yet")}
+      {/if}
     </dd>
   </div>
-  <div>
-    <dt>arriving</dt>
-    <dd>{s.time}</dd>
+  <div class={rowCls}>
+    <dt class={termCls}>arriving</dt>
+    <dd class={valueCls}>{s.time}</dd>
   </div>
-  <div>
-    <dt>account</dt>
-    <dd>
-      {#if s.account}{s.account === "google" ? "Google" : s.email}{:else}<span class="person-state"
-          >this phone only</span
-        >{/if}
+  <div class={rowCls}>
+    <dt class={termCls}>account</dt>
+    <dd class={valueCls}>
+      {#if s.account}{s.account === "google" ? "Google" : s.email}{:else}{@render muted(
+          "this phone only",
+        )}{/if}
     </dd>
   </div>
 </dl>
-<div class="spacer"></div>
+<Spacer />
 <Button act="home" onclick={onhome}>See today’s story</Button>
-<div class="bottom">
+<Text variant="bottom">
   Every step can be revisited from settings, and each one stands as answered once given.
-</div>
+</Text>

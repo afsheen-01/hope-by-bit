@@ -2,17 +2,20 @@
 <script lang="ts">
   import Button from "../../ui/Button.svelte";
   import Field from "../../ui/Field.svelte";
+  import Headline from "../../ui/Headline.svelte";
+  import Spacer from "../../ui/Spacer.svelte";
   import StepHeader from "../../ui/StepHeader.svelte";
+  import Text from "../../ui/Text.svelte";
   import { canEmailLink } from "../../../lib/onboarding/rules.ts";
   import { onboarding as s } from "../../../lib/onboarding/state.svelte.ts";
 </script>
 
 <StepHeader step={5} onback={s.back} />
-<h1 class="headline">Keep this if you change phones.</h1>
-<p class="body">
+<Headline>Keep this if you change phones.</Headline>
+<Text variant="body">
   Everything from the last four steps uploads on first sign-in, so signing in after a month of use
   brings that month with it.
-</p>
+</Text>
 <Button act="google" onclick={() => s.signIn("google")}>Sign in with Google</Button>
 <Field
   name="email"
@@ -27,10 +30,10 @@
   disabled={!canEmailLink(s.email)}
   onclick={() => s.signIn("email")}>Email me a link</Button
 >
-<div class="spacer"></div>
+<Spacer />
 <Button act="next" onclick={s.next}>Continue</Button>
 <Button variant="skip" act="skip" onclick={s.next}>Not now — keep it on this phone</Button>
-<div class="bottom">
+<Text variant="bottom">
   Skipping keeps the app whole on this device, with the circle held locally and check in handed to
   your phone’s share sheet.
-</div>
+</Text>

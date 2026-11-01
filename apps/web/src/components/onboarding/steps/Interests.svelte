@@ -2,8 +2,11 @@
 <script lang="ts">
   import Button from "../../ui/Button.svelte";
   import ChipGroup from "../../ui/ChipGroup.svelte";
+  import Headline from "../../ui/Headline.svelte";
   import Notice from "../../ui/Notice.svelte";
+  import Spacer from "../../ui/Spacer.svelte";
   import StepHeader from "../../ui/StepHeader.svelte";
+  import Text from "../../ui/Text.svelte";
   import { CHANNELS, MIN_CHANNELS } from "../../../lib/onboarding/rules.ts";
   import { onboarding as s } from "../../../lib/onboarding/state.svelte.ts";
 
@@ -11,12 +14,12 @@
 </script>
 
 <StepHeader step={1} onback={s.back} />
-<h1 class="headline">What do you want proof about?</h1>
+<Headline>What do you want proof about?</Headline>
 <ChipGroup options={CHANNELS} chosen={s.channels} ontoggle={s.toggleChannel} />
-<p class="count">{n ? `${n} chosen` : "Nothing chosen yet"}</p>
+<Text variant="count">{n ? `${n} chosen` : "Nothing chosen yet"}</Text>
 {#if n < MIN_CHANNELS}
-  <p class="hint">pick three or more, and we’ll take it from there</p>
+  <Text variant="hint">pick three or more, and we’ll take it from there</Text>
 {/if}
 <Notice text={s.notice} />
-<div class="spacer"></div>
+<Spacer />
 <Button act="next" disabled={n < MIN_CHANNELS} onclick={s.next}>Continue</Button>
