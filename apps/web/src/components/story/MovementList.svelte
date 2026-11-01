@@ -10,7 +10,7 @@
       <button
         type="button"
         aria-pressed="false"
-        class="group flex min-h-11 w-full cursor-pointer items-center gap-2 rounded-control border border-stroke-1 bg-fill-2 px-4 py-3 text-left text-fg transition-[border-color] hover:border-accent focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-accent aria-pressed:bg-transparent aria-pressed:text-fg-subtle"
+        class="group flex min-h-11 w-full cursor-pointer items-center gap-2 rounded-control border border-stroke-1 bg-fill-3 px-4 py-3 text-left text-fg transition-[border-color] hover:border-accent focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-accent aria-pressed:bg-transparent aria-pressed:text-fg-subtle"
       >
         <span
           aria-hidden="true"

@@ -1,0 +1,9 @@
+---
+// Onboarding: five questions, then a summary that leads to /today.
+import BaseLayout from "#/layouts/BaseLayout.astro";
+import OnboardingFlow from "#/components/onboarding/OnboardingFlow.svelte";
+---
+
+<BaseLayout title="Hope By Bit — get started">
+  <OnboardingFlow client:load />
+</BaseLayout>

@@ -23,8 +23,8 @@ Free forever.
 ## What we're building
 
 **The website** — *built, in progress.* Static Astro with Svelte components, in `apps/web/`. It has a
-landing page at `/`, today's story at `/today` (placeholder content for now), and onboarding on the
-first visit.
+landing page at `/`, today's story at `/today` (placeholder content for now), and onboarding at
+`/start`.
 
 **The PWA** — *not started.* The website, installable on a phone's home screen. It adds the daily
 reminder, works offline, and holds the loop breaker and voice. There are no native iOS or Android

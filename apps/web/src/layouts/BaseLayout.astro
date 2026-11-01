@@ -3,7 +3,7 @@
 import ThemeSwitch from "#/components/ThemeSwitch.svelte";
 import "#/styles/global.css";
 
-// bodyClass replaces the default background, e.g. /today's darker fill.
+// bodyClass replaces the default body classes (background).
 const { title, description, bodyClass = "bg-fill-1" } = Astro.props;
 ---
 
@@ -24,7 +24,7 @@ const { title, description, bodyClass = "bg-fill-1" } = Astro.props;
     </script>
   </head>
   <body class:list={["font-ui fs-16 leading-body text-fg", bodyClass]}>
-    <main class="mx-auto max-w-column px-5 pt-8 pb-12 max-wide:pt-16">
+    <main class="mx-auto flex min-h-svh max-w-column flex-col px-5 pt-8 pb-12 max-wide:pt-16">
       <slot />
       {/* Kept on one line: wrapping would put spaces inside the link. */}
       <!-- prettier-ignore -->

@@ -35,7 +35,7 @@ class Onboarding {
     this.step = step;
     this.notice = "";
     // Each step starts scrolled to the top.
-    document.getElementById("onboarding")?.scrollTo(0, 0);
+    window.scrollTo(0, 0);
   };
   next = () => this.go(this.step + 1);
   back = () => this.go(this.step - 1);

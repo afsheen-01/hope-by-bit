@@ -8,8 +8,6 @@
   import { confirmed, names, plural } from "#/lib/onboarding/rules.ts";
   import { onboarding as s } from "#/lib/onboarding/state.svelte.ts";
 
-  let { onhome }: { onhome: () => void } = $props();
-
   const yes = $derived(confirmed(s.circle).length);
 
   const rowCls = "flex gap-3 border-b border-b-stroke-1 py-3 last:border-b-0";
@@ -62,7 +60,7 @@
   </div>
 </dl>
 <Spacer />
-<Button act="home" onclick={onhome}>See today’s story</Button>
+<Button act="home" onclick={() => location.assign("/today")}>See today’s story</Button>
 <StepText variant="bottom">
   Every step can be revisited from settings, and each one stands as answered once given.
 </StepText>
