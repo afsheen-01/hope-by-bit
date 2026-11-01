@@ -1,7 +1,7 @@
 # The product
 
-What Hope By Bit is. Every surface implements this. The prototype shows the feel; where it differs
-from this file, this file is the one that holds.
+What Hope By Bit is. Every surface implements this; where a surface differs from this file, this
+file holds.
 
 ## The daily unit
 
@@ -43,8 +43,8 @@ story you chose yourself is stronger than one we picked. That's why the ritual i
 past week two.
 
 **Continuing bonds.** With the grief path on, any action can be dedicated — *"planted this for
-Mum"* — and the wall quietly becomes a record of things done in someone's name. The offer comes *after* an action, so what you're carrying
-stays a dedication rather than a reason to act. The name is asked once. Gated on
+Mum"* — and the wall quietly becomes a record of things done in someone's name. The offer comes
+*after* an action, so what you're carrying stays a dedication rather than a reason to act. The name is asked once. Gated on
 [review](../SAFETY.md).
 
 **Your record follows you.** Sign in and the wall, Keepsakes, and your settings arrive on any

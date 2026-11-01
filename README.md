@@ -28,7 +28,7 @@ the canon is right and the code is a bug.
 | | |
 |---|---|
 | [SAFETY.md](SAFETY.md) | The crisis boundary, the grief review gate, the check-in circle, and how user data is held. |
-| `apps/web/` | The website — Astro pages, Svelte components (`src/components/`), logic in `src/lib/`, imported as `#/…`. `pnpm install && pnpm dev` (`dev` and `build` run `pnpm verify` first: Prettier, ESLint with import rules, then type checks; `pnpm format` fixes formatting), `pnpm test` (tests in `tests/`). |
+| `apps/web/` | The website: Astro pages, Svelte components in `src/components/`, logic in `src/lib/` (imported as `#/…`), tests in `tests/`. Run `pnpm install && pnpm dev`. `dev` and `build` run `pnpm verify` first (Prettier, ESLint, type checks); `pnpm format` fixes formatting; `pnpm test` runs the tests. |
 
 ## The four surfaces
 
@@ -39,8 +39,9 @@ tuned to that person. What ships here is boilerplate, built to be overridden.
 **The app** is Expo, on iOS and Android. It owns the ritual: the morning notification, haptics,
 voice, and the loop breaker. Local-first, so it works offline for as long as you like.
 
-**The website** is Astro, static, with its UI in Svelte components. The front door, the public record of the editorial standard, the
-self-hosting docs, and the full product for anyone who reads in a browser.
+**The website** is static Astro with Svelte components. It is the front door, the public record of
+the editorial standard, the self-hosting docs, and the full product for anyone who reads in a
+browser.
 
 **The backend** is one TypeScript service behind the app and the site: the stories, your account,
 sync of your wall between devices, and safety config that reaches every device within the hour.
@@ -57,10 +58,10 @@ Documents here stay under 200 lines. A document growing past that is two documen
 
 ## Status
 
-Specifications complete, and the first code is in: `apps/web` (the website shell, `/` rendering the
-daily unit on a placeholder story). The
-two things that would move this furthest need no code at all: verified crisis lines per country, and
-a qualified grief counsellor willing to review the grief path.
+The product documents are complete, and the first code is in: `apps/web`, with a landing page at
+`/` and the daily unit at `/today` on a placeholder story, plus first-visit onboarding. The two
+things that would move this furthest need no code at all: verified crisis lines per country, and a
+qualified grief counsellor willing to review the grief path.
 
 ## License
 

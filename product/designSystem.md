@@ -1,9 +1,9 @@
 # Design system
 
-How the surfaces are built. The website's styles in `apps/web/src/styles/` are the working copy of
+How the surfaces are built. The website's `apps/web/src/styles/global.css` is the working copy of
 this file; where the two differ, this one holds.
 
-Colour and type live in the token section of `apps/web/src/styles/global.css` as three levels — global, system, component —
+Colour and type live in that file's tokens as three levels — global, system, component —
 following [Pavel Kiselev's method](https://www.designsystems.com/), where globals are never used
 directly by a screen. This file records the third axis: **space**.
 
@@ -25,15 +25,9 @@ distinguishable.
 | `--space-10` | 40px | 10 | between sections |
 | `--space-12` | 48px | 12 | between sections, generously |
 
-**Not on the grid, and deliberately so:** border radii (14 / 18 / 44px, drawn to the device frame),
-type sizes and line-heights, `--tap: 56px` (the 44pt accessibility floor, rounded up), and the
-390×844 phone itself. None of these are spacing. Rounding them to fours would change the design to
+**Not on the grid, and deliberately so:** border radii (14 / 18px), type sizes and line-heights,
+and `--tap: 56px` (the 44pt accessibility floor, rounded up). None of these are spacing. Rounding them to fours would change the design to
 satisfy a rule that was never about them.
-
-**Below the scale:** a 3px inset appears twice — the gaps between the status bar's signal bars, and
-the track a segmented control's pill sits inside. Both are drawn detail at icon scale, where 4px is
-already too coarse to read. If a third case appears, it is worth asking whether it is really the
-same thing.
 
 ## The rule that decides which step
 

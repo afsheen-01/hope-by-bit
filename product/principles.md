@@ -1,8 +1,7 @@
 # Principles
 
 Ten rules, each stating what the product does. Every one has a **check**: how a machine or a
-reviewer confirms it holds. The agent generates code that satisfies all ten, and CI runs the same
-checks here.
+reviewer confirms it holds. Code on every surface, generated or not, must satisfy all ten.
 
 ---
 
@@ -58,8 +57,7 @@ signup, or a future date; wall entries carry one shape regardless of which was t
 its own thing — capacity moves in both directions.
 *Why:* grief is nonlinear, and a product that assumes otherwise tells someone they're doing it
 wrong on the day they can least argue.
-*Check:* grief copy passes the capacity check (word list in `prompts/tone/`), with counsellor
-sign-off recorded before release.
+*Check:* grief copy passes the capacity check, with counsellor sign-off recorded before release.
 
 **P9 · Your record is yours.** The wall, Keepsakes, your circle, and your settings belong to you:
 readable offline, on every device you sign in to, exportable in one tap, and removable in one tap —
@@ -74,9 +72,8 @@ a month, most of it Apple's developer fee. Stories cost the same at any size, ac
 and messages are the one line that grows with how hard people's days are — the line worth paying.
 *Why:* free is a design constraint, and starting on free tiers keeps the early decisions honest.
 Knowing which cost grows first is what tells you where to look later.
-*Check:* any change to what it costs to run updates the table in
-the backend spec and carries a maintainer's sign-off. Every paid service
-carries an open alternative in that table.
+*Check:* any change to what it costs to run updates a running-costs table and carries a
+maintainer's sign-off. Every paid service in that table has an open alternative.
 
 ---
 

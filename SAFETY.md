@@ -1,6 +1,6 @@
 # Safety
 
-Binding on every surface, including ones the agent generates. Checked before generation and in CI.
+Binding on every surface, including ones the agent generates.
 
 **What this is:** a daily ritual, a record of small things done, and two tools for hard moments.
 For treatment, counselling, or a crisis, the right people are elsewhere, and the product's job is
@@ -18,8 +18,8 @@ shows the crisis line. Quiet, always there, sized to sit under whatever the scre
 everywhere else, so the core looks it up by region, from the device's language and overridable in
 settings, falling back to findahelpline.com so there's always somewhere to go.
 
-The table lives in backend config, fetched on launch and cached, so a
-correction reaches every device within the hour rather than waiting on an app store review. Every
+The table lives in backend config, fetched on launch and cached, so a correction reaches every
+device within the hour rather than waiting on an app store review. Every
 row needs someone with local knowledge to verify it:
 
 | | | | |
@@ -91,11 +91,10 @@ Dedicating actions to what someone is carrying is the most powerful thing in thi
 exactly why it ships behind a gate. The copy says grief and leaves it there.
 
 **Every part of the grief path carries written sign-off from a qualified grief counsellor** before
-release, recorded with a name and date, and renewed whenever the copy
-changes meaningfully.
+release, recorded with a name and date, and renewed whenever the copy changes meaningfully.
 
-What the review confirms: bits are offered by what today can hold ([P8](product/principles.md)), enforced
-by the tone check; the wall waits to be visited rather than arriving on dates; the dedication offer
+What the review confirms: bits are offered by what today can hold ([P8](product/principles.md)),
+enforced by the tone check; the wall waits to be visited rather than arriving on dates; the dedication offer
 comes after an action, so what is carried stays a dedication; the name is asked once and
 stands; turning the path off keeps the wall and the dedications, simply unlabelled; and the record
 is held against the person's own history alone.
@@ -120,8 +119,8 @@ stack trace carries a screen name.
 
 ## Content
 
-The daily story reaches people on their worst days, so the [bad-day test](product/features.md) is a safety
-check as much as an editorial one.
+The daily story reaches people on their worst days, so the [bad-day test](product/features.md) is a
+safety check as much as an editorial one.
 
 Frame numbers on the living — *children reached*, *cases prevented*. Let people appear as they'd
 want to be seen. Let the action stand on its own merits, so the choice to act stays free. Speak
