@@ -29,7 +29,7 @@ the canon is right and the code is a bug.
 |---|---|
 | [SAFETY.md](SAFETY.md) | The crisis boundary, the grief review gate, the check-in circle, and how user data is held. |
 | [PROGRESS.md](PROGRESS.md) | The cross-track tracker — what's next, what's blocked, what's undecided. |
-| `apps/web/` | The website — Astro pages, Svelte components (`src/components/`), logic in `src/lib/`. `pnpm install && pnpm dev`, `pnpm test`. |
+| `apps/web/` | The website — Astro pages, Svelte components (`src/components/`), logic in `src/lib/`. `pnpm install && pnpm dev` (`dev` and `build` run `pnpm verify` first: ESLint with import rules, then type checks), `pnpm test`. |
 
 ## The four surfaces
 
