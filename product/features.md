@@ -1,148 +1,118 @@
 # The product
 
-What Hope By Bit is. Every surface implements this; where a surface differs from this file, this
-file holds.
+What Hope By Bit is. Everything built follows this file; where they disagree, this file wins.
 
 ## The daily unit
 
 The whole product fits on one screen.
 
-**One good bit of news**, matched to three to five interests picked at setup: medicine, climate,
-wild places, kindness, science, your city, rights, food. One story, and the screen ends there —
-[P1](principles.md), the most important decision in the product. A story carries a headline under
-64 characters with the change in it, the number and what it counts, two or three paragraphs under
-90 words, a named source, one action, and hints for reading it aloud.
+**One good news story**, matched to three to five interests picked at setup: medicine, climate, wild
+places, kindness, science, your city, rights, food. One story, then the screen ends
+([P1](principles.md)). Each story has:
 
-**One bit you can do, with your body.** Two or three small physical things, offered together — *a
-glass of water*, *stand up and stretch*, *ninety seconds outside*. None of them costs anything, none
-needs a signup, and none waits for Saturday: each can be finished in the next minute, from wherever
-you are reading. Every one records the same wall entry, so there is always one within reach.
+- a headline under 64 characters that names the change
+- a number, and what it counts
+- two or three short paragraphs, under 90 words in all
+- a named source
 
-The point is the answer you get back. Reading that the world has good in it is information; standing
-up and feeling the difference is experience, and only one of those survives a bad afternoon.
+**One small thing to do with your body.** Two or three options, such as *a glass of water*, *stand
+up and stretch* or *ninety seconds outside*. Each is free, needs no signup and takes under a minute.
+Any of them adds the same entry to your wall.
 
-**The bottom.** After the action, the closing line answers what you did: nothing yet is *"That's
-today's bit."*, one or two is *"That's today's win."*, all three is *"All three. A big day."* It is
-said and not kept — the wall's running total is still the only number the product holds
-([P2](principles.md)), because a per-day score is a streak wearing a kinder word. Then when the next
-one comes. The screen ends.
+Reading good news is information. Standing up and feeling the difference is experience, and that is
+what lasts through a bad afternoon.
 
-**Give and join are not on this screen.** They sit behind the wall and Keepsakes, offered when you
-revisit a story you kept, and they link out to the organisation's own page — which keeps the product
-free of payments entirely. *Open:* exactly where they surface there, and whether a story with a
-strong ask should say so on the day, is still to be worked out.
+**The closing line** reflects what you did: none yet is *"That's today's bit."*, one or two is
+*"That's today's win."*, all three is *"All three. A big day."* It isn't saved. The wall's total is
+the only number the product keeps ([P2](principles.md)), because a daily score is just a streak.
+Then it says when the next story comes, and the screen ends.
+
+**No donate or join buttons here.** They appear when you revisit a story you kept, and link to the
+organisation's own page, so the product never handles payments. *Open question:* exactly where they
+appear, and whether a story with a strong ask should mention it on the day.
 
 ## Keepsakes and the wall
 
-**Keepsakes** are the handful of stories you deliberately kept. **The wall** is everything you did
-and kept, newest first — *"47 bits since March"*, a total that only grows. The wall is your
-journal; Keepsakes is the shoebox of letters.
+**Keepsakes** are the stories you chose to keep. **The wall** is everything you did and kept, newest
+first, with a total that only grows: *"47 bits since March"*.
 
-On a bad day you revisit your own evidence. The loop breaker draws from Keepsakes first, because a
-story you chose yourself is stronger than one we picked. That's why the ritual is worth keeping
-past week two.
+On a bad day, you revisit your own evidence. The loop breaker shows your Keepsakes first, because a
+story you chose means more than one we picked.
 
-**Continuing bonds.** With the grief path on, any action can be dedicated — *"planted this for
-Mum"* — and the wall quietly becomes a record of things done in someone's name. The offer comes
-*after* an action, so what you're carrying stays a dedication rather than a reason to act. The name is asked once. Ships only
-after a grief counsellor has reviewed it.
+**Dedications.** With the grief path on, you can dedicate any action to someone: *"planted this for
+Mum"*. The offer comes after the action, never as a reason to act. The name is asked once. This
+ships only after a grief counsellor has reviewed it.
 
-**Your record follows you.** Sign in and the wall, Keepsakes, and your settings arrive on any
-device you use. Signing in is optional: with no account everything works on the one device, and
-the only thing an account adds is the second device ([P9](principles.md)).
+**Your record follows you.** Signing in is optional. Without an account everything works on one
+device; an account brings your wall, Keepsakes and settings to every device ([P9](principles.md)).
 
-## The two worst-moment buttons
+## The two hard-moment buttons
 
-**Break the loop — for your head.** Yours alone, open as often as the day needs. Sixty seconds,
-three skippable steps: a breath (4 in, 3 hold, 6 out — shown, felt, and optionally spoken, so it
-works in the dark); one thing from your own Keepsakes with its date and dedication (*"three weeks
-ago you kept this, then you planted the rosemary in Mum's name"*); and one sensory question — *name
-one thing you can hear*.
+**Break the loop, for your head.** Use it as often as you need. Sixty seconds, three steps you can
+skip:
 
-It closes on *"That's the loop broken, for now. If it closes again in ten minutes, come back. It
-costs nothing and stays with you."* Your own receipts land where generic reassurance slides off,
-because you can't argue with having done them. Runs are counted on the device and stay there.
+1. A breath: 4 in, 3 hold, 6 out. Shown, and optionally spoken, so it works in the dark.
+2. One of your own Keepsakes, with its date and dedication: *"Three weeks ago you kept this, then
+   you planted the rosemary in Mum's name."*
+3. One sensory question: *name one thing you can hear.*
 
-**If you asked it to, the third run tells your people.** That's a choice made at setup, in a calm
-moment, off until switched on. When the count is reached, the closing screen names who is about to
-be told and offers *just me this time* for twenty seconds — doing nothing sends, so help is what
-happens by default. One message a day, so a fourth or eighth run passes quietly and the tool stays
-usable once the day has been named. Afterwards, one tap offers *let them know I'm alright*.
+It ends with *"That's the loop broken, for now. If it closes again in ten minutes, come back."*
+Your own past actions convince where general reassurance doesn't. Runs are counted on the device
+and never leave it.
 
-The message says how it arrived: *"[Name] has been using their grounding tool a lot today. They
-asked us to tell you when that happens."* A count is a count, and the product says so — a hard day
-that stops at two passes unremarked, which is why the check-in button and the crisis line stay
-where they are.
+**Optionally, the third run tells your people.** You choose this at setup, while calm; it is off by
+default. When the count is reached, the last screen names who will be told and offers *just me this
+time* for twenty seconds. Doing nothing sends. At most one message a day. Afterwards, one tap sends
+*let them know I'm alright*.
 
-**Check in — for your people.** Two or three chosen at setup. Tapping the button *is* the decision,
-so what follows is immediate: the message, the names, send. The message is written **once, calm, at
-setup**, so the moment itself asks nothing of you. Default: *"[Name] is having a hard moment and
-asked me to let you know. A call or a text would mean a lot right now."*
+The message says it was automatic: *"[Name] has been using their grounding tool a lot today. They
+asked us to tell you when that happens."* A hard day that stops at two runs sends nothing, which is
+why the check-in button and the crisis line are always there.
 
-**Each person agrees first.** At setup they receive one message — *"[Name] chose you as someone to
-reach out to when things are heavy. Reply YES to be reachable, STOP to decline"* — and only a YES
-makes them reachable. The site shows who has confirmed, so nobody relies on a net that was never
-fastened. The circle needs only a phone.
+**Check in, for your people.** Pick two or three people at setup and write the message then, so the
+hard moment asks nothing of you. Tapping the button sends it straight away. Default: *"[Name] is
+having a hard moment and asked me to let you know. A call or a text would mean a lot right now."*
 
-**Signed in, messages go out from the service**, which is what lets the third run send on its own
-when you've asked it to. **Signed out, the site hands the message to your phone's share sheet**, so it
-goes from your number with the contacts staying in your phone. Both reach the same people; the
-account is what buys the automatic path.
+**Each person agrees first.** They get one message: *"[Name] chose you as someone to reach out to
+when things are heavy. Reply YES to be reachable, STOP to decline."* Only a YES makes them
+reachable, and the site shows who has confirmed. They only need a phone.
 
-The product's job ends at the handoff, and the confirmation says so: *"Three people know. That's
-everything this screen does."*
+**Signed in, we send the messages**, which is what makes the automatic third-run message possible.
+**Signed out, the site opens your phone's share sheet**, so the message goes from your own number.
+
+The confirmation says where the product's job ends: *"Three people know. That's everything this
+screen does."*
 
 ## Voice
 
-Voice exists so this works with your eyes closed, in the dark, at 3am. **Everything runs in the
-browser, on the device.**
+So it works with your eyes closed, in the dark, at 3am. Everything runs in the browser, on the
+device.
 
-**Reading out:** the daily story, paced slower than default with a pause either side of the number,
-because the number is the point. The loop breaker end to end, the breath guided rather than
-narrated — *"in… hold… and out."* Long silences are deliberate.
-
-**Speaking to it:** a fixed short list — keep, skip, next, done, the five sensory answers, leave.
-Anything outside it hands you back to the buttons quietly. It turns on only where the browser can
-recognise speech on the device itself, and the site says where that stands today.
+- **Reading out:** the daily story, slower than usual, and the whole loop breaker, with the breath
+  guided: *"in… hold… and out."* Long silences are on purpose.
+- **Speaking to it:** a short fixed list of words: keep, skip, next, done, the sensory answers,
+  leave. Anything else returns you to the buttons. This only turns on where the browser can
+  recognise speech on the device.
 
 ## Vibration
 
 Where the browser supports it, a short vibration marks an action landing on the wall and paces the
-loop breaker's breath. It is never the only signal, and a **reduce vibration** setting turns it off
-for people who find it activating.
+loop breaker's breath. It is never the only signal, and a setting turns it off.
 
 ## The content standard
 
-The pipeline is the hard problem. Real progress, specific numbers, things that happened — that's
-the moat.
+Finding the stories is the hard part: real progress, specific numbers, things that actually
+happened.
 
-**Fuel:** *malaria vaccine reaches 20 million children*; *guinea worm down to 14 cases from 3.5
-million*. **Filler:** *grinning dog reunited with owner*; *study suggests optimism may be good for
-you*.
-
-The test, in order. **Did something happen** — a decision, a threshold, a rollout? **Is there a
-number, and does it move**, against a baseline a reader can hold? **Is it load-bearing** — would a
-reasonable person's picture of the world change? **Is it true, with the original source named?**
-**Does it survive the bad-day test**, read by someone in the worst week of their life?
-
-**The pipeline** runs once a night: pull ~200 candidates, classify against the test above, one
-person reviews the top 30 in twenty minutes, publish one story per channel a week ahead. The human
-step is permanent — it is what *genuinely good news* means in practice. Seed from Our World in
-Data, Gavi, WHO, IEA, IUCN, national statistics offices; treat existing curators as leads to
-verify.
+Once a night, the pipeline pulls about 200 candidates and ranks them. One person reviews the top 30
+in twenty minutes and schedules one story per interest, a week ahead. That human step is permanent.
+Sources include Our World in Data, Gavi, WHO, IEA, IUCN and national statistics offices; other good
+news sites are leads to check, not sources.
 
 ## Tone
 
-**Plain, specific, warm.** Write like someone glad you came, who isn't going to make a fuss about
-it. *"Done. That's a net."*
+**Plain, specific, warm.** Write like someone glad you came who won't make a fuss about it: *"Done.
+That's a net."*
 
-Warmth is in the welcome, not the volume. Keep praise proportional — they did a small thing, and
-the copy that says so stays trustworthy; a glass of water is not a triumph, and saying it is teaches
-someone to trust us less. Stay in everyday language, which is what a product like this can honestly
-speak. Say what a control does, then say it happened: "Keep it" → *"Kept."* Name the product's edges
-out loud — *"There's no more to scroll, that's on purpose"* — because a stated limit is what makes
-the limit believable.
-
-Second person, present tense, plain words. Address the person directly wherever they can read it.
-Warm does not mean cheerful at someone having the worst week of their life — the bad-day test above
-governs every line, and kindness that ignores the day is not kindness.
+Second person, present tense, everyday words. Warm doesn't mean cheerful: every line should read
+well to someone having the worst week of their life.
