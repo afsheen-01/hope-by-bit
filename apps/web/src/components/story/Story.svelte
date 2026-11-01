@@ -1,9 +1,6 @@
-<!-- Today's story: headline, key figure, body, source, then "one small
-     thing" to do. Built to static HTML. The page passes the movement buttons
-     in as `children`, and a small script there makes them tappable.
-
-     .bit scopes the story's styles above the onboarding overlay's, which
-     share class names (.figure, .date, .ask…) with the story's own. -->
+<!-- Today's story, as static HTML. The movement buttons come in as
+     `children`. Styles are scoped under .bit because onboarding reuses
+     class names like .figure and .date. -->
 <script lang="ts">
   import type { Snippet } from "svelte";
   import type { Bit } from "../../lib/today.ts";

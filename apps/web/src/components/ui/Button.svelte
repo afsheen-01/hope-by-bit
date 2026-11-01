@@ -1,6 +1,5 @@
-<!-- Onboarding's three button styles: primary (filled), quiet (outlined)
-     and skip (plain text). `act` is written to data-act to name the action,
-     which also gives tests a stable way to find the button. -->
+<!-- Primary, quiet or skip button. `act` becomes data-act, a stable hook
+     for tests. -->
 <script lang="ts">
   import type { Snippet } from "svelte";
 

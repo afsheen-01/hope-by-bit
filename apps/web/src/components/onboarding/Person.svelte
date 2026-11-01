@@ -1,5 +1,4 @@
-<!-- One person in the circle, with their consent visible on them rather
-     than summarised once underneath. Tapping stands in for a reply arriving. -->
+<!-- One person and their consent state. Tapping fakes a reply until there's a backend. -->
 <script lang="ts">
   import { initials, type Person } from "../../lib/onboarding/rules.ts";
 

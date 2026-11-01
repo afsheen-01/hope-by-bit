@@ -1,16 +1,11 @@
-// The Auto/Light/Dark switch's behaviour. ThemeSwitch.svelte renders the
-// buttons at build time; this wires them up, and is plain TypeScript so the
-// pages that only need this don't pay for a framework runtime.
+// Wires up ThemeSwitch.svelte. Plain TypeScript, so pages don't need Svelte.
 
 export type Theme = "light" | "dark";
 export type ThemeChoice = Theme | "auto";
 export const CHOICES: readonly ThemeChoice[] = ["auto", "light", "dark"];
 
-// A fixed 6am–6pm window, not real sunrise/sunset for the visitor's
-// location. If that ever reads wrong somewhere, a sunrise calculation from
-// the visitor's location can replace it here. Base.astro's inline pre-paint
-// script repeats this rule, because it must run before first paint and
-// can't import.
+// Light 6am–6pm, otherwise dark; not real sunrise. Base.astro duplicates
+// this, so keep the two in sync.
 export function autoTheme(): Theme {
   const h = new Date().getHours();
   return h >= 6 && h < 18 ? "light" : "dark";
@@ -24,8 +19,7 @@ export function initThemeSwitch(el: HTMLElement) {
 
   let pollId: ReturnType<typeof setInterval> | undefined;
   const stopPolling = () => clearInterval(pollId);
-  // The 6am or 6pm switch-over can happen while the tab is open, so recheck
-  // occasionally rather than only on load.
+  // Recheck every 15 minutes in case 6am/6pm passes with the tab open.
   const startPolling = () => {
     stopPolling();
     pollId = setInterval(() => (root.dataset.theme = autoTheme()), 15 * 60 * 1000);

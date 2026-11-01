@@ -1,5 +1,4 @@
-<!-- A back button and the step counter ("2 of 5"), so people always know
-     how much is left. -->
+<!-- Back button and step counter ("2 of 5"). -->
 <script lang="ts">
   import { STEPS } from "../../lib/onboarding/rules.ts";
 

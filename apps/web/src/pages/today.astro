@@ -1,10 +1,6 @@
 ---
-// Today's story. On a first visit, onboarding opens over it; once that's
-// done (or on any later visit) the story is all there is.
-//
-// Everything renders at build time, so the story reads with JavaScript off.
-// The script below adds the movement toggle and, on a first visit only,
-// fetches onboarding — the one part that needs Svelte in the browser.
+// Today's story, readable without JavaScript. On a first visit the script
+// below loads onboarding over it.
 import Base from "../layouts/Base.astro";
 import Movements from "../components/story/Movements.svelte";
 import Story from "../components/story/Story.svelte";

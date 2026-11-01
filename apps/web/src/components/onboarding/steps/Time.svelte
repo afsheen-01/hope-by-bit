@@ -1,14 +1,10 @@
-<!-- 4 · notification time. Built from Zag's number-input machine rather than
-     <input type="time">, whose picker can't be styled. Zag adds about 16KB,
-     so it is only downloaded when someone reaches this step. -->
+<!-- Step 4: notification time. Zag (~16KB) is loaded only on this step. -->
 <script lang="ts">
   import Button from "../../ui/Button.svelte";
   import StepHeader from "../../ui/StepHeader.svelte";
   import { onboarding as s } from "../../../lib/onboarding/state.svelte.ts";
 
-  // Svelte action: mounts the Zag machines on the rendered markup, and the
-  // field writes straight to state — it owns its own DOM, so nothing
-  // re-renders under it mid-interaction.
+  // Mounts Zag on the markup below and writes the time straight to state.
   function timeField(box: HTMLElement) {
     let field: { destroy(): void } | undefined;
     let gone = false;
@@ -29,7 +25,7 @@
 <h1 class="headline">When should it arrive?</h1>
 <p class="body">One arrival a day.</p>
 <div class="field">
-  <!-- Names the group rather than one input: Zag sets the inputs' own ids. -->
+  <!-- Labels the group: Zag owns the inputs' ids. -->
   <span class="field-label" id="time-label">Every day at</span>
   <div class="time-box flex items-center gap-2 mt-2" role="group" aria-labelledby="time-label" use:timeField>
     <div data-seg="hour" class={seg}><input data-part="input" aria-label="Hour" class={input} /></div>

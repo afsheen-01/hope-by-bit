@@ -1,7 +1,5 @@
-// Onboarding's state and the actions that change it. One object, shared by
-// every step component; Svelte re-renders whatever reads a field that moved.
-// The rules themselves live in rules.ts, so this file is only "what happens
-// when someone taps".
+// Onboarding's shared state and the actions that change it. Rules live in
+// rules.ts.
 
 import {
   HARD_MESSAGE, INTRO_MESSAGE, MAX_CHANNELS, MAX_CIRCLE, MAX_PATHS,
@@ -27,8 +25,7 @@ class Onboarding {
   go = (step: number) => {
     this.step = step;
     this.notice = "";
-    // A new question starts at the top, not wherever the last one was
-    // scrolled to.
+    // Each step starts scrolled to the top.
     document.getElementById("onboarding")?.scrollTo(0, 0);
   };
   next = () => this.go(this.step + 1);

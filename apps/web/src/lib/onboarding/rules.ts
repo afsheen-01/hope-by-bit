@@ -1,8 +1,6 @@
-// Onboarding's content and rules — data and pure functions, no DOM.
-// Five questions, four of them skippable, and then today's story.
+// Onboarding's content and rules: data and pure functions, no DOM.
 
-/* Eight, and the ceiling is five — a sixth channel dilutes the day
-   rather than widening it. */
+/* Pick up to five: more would dilute the day. */
 export const CHANNELS = [
   "medicine", "climate", "wild places", "kindness",
   "science", "your city", "rights", "food",
@@ -17,9 +15,7 @@ export const MIN_CHANNELS = 3;
 export const MAX_PATHS = 2;
 export const MAX_CIRCLE = 4;
 
-/* Stands in for the signed-in person's name, same placeholder
-   product/features.md's own message templates use — there's no account yet
-   to read a real one from. */
+/* Placeholder for the user's name until there are accounts. */
 const NAME = "[Name]";
 
 export const INTRO_MESSAGE =
@@ -33,9 +29,8 @@ export const HARD_MESSAGE =
 export type Consent = "pending" | "confirmed" | "declined";
 export type Person = Readonly<{ name: string; phone: string; consent: Consent }>;
 
-/* Adds or removes a value. Adding past `max` leaves the list unchanged and
-   sets `refused`, so the screen can explain why instead of silently
-   ignoring the tap. */
+/* Adds or removes `value`. Past `max`, nothing changes and `refused` is
+   set so the screen can say why. */
 export function toggle<T>(list: readonly T[], value: T, max: number) {
   if (list.includes(value)) return { list: list.filter((v) => v !== value), refused: false };
   if (list.length >= max) return { list, refused: true };
@@ -45,8 +40,7 @@ export function toggle<T>(list: readonly T[], value: T, max: number) {
 export const initials = (name: string) =>
   name.trim().split(/\s+/).slice(0, 2).map((w) => w.charAt(0).toUpperCase()).join("") || "?";
 
-/* Standing in for replies arriving, which in the app come back from
-   the backend rather than from a tap. */
+/* Cycles consent on tap, standing in for real replies. */
 export const nextConsent = (c: Consent): Consent =>
   ({ pending: "confirmed", confirmed: "declined", declined: "pending" } as const)[c];
 

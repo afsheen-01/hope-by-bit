@@ -1,4 +1,4 @@
-<!-- 3 · the circle. Each person is asked first. Only a YES makes someone reachable. -->
+<!-- Step 3: the circle. Only people who reply YES are reachable. -->
 <script lang="ts">
   import Button from "../../ui/Button.svelte";
   import Field from "../../ui/Field.svelte";

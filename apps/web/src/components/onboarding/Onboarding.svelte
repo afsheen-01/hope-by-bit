@@ -1,7 +1,5 @@
-<!-- Onboarding: five questions, then today's story. Mounted by
-     lib/onboarding/mount.ts only on a device that hasn't finished it, so a
-     returning visitor never downloads it. Calls `onfinish` and takes itself
-     off the page at the hand-off. -->
+<!-- Five questions, then today's story. Mounted only for first visits
+     (lib/onboarding/mount.ts); removes itself when done. -->
 <script lang="ts">
   import Account from "./steps/Account.svelte";
   import Circle from "./steps/Circle.svelte";
@@ -24,7 +22,7 @@
 </script>
 
 {#if open}
-  <!-- Fixed over the story; the story underneath is what this hands off to. -->
+  <!-- Overlays the story until onboarding is done. -->
   <div id="onboarding">
     <div class="screen onboarding-page">
       {#if Step}<Step />{:else}<Done onhome={finish} />{/if}

@@ -1,5 +1,4 @@
-<!-- A wrapping row of multi-select chips. Choosing is the caller's job —
-     it decides ceilings and what to say when one is reached. -->
+<!-- Multi-select chips. The caller handles limits. -->
 <script lang="ts">
   type Props = {
     options: readonly string[];

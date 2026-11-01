@@ -1,4 +1,4 @@
-<!-- Explains a refusal (a ceiling reached, a missing name) where it happened. -->
+<!-- Explains why an action was refused. -->
 <script lang="ts">
   let { text }: { text: string } = $props();
 </script>

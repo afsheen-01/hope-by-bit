@@ -1,6 +1,4 @@
-<!-- 5 · account. Last, once there's a record worth keeping.
-     Theme is not asked here: onboarding runs in Auto, and a setting to fiddle
-     with mid-flow is one more thing between someone and the first story. -->
+<!-- Step 5: sign-in. Last, so there's something worth keeping. -->
 <script lang="ts">
   import Button from "../../ui/Button.svelte";
   import Field from "../../ui/Field.svelte";

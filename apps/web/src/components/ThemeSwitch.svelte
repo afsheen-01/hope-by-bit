@@ -1,6 +1,5 @@
-<!-- The Auto/Light/Dark buttons. Built into the page but hidden until
-     lib/theme.ts makes them work. Without JavaScript they stay hidden and
-     the site follows the system's light/dark setting instead. -->
+<!-- Auto/Light/Dark buttons. Hidden until lib/theme.ts wires them up;
+     without JavaScript the system theme applies. -->
 <script lang="ts">
   import circleHalf from "@phosphor-icons/core/assets/regular/circle-half.svg?raw";
   import moon from "@phosphor-icons/core/assets/regular/moon.svg?raw";
@@ -15,8 +14,7 @@
 
 <div id="theme" role="group" aria-label="Theme">
   {#each OPTIONS as o (o.choice)}
-    <!-- Inlined so the icon takes currentColor. The markup is Phosphor's SVG,
-         bundled at build time — never user input. -->
+    <!-- Inlined so icons take currentColor. Bundled SVG, not user input. -->
     <!-- eslint-disable-next-line svelte/no-at-html-tags -->
     <button type="button" data-choice={o.choice} aria-label={o.label}>{@html o.icon}</button>
   {/each}

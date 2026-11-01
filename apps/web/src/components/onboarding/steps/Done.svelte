@@ -1,4 +1,4 @@
-<!-- And then today's story: what was chosen, in one place, before handing off. -->
+<!-- Summary of the answers before showing today's story. -->
 <script lang="ts">
   import Button from "../../ui/Button.svelte";
   import StepHeader from "../../ui/StepHeader.svelte";

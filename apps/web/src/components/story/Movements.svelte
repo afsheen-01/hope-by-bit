@@ -1,5 +1,4 @@
-<!-- The day's movements, rendered at build time so they read with JavaScript
-     off. lib/movements.ts makes them tappable. -->
+<!-- The day's movements. lib/movements.ts makes them tappable. -->
 <script lang="ts">
   let { items }: { items: readonly string[] } = $props();
 </script>

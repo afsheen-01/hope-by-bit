@@ -1,6 +1,5 @@
-<!-- The front door's promise and its one call to action. "Get started" goes
-     to /today?start, which runs onboarding again even on a device that has
-     finished it once (in testing, or someone who bookmarked /today). -->
+<!-- Headline and call to action. /today?start reruns onboarding even if
+     this device has finished it. -->
 <section class="hero">
   <h1>One good thing. One small thing. Every day.</h1>
   <p class="lead">

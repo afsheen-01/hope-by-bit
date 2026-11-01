@@ -1,6 +1,5 @@
-// Today's story. For now this returns a fixed example, and the page labels
-// it as a placeholder. When a backend publishes real stories, only the body
-// of `today()` should change: the `Bit` shape is what the page relies on.
+// Today's story. A fixed placeholder until real stories are published;
+// `Bit` is the shape the page relies on.
 
 export type Bit = Readonly<{
   date: string;
@@ -10,8 +9,7 @@ export type Bit = Readonly<{
   body: string;
   source: string;
   ask: string;
-  // Two or three small physical actions: free, no signup, doable right now
-  // (P7 in product/principles.md).
+  // 2–3 small, free actions doable right now (P7, product/principles.md).
   movements: readonly string[];
 }>;
 

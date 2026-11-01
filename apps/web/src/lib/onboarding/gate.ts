@@ -1,17 +1,13 @@
-// Whether this visit runs onboarding. Kept apart from mount.ts so the check
-// itself never pulls in Svelte: only a device that needs onboarding fetches it.
-//
-// It runs once per device: there are no accounts yet, so "already done" is
-// remembered in this browser's localStorage.
+// Decides whether to show onboarding, without loading Svelte. "Done" is
+// remembered per browser in localStorage (there are no accounts yet).
 const ONBOARDED = "hopebybit:onboarded";
 
-// The landing page's "Get started" links to /today?start, which runs
-// onboarding again even on a device that has finished it once.
+// ?start (from "Get started") reruns onboarding.
 export function shouldOnboard(): boolean {
   const url = new URL(location.href);
   if (url.searchParams.has("start")) {
     localStorage.removeItem(ONBOARDED);
-    // Drop it from the address, so a reload after finishing reads the story.
+    // Remove ?start so reloading doesn't restart onboarding.
     url.searchParams.delete("start");
     history.replaceState(null, "", url);
   }

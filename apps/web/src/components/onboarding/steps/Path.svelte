@@ -1,4 +1,4 @@
-<!-- 2 · path. Skippable, and moving straight past is an equally ordinary answer. -->
+<!-- Step 2: what you're carrying. Optional. -->
 <script lang="ts">
   import Button from "../../ui/Button.svelte";
   import ChipGroup from "../../ui/ChipGroup.svelte";

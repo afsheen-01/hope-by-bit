@@ -1,5 +1,4 @@
-<!-- 1 · interests. Required. Picking three chips is the moment the product
-     explains itself, so it comes before anything is asked for. -->
+<!-- Step 1: interests. Required; at least three. -->
 <script lang="ts">
   import Button from "../../ui/Button.svelte";
   import ChipGroup from "../../ui/ChipGroup.svelte";

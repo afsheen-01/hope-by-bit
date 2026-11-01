@@ -1,4 +1,4 @@
-<!-- What the product does, one feature each. Copy follows product/features.md's tone. -->
+<!-- The feature list. Tone: product/features.md. -->
 <script lang="ts">
   const FEATURES = [
     {
