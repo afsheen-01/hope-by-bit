@@ -8,7 +8,14 @@
     type?: "text" | "tel" | "email";
     multiline?: boolean;
   };
-  let { name, label, value = $bindable(), placeholder, type = "text", multiline = false }: Props = $props();
+  let {
+    name,
+    label,
+    value = $bindable(),
+    placeholder,
+    type = "text",
+    multiline = false,
+  }: Props = $props();
 
   const id = $derived(`f-${name}`);
 </script>

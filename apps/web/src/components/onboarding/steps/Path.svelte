@@ -10,7 +10,9 @@
 
 <StepHeader step={2} onback={s.back} />
 <h1 class="headline">Anything you’re carrying right now?</h1>
-<p class="body">Up to two, and only if you want to. This stays in settings for whenever it becomes relevant.</p>
+<p class="body">
+  Up to two, and only if you want to. This stays in settings for whenever it becomes relevant.
+</p>
 <ChipGroup options={PATHS} chosen={s.paths} ontoggle={s.togglePath} />
 <Notice text={s.notice} />
 <div class="spacer"></div>

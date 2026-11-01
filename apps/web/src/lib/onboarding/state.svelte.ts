@@ -2,8 +2,14 @@
 // rules.ts.
 
 import {
-  HARD_MESSAGE, INTRO_MESSAGE, MAX_CHANNELS, MAX_CIRCLE, MAX_PATHS,
-  nextConsent, toggle, type Person,
+  HARD_MESSAGE,
+  INTRO_MESSAGE,
+  MAX_CHANNELS,
+  MAX_CIRCLE,
+  MAX_PATHS,
+  nextConsent,
+  toggle,
+  type Person,
 } from "./rules.ts";
 
 export type Account = "google" | "email" | null;
@@ -48,8 +54,14 @@ class Onboarding {
 
   addPerson = () => {
     const name = this.draftName.trim();
-    if (!name) { this.notice = "A name, at least — the number can wait."; return; }
-    if (this.circle.length >= MAX_CIRCLE) { this.notice = "Four is the ceiling."; return; }
+    if (!name) {
+      this.notice = "A name, at least — the number can wait.";
+      return;
+    }
+    if (this.circle.length >= MAX_CIRCLE) {
+      this.notice = "Four is the ceiling.";
+      return;
+    }
     this.circle = [...this.circle, { name, phone: this.draftPhone.trim(), consent: "pending" }];
     this.draftName = "";
     this.draftPhone = "";
@@ -57,11 +69,14 @@ class Onboarding {
   };
 
   cycleConsent = (i: number) => {
-    this.circle = this.circle.map((p, j) => (j === i ? { ...p, consent: nextConsent(p.consent) } : p));
+    this.circle = this.circle.map((p, j) =>
+      j === i ? { ...p, consent: nextConsent(p.consent) } : p,
+    );
   };
 
   pickContacts = () => {
-    this.notice = "The contact picker belongs to the app, not the browser. " +
+    this.notice =
+      "The contact picker belongs to the app, not the browser. " +
       "Type a name and number instead.";
   };
 

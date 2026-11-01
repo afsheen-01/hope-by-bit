@@ -15,21 +15,21 @@
 /* ── LEVEL 1 · GLOBAL ─────────────────────────────────────── */
 :root {
   --g-n-100: hsl(40 10% 100%);
-  --g-n-98:  hsl(40 10% 97.5%);
-  --g-n-96:  hsl(40 9% 95.5%);
-  --g-n-92:  hsl(40 9% 92%);
-  --g-n-86:  hsl(40 8% 86%);
-  --g-n-78:  hsl(40 8% 78%);
-  --g-n-58:  hsl(40 7% 56%);
-  --g-n-54:  hsl(40 7% 52%);
-  --g-n-38:  hsl(40 9% 36%);
-  --g-n-32:  hsl(40 10% 30%);
-  --g-n-24:  hsl(40 11% 23%);
-  --g-n-18:  hsl(40 12% 17%);
-  --g-n-16:  hsl(40 12% 15%);
-  --g-n-14:  hsl(40 12% 13%);
-  --g-n-10:  hsl(40 13% 9.5%);
-  --g-n-08:  hsl(40 14% 7.5%);
+  --g-n-98: hsl(40 10% 97.5%);
+  --g-n-96: hsl(40 9% 95.5%);
+  --g-n-92: hsl(40 9% 92%);
+  --g-n-86: hsl(40 8% 86%);
+  --g-n-78: hsl(40 8% 78%);
+  --g-n-58: hsl(40 7% 56%);
+  --g-n-54: hsl(40 7% 52%);
+  --g-n-38: hsl(40 9% 36%);
+  --g-n-32: hsl(40 10% 30%);
+  --g-n-24: hsl(40 11% 23%);
+  --g-n-18: hsl(40 12% 17%);
+  --g-n-16: hsl(40 12% 15%);
+  --g-n-14: hsl(40 12% 13%);
+  --g-n-10: hsl(40 13% 9.5%);
+  --g-n-08: hsl(40 14% 7.5%);
 
   /* Forest — the good bit. Dark enough for white text. */
   --g-teal-100: hsl(155 30% 94%);
@@ -68,8 +68,8 @@
   --tap: 56px;
 
   /* ── Type: Cormorant Infant for headings, Rubik for everything else ── */
-  --font-display: 'Cormorant Infant', Georgia, serif;
-  --font-ui: 'Rubik', system-ui, sans-serif;
+  --font-display: "Cormorant Infant", Georgia, serif;
+  --font-ui: "Rubik", system-ui, sans-serif;
 
   --text-scale: 1;
   --lh-body: 1.68;
@@ -89,7 +89,7 @@
 
 /* ── LEVEL 2 · SYSTEM · light theme ───────────────────────── */
 :root,
-[data-theme='light'] {
+[data-theme="light"] {
   /* Makes the browser's own controls (scrollbars, form popups) match
      the theme. */
   color-scheme: light;
@@ -122,7 +122,7 @@
    The media query is the no-JavaScript fallback; otherwise
    [data-theme] is always set by Base.astro. */
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme='light']) {
+  :root:not([data-theme="light"]) {
     color-scheme: dark;
 
     --fill-1: var(--g-n-10);
@@ -150,7 +150,7 @@
   }
 }
 
-[data-theme='dark'] {
+[data-theme="dark"] {
   color-scheme: dark;
 
   --fill-1: var(--g-n-10);
@@ -220,16 +220,32 @@
 
 /* Font sizes that follow --text-scale. Custom utilities, because theme
    `--text-*` entries would also set line-height. */
-@utility fs-13 { font-size: calc(13px * var(--text-scale, 1)); }
-@utility fs-14 { font-size: calc(14px * var(--text-scale, 1)); }
-@utility fs-15 { font-size: calc(15px * var(--text-scale, 1)); }
-@utility fs-16 { font-size: calc(16px * var(--text-scale, 1)); }
-@utility fs-17 { font-size: calc(17px * var(--text-scale, 1)); }
-@utility fs-18 { font-size: calc(18px * var(--text-scale, 1)); }
+@utility fs-13 {
+  font-size: calc(13px * var(--text-scale, 1));
+}
+@utility fs-14 {
+  font-size: calc(14px * var(--text-scale, 1));
+}
+@utility fs-15 {
+  font-size: calc(15px * var(--text-scale, 1));
+}
+@utility fs-16 {
+  font-size: calc(16px * var(--text-scale, 1));
+}
+@utility fs-17 {
+  font-size: calc(17px * var(--text-scale, 1));
+}
+@utility fs-18 {
+  font-size: calc(18px * var(--text-scale, 1));
+}
 
 /* ── BASE · element defaults ───────────────────────────────── */
 @layer base {
-  *, *::before, *::after { box-sizing: border-box; }
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
 
   body {
     @apply m-0 bg-fill-1 text-text-1 font-ui fs-16;
@@ -244,7 +260,9 @@
 
   /* Leave room for the fixed theme switch on narrow screens. */
   @media (max-width: 44rem) {
-    main { padding-top: 64px; }
+    main {
+      padding-top: 64px;
+    }
   }
 
   h1 {
@@ -258,15 +276,21 @@
     @apply mx-0 mt-10 mb-3 font-ui fs-15 font-medium text-text-2;
   }
 
-  a { @apply text-accent-contrast; }
+  a {
+    @apply text-accent-contrast;
+  }
 
   footer {
     @apply mt-12 text-center text-text-3 fs-13;
   }
-  footer a { @apply text-text-2; }
+  footer a {
+    @apply text-text-2;
+  }
 
   @media (prefers-reduced-motion: reduce) {
-    * { transition: none !important; }
+    * {
+      transition: none !important;
+    }
   }
 }
 
@@ -287,7 +311,9 @@
   }
 
   /* Stop children shrinking, or text overlaps instead of scrolling. */
-  .screen > * { @apply shrink-0; }
+  .screen > * {
+    @apply shrink-0;
+  }
 
   .date {
     @apply pt-6 text-text-3 fs-14;
@@ -320,7 +346,10 @@
     font-variation-settings: var(--display-var, normal);
     letter-spacing: -0.02em;
     font-variant-numeric: proportional-nums;
-    font-feature-settings: 'lnum' 1, 'tnum' 0, 'onum' 0;
+    font-feature-settings:
+      "lnum" 1,
+      "tnum" 0,
+      "onum" 0;
     /* Aligns the numeral's ink with the text column. */
     margin-left: var(--figure-optical, 0);
   }
@@ -340,7 +369,9 @@
     line-height: 1.45;
   }
 
-  .spacer { @apply flex-1 min-h-5; }
+  .spacer {
+    @apply flex-1 min-h-5;
+  }
 
   /* ── people ──────────────────────────────────────────────── */
   .people {
@@ -380,11 +411,20 @@
     border: 0;
     font-family: inherit;
     font-variation-settings: inherit;
-    transition: background 0.16s ease, transform 0.12s ease, filter 0.16s ease;
+    transition:
+      background 0.16s ease,
+      transform 0.12s ease,
+      filter 0.16s ease;
   }
-  .btn:hover { @apply bg-accent-press; }
-  .btn:active { transform: scale(0.985); }
-  .btn:focus-visible { @apply outline-2 outline-accent outline-offset-3; }
+  .btn:hover {
+    @apply bg-accent-press;
+  }
+  .btn:active {
+    transform: scale(0.985);
+  }
+  .btn:focus-visible {
+    @apply outline-2 outline-accent outline-offset-3;
+  }
 
   .bottom {
     @apply mt-5 text-text-3 fs-13 text-pretty;
@@ -405,10 +445,16 @@
     font: inherit;
     font-size: 13px;
     line-height: 1;
-    transition: background 0.16s, color 0.16s;
+    transition:
+      background 0.16s,
+      color 0.16s;
   }
-  .seg button[aria-pressed='true'] { @apply bg-accent text-on-accent; }
-  .seg button:focus-visible { @apply outline-2 outline-accent outline-offset-2; }
+  .seg button[aria-pressed="true"] {
+    @apply bg-accent text-on-accent;
+  }
+  .seg button:focus-visible {
+    @apply outline-2 outline-accent outline-offset-2;
+  }
 
   /* ── onboarding: the step header ─────────────────────────── */
   .topbar {
@@ -436,8 +482,13 @@
     margin: calc(var(--space-2) * -1) -2px;
     transition: color 0.16s ease;
   }
-  .back:hover { @apply text-text-1; }
-  .back:focus-visible { @apply outline-2 outline-accent outline-offset-2; border-radius: 4px; }
+  .back:hover {
+    @apply text-text-1;
+  }
+  .back:focus-visible {
+    @apply outline-2 outline-accent outline-offset-2;
+    border-radius: 4px;
+  }
 
   /* ── onboarding: multi-select chips (.seg is single-select) ── */
   .chips {
@@ -451,11 +502,20 @@
     font-size: 15px;
     line-height: 1;
     min-height: 44px;
-    transition: background 0.16s ease, color 0.16s ease, border-color 0.16s ease;
+    transition:
+      background 0.16s ease,
+      color 0.16s ease,
+      border-color 0.16s ease;
   }
-  .chip:hover { @apply border-stroke-2; }
-  .chip[aria-pressed='true'] { @apply bg-accent border-accent text-on-accent; }
-  .chip:focus-visible { @apply outline-2 outline-accent outline-offset-2; }
+  .chip:hover {
+    @apply border-stroke-2;
+  }
+  .chip[aria-pressed="true"] {
+    @apply bg-accent border-accent text-on-accent;
+  }
+  .chip:focus-visible {
+    @apply outline-2 outline-accent outline-offset-2;
+  }
 
   /* ── onboarding: "3 chosen" and the hint about picking at least three */
   .count {
@@ -478,7 +538,9 @@
   }
 
   /* ── onboarding: fields ──────────────────────────────────── */
-  .field { @apply mt-5; }
+  .field {
+    @apply mt-5;
+  }
   .field > label,
   .field > .field-label {
     @apply block mb-2 text-text-3 text-pretty;
@@ -494,7 +556,9 @@
     font-size: 16px;
     transition: border-color 0.16s ease;
   }
-  .field > input { @apply h-tap; }
+  .field > input {
+    @apply h-tap;
+  }
   /* Tall enough to show the whole intro message. */
   .field > textarea {
     line-height: 1.55;
@@ -502,14 +566,20 @@
     resize: vertical;
   }
   .field > input::placeholder,
-  .field > textarea::placeholder { @apply text-text-3; }
+  .field > textarea::placeholder {
+    @apply text-text-3;
+  }
   .field > input:focus-visible,
   .field > textarea:focus-visible {
     @apply outline-2 outline-accent outline-offset-1 border-accent;
   }
 
-  .row { @apply flex gap-2 items-end mt-5; }
-  .row .field { @apply flex-1 mt-0; }
+  .row {
+    @apply flex gap-2 items-end mt-5;
+  }
+  .row .field {
+    @apply flex-1 mt-0;
+  }
 
   /* ── onboarding: the circle. Forest, not apricot, so every step
      shares one palette. */
@@ -520,9 +590,15 @@
     font-size: 14px;
     transition: border-color 0.16s ease;
   }
-  button.person .avatar { @apply bg-accent text-on-accent; }
-  button.person:hover { @apply border-stroke-2; }
-  button.person:focus-visible { @apply outline-2 outline-accent outline-offset-2; }
+  button.person .avatar {
+    @apply bg-accent text-on-accent;
+  }
+  button.person:hover {
+    @apply border-stroke-2;
+  }
+  button.person:focus-visible {
+    @apply outline-2 outline-accent outline-offset-2;
+  }
 
   /* Consent dot on each person. */
   .status-dot {
@@ -531,17 +607,29 @@
     height: 7px;
     background: var(--text-3);
   }
-  .person[data-consent='confirmed'] .status-dot { background: var(--accent-contrast); }
-  .person[data-consent='declined'] .status-dot { background: var(--stroke-2); }
-  .person-state { @apply text-text-3; font-size: 12px; }
-  .person[data-consent='declined'] .name { @apply line-through; opacity: 0.7; }
+  .person[data-consent="confirmed"] .status-dot {
+    background: var(--accent-contrast);
+  }
+  .person[data-consent="declined"] .status-dot {
+    background: var(--stroke-2);
+  }
+  .person-state {
+    @apply text-text-3;
+    font-size: 12px;
+  }
+  .person[data-consent="declined"] .name {
+    @apply line-through;
+    opacity: 0.7;
+  }
 
   /* ── onboarding: actions ─────────────────────────────────── */
   .btn[disabled] {
     @apply cursor-not-allowed;
     opacity: 0.45;
   }
-  .btn[disabled]:hover { @apply bg-accent; }
+  .btn[disabled]:hover {
+    @apply bg-accent;
+  }
 
   /* Skip is a full-width button, as valid an answer as Continue. */
   .skip {
@@ -552,15 +640,23 @@
     background: none;
     font: inherit;
     font-size: 15px;
-    transition: color 0.16s ease, background 0.16s ease;
+    transition:
+      color 0.16s ease,
+      background 0.16s ease;
   }
-  .skip:hover { @apply text-text-1 bg-fill-2; }
-  .skip:focus-visible { @apply outline-2 outline-accent outline-offset-2; }
+  .skip:hover {
+    @apply text-text-1 bg-fill-2;
+  }
+  .skip:focus-visible {
+    @apply outline-2 outline-accent outline-offset-2;
+  }
 
   .btn-quiet {
     @apply bg-fill-2 text-text-1 border border-stroke-1;
   }
-  .btn-quiet:hover { @apply bg-fill-3; }
+  .btn-quiet:hover {
+    @apply bg-fill-3;
+  }
 
   /* ── onboarding: the summary on the handoff screen ───────── */
   .summary {
@@ -571,7 +667,9 @@
   .summary div {
     @apply flex gap-3 py-3 px-0 border-b border-b-stroke-1;
   }
-  .summary div:last-child { border-bottom: 0; }
+  .summary div:last-child {
+    border-bottom: 0;
+  }
   .summary dt {
     @apply flex-none text-text-3;
     width: 96px;
@@ -605,12 +703,16 @@
 
   /* Room for the theme switch, as on main. */
   @media (max-width: 44rem) {
-    .onboarding-page { padding-top: 64px; }
+    .onboarding-page {
+      padding-top: 64px;
+    }
   }
 
   /* ── the story (/today). Under .bit, because onboarding reuses
      class names like .figure and .date. */
-  .bit .date { @apply mx-0 mt-0 mb-3 text-text-3 fs-13; }
+  .bit .date {
+    @apply mx-0 mt-0 mb-3 text-text-3 fs-13;
+  }
 
   /* Number and caption on one line; the number uses the body font. */
   .bit .figure {
@@ -631,31 +733,47 @@
   .bit .action {
     @apply mt-8 pt-6 border-t border-t-stroke-1;
   }
-  .bit .action h2 { @apply mt-0; }
+  .bit .action h2 {
+    @apply mt-0;
+  }
 
-  .bit .ask { @apply mx-0 mt-0 mb-3 text-text-2; }
+  .bit .ask {
+    @apply mx-0 mt-0 mb-3 text-text-2;
+  }
 
-  .bit .movements { @apply m-0 p-0 grid gap-2; list-style: none; }
+  .bit .movements {
+    @apply m-0 p-0 grid gap-2;
+    list-style: none;
+  }
 
   .bit .movements button {
     @apply w-full flex items-center gap-2 py-3 px-4 rounded-control bg-fill-2
       border border-stroke-1 text-text-1 text-left cursor-pointer;
-    min-height: 44px;          /* the minimum tap target */
+    min-height: 44px; /* the minimum tap target */
     font: inherit;
     /* Border only, so text doesn't animate on a theme change. */
     transition: border-color 0.16s ease;
   }
-  .bit .movements button:hover { @apply border-accent; }
-  .bit .movements button:focus-visible { @apply outline-2 outline-accent outline-offset-3; }
+  .bit .movements button:hover {
+    @apply border-accent;
+  }
+  .bit .movements button:focus-visible {
+    @apply outline-2 outline-accent outline-offset-3;
+  }
 
   /* Done, but still tappable to undo. */
   .bit .movements button[aria-pressed="true"] {
     @apply text-text-3;
     background: none;
   }
-  .bit .movements .tick { @apply text-accent-contrast font-semibold; }
+  .bit .movements .tick {
+    @apply text-accent-contrast font-semibold;
+  }
 
-  .bit .source, .bit .note { @apply text-text-3 fs-13; }
+  .bit .source,
+  .bit .note {
+    @apply text-text-3 fs-13;
+  }
 
   .bit .note {
     @apply mt-10 pt-4 border-t border-t-stroke-1;
@@ -677,16 +795,27 @@
     background: none;
     width: 36px;
     height: 36px;
-    transition: background 0.16s, color 0.16s;
+    transition:
+      background 0.16s,
+      color 0.16s;
   }
 
-  #theme button svg { width: 18px; height: 18px; }
+  #theme button svg {
+    width: 18px;
+    height: 18px;
+  }
 
-  #theme button[aria-pressed="true"] { @apply bg-accent text-on-accent; }
-  #theme button:focus-visible { @apply outline-2 outline-accent outline-offset-2; }
+  #theme button[aria-pressed="true"] {
+    @apply bg-accent text-on-accent;
+  }
+  #theme button:focus-visible {
+    @apply outline-2 outline-accent outline-offset-2;
+  }
 
   /* ── the landing page (/) ────────────────────────────────── */
-  .hero { @apply pt-6; }
+  .hero {
+    @apply pt-6;
+  }
 
   .hero h1 {
     @apply mb-4;
@@ -708,12 +837,18 @@
     font-weight: 500;
     transition: background 0.16s ease;
   }
-  .cta:hover { @apply bg-accent-press; }
+  .cta:hover {
+    @apply bg-accent-press;
+  }
 
   .features {
     @apply grid gap-8 mx-0 mt-12 mb-0 py-10 px-0 border-y border-y-stroke-1;
   }
 
-  .feature h2 { @apply mx-0 mt-0 mb-2 text-text-1 fs-17; }
-  .feature p { @apply m-0 text-text-2; }
+  .feature h2 {
+    @apply mx-0 mt-0 mb-2 text-text-1 fs-17;
+  }
+  .feature p {
+    @apply m-0 text-text-2;
+  }
 }

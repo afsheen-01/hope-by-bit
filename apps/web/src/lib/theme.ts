@@ -30,19 +30,21 @@ export function initThemeSwitch(el: HTMLElement) {
     buttons.forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.choice === now)));
   };
 
-  buttons.forEach((b) => b.addEventListener("click", () => {
-    const choice = b.dataset.choice as ThemeChoice;
-    if (choice === "auto") {
-      localStorage.removeItem("theme");
-      root.dataset.theme = autoTheme();
-      startPolling();
-    } else {
-      localStorage.setItem("theme", choice);
-      root.dataset.theme = choice;
-      stopPolling();
-    }
-    mark();
-  }));
+  buttons.forEach((b) =>
+    b.addEventListener("click", () => {
+      const choice = b.dataset.choice as ThemeChoice;
+      if (choice === "auto") {
+        localStorage.removeItem("theme");
+        root.dataset.theme = autoTheme();
+        startPolling();
+      } else {
+        localStorage.setItem("theme", choice);
+        root.dataset.theme = choice;
+        stopPolling();
+      }
+      mark();
+    }),
+  );
 
   mark();
   if (!localStorage.getItem("theme")) startPolling();

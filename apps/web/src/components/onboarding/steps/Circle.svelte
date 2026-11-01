@@ -13,7 +13,9 @@
 
 <StepHeader step={3} onback={s.back} />
 <h1 class="headline">Who should we tell, if you ask?</h1>
-<p class="body">Two to four people. Each one is asked first — only a YES makes someone reachable.</p>
+<p class="body">
+  Two to four people. Each one is asked first — only a YES makes someone reachable.
+</p>
 
 {#if n}
   <div class="people">
@@ -21,7 +23,10 @@
       <Person {person} onclick={() => s.cycleConsent(i)} />
     {/each}
   </div>
-  <p class="stub">There’s no backend yet to send the ask or hear back — tap a person to move them through pending → confirmed → declined, standing in for a reply arriving.</p>
+  <p class="stub">
+    There’s no backend yet to send the ask or hear back — tap a person to move them through pending
+    → confirmed → declined, standing in for a reply arriving.
+  </p>
 {/if}
 
 <Notice text={s.notice} />
@@ -29,11 +34,19 @@
 {#if n < MAX_CIRCLE}
   <div class="row">
     <Field name="draftName" label="Name" placeholder="Sam" bind:value={s.draftName} />
-    <Field name="draftPhone" label="Number" placeholder="Optional" type="tel" bind:value={s.draftPhone} />
+    <Field
+      name="draftPhone"
+      label="Number"
+      placeholder="Optional"
+      type="tel"
+      bind:value={s.draftPhone}
+    />
   </div>
   <Button variant="quiet" act="add" onclick={s.addPerson}>Add</Button>
   <Button variant="quiet" act="pick" onclick={s.pickContacts}>Choose from contacts</Button>
-  <p class="stub">The picker belongs to the phone — the app receives the contacts you select and nothing else.</p>
+  <p class="stub">
+    The picker belongs to the phone — the app receives the contacts you select and nothing else.
+  </p>
 {/if}
 
 <Field name="intro" label="What each of them receives now:" multiline bind:value={s.intro} />
@@ -47,4 +60,7 @@
 <div class="spacer"></div>
 <Button act="next" disabled={n === 0} onclick={s.next}>Send the asks</Button>
 <Button variant="skip" act="skip" onclick={s.next}>Skip for now</Button>
-<div class="crisis">Numbers are held encrypted, used for this and nothing else, and released when someone is removed or the account is deleted.</div>
+<div class="crisis">
+  Numbers are held encrypted, used for this and nothing else, and released when someone is removed
+  or the account is deleted.
+</div>

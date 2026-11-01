@@ -26,7 +26,5 @@
     {@render children?.()}
   </section>
 
-  <p class="note">
-    Placeholder story: daily stories aren't being published yet.
-  </p>
+  <p class="note">Placeholder story: daily stories aren't being published yet.</p>
 </article>

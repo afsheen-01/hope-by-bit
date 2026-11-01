@@ -3,8 +3,14 @@ import { MOCK_USER_NAME } from "../../data/mock.ts";
 
 /* Pick up to five: more would dilute the day. */
 export const CHANNELS = [
-  "medicine", "climate", "wild places", "kindness",
-  "science", "your city", "rights", "food",
+  "medicine",
+  "climate",
+  "wild places",
+  "kindness",
+  "science",
+  "your city",
+  "rights",
+  "food",
 ] as const;
 
 /* Grief leads, as the deepest path. */
@@ -36,13 +42,19 @@ export function toggle<T>(list: readonly T[], value: T, max: number) {
 }
 
 export const initials = (name: string) =>
-  name.trim().split(/\s+/).slice(0, 2).map((w) => w.charAt(0).toUpperCase()).join("") || "?";
+  name
+    .trim()
+    .split(/\s+/)
+    .slice(0, 2)
+    .map((w) => w.charAt(0).toUpperCase())
+    .join("") || "?";
 
 /* Cycles consent on tap, standing in for real replies. */
 export const nextConsent = (c: Consent): Consent =>
-  ({ pending: "confirmed", confirmed: "declined", declined: "pending" } as const)[c];
+  (({ pending: "confirmed", confirmed: "declined", declined: "pending" }) as const)[c];
 
-export const confirmed = (circle: readonly Person[]) => circle.filter((p) => p.consent === "confirmed");
+export const confirmed = (circle: readonly Person[]) =>
+  circle.filter((p) => p.consent === "confirmed");
 
 export const names = (people: readonly Person[]) => people.map((p) => p.name).join(", ");
 

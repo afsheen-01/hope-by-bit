@@ -25,6 +25,8 @@ const { title, description, bodyClass } = Astro.props;
   <body class={bodyClass}>
     <main>
       <slot />
+      {/* Kept on one line: wrapping would put spaces inside the link. */}
+      <!-- prettier-ignore -->
       <footer>
         with love and support from <a href="https://x.com/_afsheen_a" target="_blank">afsheen</a> ♥
       </footer>

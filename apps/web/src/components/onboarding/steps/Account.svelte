@@ -9,11 +9,28 @@
 
 <StepHeader step={5} onback={s.back} />
 <h1 class="headline">Keep this if you change phones.</h1>
-<p class="body">Everything from the last four steps uploads on first sign-in, so signing in after a month of use brings that month with it.</p>
+<p class="body">
+  Everything from the last four steps uploads on first sign-in, so signing in after a month of use
+  brings that month with it.
+</p>
 <Button act="google" onclick={() => s.signIn("google")}>Sign in with Google</Button>
-<Field name="email" label="Or an emailed sign-in link" placeholder="you@example.com" type="email" bind:value={s.email} />
-<Button variant="quiet" act="emailLink" disabled={!canEmailLink(s.email)} onclick={() => s.signIn("email")}>Email me a link</Button>
+<Field
+  name="email"
+  label="Or an emailed sign-in link"
+  placeholder="you@example.com"
+  type="email"
+  bind:value={s.email}
+/>
+<Button
+  variant="quiet"
+  act="emailLink"
+  disabled={!canEmailLink(s.email)}
+  onclick={() => s.signIn("email")}>Email me a link</Button
+>
 <div class="spacer"></div>
 <Button act="next" onclick={s.next}>Continue</Button>
 <Button variant="skip" act="skip" onclick={s.next}>Not now — keep it on this phone</Button>
-<div class="bottom">Skipping keeps the app whole on this device, with the circle held locally and check in handed to your phone’s share sheet.</div>
+<div class="bottom">
+  Skipping keeps the app whole on this device, with the circle held locally and check in handed to
+  your phone’s share sheet.
+</div>
