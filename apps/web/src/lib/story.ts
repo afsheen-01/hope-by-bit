@@ -1,6 +1,6 @@
 // Today's story. Returns mock data until real stories are published;
 // `Bit` is the shape the page relies on.
-import { MOCK_STORY } from "../data/mock.ts";
+import { MOCK_STORY } from "#/data/mock.ts";
 
 export type Bit = Readonly<{
   date: string;

@@ -1,11 +1,11 @@
-<!-- The day's movements. lib/movements.ts toggles aria-pressed; the tick
+<!-- The day's movements. lib/movement-list.ts toggles aria-pressed; the tick
      and the done style follow from it. -->
 <script lang="ts">
   let { items }: { items: readonly string[] } = $props();
 </script>
 
 <ul id="movements" class="grid gap-2">
-  {#each items as m, i (i)}
+  {#each items as m (m)}
     <li>
       <button
         type="button"

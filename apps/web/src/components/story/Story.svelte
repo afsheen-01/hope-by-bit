@@ -2,7 +2,7 @@
      `children`. -->
 <script lang="ts">
   import type { Snippet } from "svelte";
-  import type { Bit } from "../../lib/today.ts";
+  import type { Bit } from "#/lib/story.ts";
 
   let { bit, children }: { bit: Bit; children?: Snippet } = $props();
 </script>

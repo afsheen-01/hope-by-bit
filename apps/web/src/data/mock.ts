@@ -1,6 +1,6 @@
 // Stand-in data until there's a backend and accounts. Replace these, not the
 // code that reads them.
-import type { Bit } from "../lib/today.ts";
+import type { Bit } from "#/lib/story.ts";
 
 // Shown on /today until real stories are published.
 export const MOCK_STORY: Bit = {

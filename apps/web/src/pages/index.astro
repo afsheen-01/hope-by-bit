@@ -1,11 +1,11 @@
 ---
 // Landing page. Copy follows the tone in product/features.md.
-import Base from "../layouts/Base.astro";
-import FeatureList from "../components/landing/FeatureList.svelte";
-import Hero from "../components/landing/Hero.svelte";
+import BaseLayout from "#/layouts/BaseLayout.astro";
+import FeatureList from "#/components/landing/FeatureList.svelte";
+import Hero from "#/components/landing/Hero.svelte";
 ---
 
-<Base title="Hope By Bit — one good thing, one small thing, every day">
+<BaseLayout title="Hope By Bit — one good thing, one small thing, every day">
   <Hero />
   <FeatureList />
-</Base>
+</BaseLayout>

@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { canEmailLink, initials, nextConsent, to12, to24, toggle } from "./rules.ts";
+import { canEmailLink, initials, nextConsent, to12, to24, toggle } from "#/lib/onboarding/rules.ts";
 
 test("toggle adds, removes, and refuses past the ceiling", () => {
   assert.deepEqual(toggle(["a"], "b", 2), { list: ["a", "b"], refused: false });

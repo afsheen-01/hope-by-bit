@@ -10,7 +10,7 @@ import {
   nextConsent,
   toggle,
   type Person,
-} from "./rules.ts";
+} from "#/lib/onboarding/rules.ts";
 
 export type Account = "google" | "email" | null;
 
@@ -27,6 +27,9 @@ class Onboarding {
   time = $state("08:00");
   email = $state("");
   account = $state<Account>(null);
+
+  // Keys the circle's list; a plain field, since nothing renders it.
+  #lastId = 0;
 
   go = (step: number) => {
     this.step = step;
@@ -62,15 +65,16 @@ class Onboarding {
       this.notice = "Four is the ceiling.";
       return;
     }
-    this.circle = [...this.circle, { name, phone: this.draftPhone.trim(), consent: "pending" }];
+    const person = { id: ++this.#lastId, name, phone: this.draftPhone.trim() };
+    this.circle = [...this.circle, { ...person, consent: "pending" }];
     this.draftName = "";
     this.draftPhone = "";
     this.notice = "";
   };
 
-  cycleConsent = (i: number) => {
-    this.circle = this.circle.map((p, j) =>
-      j === i ? { ...p, consent: nextConsent(p.consent) } : p,
+  cycleConsent = (id: number) => {
+    this.circle = this.circle.map((p) =>
+      p.id === id ? { ...p, consent: nextConsent(p.consent) } : p,
     );
   };
 

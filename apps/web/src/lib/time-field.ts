@@ -2,7 +2,7 @@
 // because <input type="time">'s picker can't be styled.
 import * as numberInput from "@zag-js/number-input";
 import { normalizeProps, spreadProps, VanillaMachine } from "@zag-js/vanilla";
-import { to12, to24, type Meridiem } from "./onboarding/rules.ts";
+import { to12, to24, type Meridiem } from "#/lib/onboarding/rules.ts";
 
 type SegmentOpts = {
   value: number;
@@ -40,7 +40,7 @@ function mountSegment(rootEl: HTMLElement, { value, min, max, onValueChange }: S
   return machine;
 }
 
-// Expects the markup in components/onboarding/steps/Time.svelte.
+// Expects the markup in components/onboarding/steps/TimeStep.svelte.
 export function mountTimeField(
   container: HTMLElement,
   initialTime: string,

@@ -1,6 +1,6 @@
 <!-- Back button and step counter ("2 of 5"). -->
 <script lang="ts">
-  import { STEPS } from "../../lib/onboarding/rules.ts";
+  import { STEPS } from "#/lib/onboarding/rules.ts";
 
   type Props = { step: number | "done"; onback: () => void };
   let { step, onback }: Props = $props();

@@ -28,7 +28,7 @@ the canon is right and the code is a bug.
 | | |
 |---|---|
 | [SAFETY.md](SAFETY.md) | The crisis boundary, the grief review gate, the check-in circle, and how user data is held. |
-| `apps/web/` | The website — Astro pages, Svelte components (`src/components/`), logic in `src/lib/`. `pnpm install && pnpm dev` (`dev` and `build` run `pnpm verify` first: Prettier, ESLint with import rules, then type checks; `pnpm format` fixes formatting), `pnpm test`. |
+| `apps/web/` | The website — Astro pages, Svelte components (`src/components/`), logic in `src/lib/`, imported as `#/…`. `pnpm install && pnpm dev` (`dev` and `build` run `pnpm verify` first: Prettier, ESLint with import rules, then type checks; `pnpm format` fixes formatting), `pnpm test`. |
 
 ## The four surfaces
 

@@ -4,7 +4,7 @@ export type Theme = "light" | "dark";
 export type ThemeChoice = Theme | "auto";
 export const CHOICES: readonly ThemeChoice[] = ["auto", "light", "dark"];
 
-// Light 6am–6pm, otherwise dark; not real sunrise. Base.astro duplicates
+// Light 6am–6pm, otherwise dark; not real sunrise. BaseLayout.astro duplicates
 // this, so keep the two in sync.
 export function autoTheme(): Theme {
   const h = new Date().getHours();

@@ -1,6 +1,6 @@
 <!-- One person and their consent state. Tapping fakes a reply until there's a backend. -->
 <script lang="ts">
-  import { initials, type Person } from "../../lib/onboarding/rules.ts";
+  import { initials, type Person } from "#/lib/onboarding/rules.ts";
 
   let { person, onclick }: { person: Person; onclick: () => void } = $props();
 </script>

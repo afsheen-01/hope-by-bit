@@ -116,7 +116,7 @@
 
 /* ── LEVEL 2 · SYSTEM · dark theme ────────────────────────────
    The media query is the no-JavaScript fallback; otherwise
-   [data-theme] is always set by Base.astro. */
+   [data-theme] is always set by BaseLayout.astro. */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     color-scheme: dark;

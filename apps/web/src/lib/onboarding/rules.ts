@@ -1,5 +1,5 @@
 // Onboarding's content and rules: data and pure functions, no DOM.
-import { MOCK_USER_NAME } from "../../data/mock.ts";
+import { MOCK_USER_NAME } from "#/data/mock.ts";
 
 /* Pick up to five: more would dilute the day. */
 export const CHANNELS = [
@@ -31,7 +31,7 @@ export const HARD_MESSAGE =
   "A call or a text would mean a lot right now.";
 
 export type Consent = "pending" | "confirmed" | "declined";
-export type Person = Readonly<{ name: string; phone: string; consent: Consent }>;
+export type Person = Readonly<{ id: number; name: string; phone: string; consent: Consent }>;
 
 /* Adds or removes `value`. Past `max`, nothing changes and `refused` is
    set so the screen can say why. */

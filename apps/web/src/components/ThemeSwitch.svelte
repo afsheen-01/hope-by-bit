@@ -1,4 +1,4 @@
-<!-- Auto/Light/Dark buttons. Hidden until lib/theme.ts wires them up;
+<!-- Auto/Light/Dark buttons. Hidden until lib/theme-switch.ts wires them up;
      without JavaScript the system theme applies. -->
 <script lang="ts">
   import circleHalf from "@phosphor-icons/core/assets/regular/circle-half.svg?raw";

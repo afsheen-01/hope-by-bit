@@ -1,7 +1,7 @@
 ---
 // Shared page layout. Loads nothing from third parties.
-import ThemeSwitch from "../components/ThemeSwitch.svelte";
-import "../styles/tailwind.css";
+import ThemeSwitch from "#/components/ThemeSwitch.svelte";
+import "#/styles/global.css";
 
 // bodyClass replaces the default background, e.g. /today's darker fill.
 const { title, description, bodyClass = "bg-fill-1" } = Astro.props;
@@ -15,7 +15,7 @@ const { title, description, bodyClass = "bg-fill-1" } = Astro.props;
     <title>{title}</title>
     {description && <meta name="description" content={description} />}
     <!-- Sets the theme before first paint to avoid a flash. Duplicates
-         autoTheme() in lib/theme.ts (inline scripts can't import). -->
+         autoTheme() in lib/theme-switch.ts (inline scripts can't import). -->
     <script is:inline>
       const saved = localStorage.getItem("theme");
       const h = new Date().getHours();
@@ -35,7 +35,7 @@ const { title, description, bodyClass = "bg-fill-1" } = Astro.props;
 
     <ThemeSwitch />
     <script>
-      import { initThemeSwitch } from "../lib/theme.ts";
+      import { initThemeSwitch } from "#/lib/theme-switch.ts";
       initThemeSwitch(document.getElementById("theme")!);
     </script>
   </body>

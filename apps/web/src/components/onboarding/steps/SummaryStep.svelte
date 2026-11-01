@@ -1,12 +1,12 @@
 <!-- Summary of the answers before showing today's story. -->
 <script lang="ts">
-  import Button from "../../ui/Button.svelte";
-  import Headline from "../../ui/Headline.svelte";
-  import Spacer from "../../ui/Spacer.svelte";
-  import StepHeader from "../../ui/StepHeader.svelte";
-  import Text from "../../ui/Text.svelte";
-  import { confirmed, names, plural } from "../../../lib/onboarding/rules.ts";
-  import { onboarding as s } from "../../../lib/onboarding/state.svelte.ts";
+  import Button from "#/components/ui/Button.svelte";
+  import StepHeadline from "#/components/onboarding/StepHeadline.svelte";
+  import Spacer from "#/components/ui/Spacer.svelte";
+  import StepHeader from "#/components/onboarding/StepHeader.svelte";
+  import StepText from "#/components/onboarding/StepText.svelte";
+  import { confirmed, names, plural } from "#/lib/onboarding/rules.ts";
+  import { onboarding as s } from "#/lib/onboarding/state.svelte.ts";
 
   let { onhome }: { onhome: () => void } = $props();
 
@@ -20,11 +20,11 @@
 {#snippet muted(text: string)}<span class="fs-12 text-text-3">{text}</span>{/snippet}
 
 <StepHeader step="done" onback={s.back} />
-<Headline>That’s everything.</Headline>
-<Text variant="body">
+<StepHeadline>That’s everything.</StepHeadline>
+<StepText variant="body">
   One good thing, one small thing, every day — starting tomorrow at {s.time}. We’re glad you’re
   here.
-</Text>
+</StepText>
 <!-- Bottom margin matches the 1em a <dl> had before Tailwind's reset. -->
 <dl class="mt-5 mb-[1em] fs-14 leading-[1.6]">
   <div class={rowCls}>
@@ -63,6 +63,6 @@
 </dl>
 <Spacer />
 <Button act="home" onclick={onhome}>See today’s story</Button>
-<Text variant="bottom">
+<StepText variant="bottom">
   Every step can be revisited from settings, and each one stands as answered once given.
-</Text>
+</StepText>

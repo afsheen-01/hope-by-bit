@@ -1,31 +1,31 @@
 ---
 // Today's story, readable without JavaScript. On a first visit the script
 // below loads onboarding over it.
-import Base from "../layouts/Base.astro";
-import Movements from "../components/story/Movements.svelte";
-import Story from "../components/story/Story.svelte";
-import { today } from "../lib/today.ts";
+import BaseLayout from "#/layouts/BaseLayout.astro";
+import MovementList from "#/components/story/MovementList.svelte";
+import Story from "#/components/story/Story.svelte";
+import { today } from "#/lib/story.ts";
 
 const bit = today();
 ---
 
-<Base
+<BaseLayout
   title="Hope By Bit — today's story"
   bodyClass="bg-fill-3 antialiased [text-rendering:optimizeLegibility]"
 >
   <Story bit={bit}>
-    <Movements items={bit.movements} />
+    <MovementList items={bit.movements} />
   </Story>
-</Base>
+</BaseLayout>
 
 <script>
-  import { initMovements } from "../lib/movements.ts";
-  import { shouldOnboard } from "../lib/onboarding/gate.ts";
+  import { initMovements } from "#/lib/movement-list.ts";
+  import { shouldOnboard } from "#/lib/onboarding/gate.ts";
 
   initMovements(document.getElementById("movements")!);
 
   if (shouldOnboard()) {
-    import("../lib/onboarding/mount.ts").then(({ mountOnboarding }) =>
+    import("#/lib/onboarding/mount.ts").then(({ mountOnboarding }) =>
       mountOnboarding(document.querySelector("main")!),
     );
   }

@@ -1,6 +1,6 @@
-<!-- The landing page's feature list (content in data/constants.ts). -->
+<!-- The landing page's feature list (content in data/features.ts). -->
 <script lang="ts">
-  import { FEATURES } from "../../data/constants.ts";
+  import { FEATURES } from "#/data/features.ts";
 </script>
 
 <section class="mt-12 grid gap-8 border-y border-y-stroke-1 py-10">
