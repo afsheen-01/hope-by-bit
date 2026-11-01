@@ -61,7 +61,7 @@ one thing you can hear*.
 
 It closes on *"That's the loop broken, for now. If it closes again in ten minutes, come back. It
 costs nothing and stays with you."* Your own receipts land where generic reassurance slides off,
-because you can't argue with having done them. Runs are counted on the phone and stay there.
+because you can't argue with having done them. Runs are counted on the device and stay there.
 
 **If you asked it to, the third run tells your people.** That's a choice made at setup, in a calm
 moment, off until switched on. When the count is reached, the closing screen names who is about to
@@ -81,41 +81,35 @@ asked me to let you know. A call or a text would mean a lot right now."*
 
 **Each person agrees first.** At setup they receive one message — *"[Name] chose you as someone to
 reach out to when things are heavy. Reply YES to be reachable, STOP to decline"* — and only a YES
-makes them reachable. The app shows who has confirmed, so nobody relies on a net that was never
+makes them reachable. The site shows who has confirmed, so nobody relies on a net that was never
 fastened. The circle needs only a phone.
 
 **Signed in, messages go out from the service**, which is what lets the third run send on its own
-when you've asked it to. **Signed out, the app hands the message to your own share sheet**, so it
+when you've asked it to. **Signed out, the site hands the message to your phone's share sheet**, so it
 goes from your number with the contacts staying in your phone. Both reach the same people; the
 account is what buys the automatic path.
 
-The app's job ends at the handoff, and the confirmation says so: *"Three people know. That's
+The product's job ends at the handoff, and the confirmation says so: *"Three people know. That's
 everything this screen does."*
 
 ## Voice
 
-Voice exists so this works with your eyes closed, in the dark, at 3am. **Everything runs on the
-phone.**
+Voice exists so this works with your eyes closed, in the dark, at 3am. **Everything runs in the
+browser, on the device.**
 
 **Reading out:** the daily story, paced slower than default with a pause either side of the number,
 because the number is the point. The loop breaker end to end, the breath guided rather than
 narrated — *"in… hold… and out."* Long silences are deliberate.
 
 **Speaking to it:** a fixed short list — keep, skip, next, done, the five sensory answers, leave.
-Anything outside it hands you back to the buttons quietly. Every word stays on the device.
+Anything outside it hands you back to the buttons quietly. It turns on only where the browser can
+recognise speech on the device itself, and the site says where that stands today.
 
-**On the web**, reading aloud runs locally and works everywhere. Voice input arrives once the
-browser can recognise speech on the device itself, and the site says where that stands today.
+## Vibration
 
-## Haptics
-
-Meaning, carried by touch. Five: `tap` (keeping, choosing), `confirm` (an action lands on the
-wall), `settle` (the check-in hands off), `breathe` (the loop breaker's cadence), `arrive` (today's
-story is ready, when the app is already open).
-
-`settle` is deliberately unlike `confirm` — telling three people you're struggling should feel
-different from completing a form. Where the phone can't do a pattern, the other channels carry it.
-There's a **reduce haptics** setting for people who find vibration itself activating.
+Where the browser supports it, a short vibration marks an action landing on the wall and paces the
+loop breaker's breath. It is never the only signal, and a **reduce vibration** setting turns it off
+for people who find it activating.
 
 ## The content standard
 

@@ -9,12 +9,13 @@ rather than the person's, so both sides get a say.
 
 **Every member agrees first.** At setup each person receives one message — _"Hope By Bit: [Name]
 chose you as someone to reach out to when things are heavy. Reply YES to be reachable, STOP to
-decline."_ — and only a YES makes them reachable. Their status shows in the app as pending,
+decline."_ — and only a YES makes them reachable. Their status shows as pending,
 confirmed, or declined, so nobody is left believing in a safety net that was never fastened.
 
 **STOP works in any message, at any time**, and takes effect immediately.
 
-**With nobody confirmed**, the automatic setting stays unavailable and the app says why, offering the share-sheet handoff from the person's own phone in the meantime.
+**With nobody confirmed**, the automatic setting stays unavailable and the site says why,
+offering to share the message from the person's own phone in the meantime.
 
 **Numbers are held to the standard in [User data](#user-data)**: encrypted, used for this alone,
 cleared when a member is removed or the account is deleted.
@@ -30,7 +31,7 @@ sensitive:
 - Used only for what it was given for.
 - Readable only by the maintainers who run the service, and every read is logged.
 - Export returns the whole record as one plain file.
-- Delete clears the phone and the server together, releases every circle member, and returns a receipt.
+- Delete clears the device and the server together, releases every circle member, and returns a receipt.
 
 ## Reporting a problem
 
