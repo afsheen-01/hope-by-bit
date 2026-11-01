@@ -28,7 +28,6 @@ the canon is right and the code is a bug.
 | | |
 |---|---|
 | [SAFETY.md](SAFETY.md) | The crisis boundary, the grief review gate, the check-in circle, and how user data is held. |
-| [PROGRESS.md](PROGRESS.md) | The cross-track tracker — what's next, what's blocked, what's undecided. |
 | `apps/web/` | The website — Astro pages, Svelte components (`src/components/`), logic in `src/lib/`. `pnpm install && pnpm dev` (`dev` and `build` run `pnpm verify` first: Prettier, ESLint with import rules, then type checks; `pnpm format` fixes formatting), `pnpm test`. |
 
 ## The four surfaces
@@ -59,13 +58,11 @@ Documents here stay under 200 lines. A document growing past that is two documen
 ## Status
 
 Specifications complete, and the first code is in: `apps/web` (the website shell, `/` rendering the
-daily unit on a placeholder story).
-See [PROGRESS.md](PROGRESS.md) for what's next and where help is wanted. The
+daily unit on a placeholder story). The
 two things that would move this furthest need no code at all: verified crisis lines per country, and
 a qualified grief counsellor willing to review the grief path.
 
 ## License
 
 Proposed: copyleft for the app, website and backend; permissive for the core and the agent's
-templates. Still open, and the hardest decision here to revisit later — see
-[PROGRESS.md](PROGRESS.md#4-open-decisions).
+templates. Still open, and the hardest decision here to revisit later.

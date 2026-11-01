@@ -91,7 +91,7 @@ Dedicating actions to what someone is carrying is the most powerful thing in thi
 exactly why it ships behind a gate. The copy says grief and leaves it there.
 
 **Every part of the grief path carries written sign-off from a qualified grief counsellor** before
-release, recorded in [PROGRESS.md](PROGRESS.md) with a name and date, and renewed whenever the copy
+release, recorded with a name and date, and renewed whenever the copy
 changes meaningfully.
 
 What the review confirms: bits are offered by what today can hold ([P8](product/principles.md)), enforced
@@ -130,5 +130,5 @@ holds up is what earns a cynical reader's attention.
 
 ## Reporting a problem
 
-Safety issues go to the maintainers privately. A safety fix takes priority over everything else in
-[PROGRESS.md](PROGRESS.md), including releases.
+Safety issues go to the maintainers privately. A safety fix takes priority over everything else,
+including releases.
