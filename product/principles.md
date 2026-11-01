@@ -42,8 +42,10 @@ reaches only circle members who have agreed to be reachable.
 are.
 *Why:* this product is for hard moments. When something bigger is happening, the people who can
 help should be one tap away.
-*Check:* present and unconditional on every hard-moment screen, served by remote config so a
-correction reaches every device within the hour. See [SAFETY.md](../SAFETY.md).
+*Check:* present and unconditional on every hard-moment screen, with no setting that can hide it.
+The number is looked up by region (from the device language, changeable in settings), falls back to
+findahelpline.com, and is served by remote config so a correction reaches every device within the
+hour. Every number is verified by someone with local knowledge before it ships.
 
 **P7 · The action is body-sized.** Two or three small physical things, offered together — a glass of
 water, stand up and stretch, ninety seconds outside. Any one of them can be finished now, so there

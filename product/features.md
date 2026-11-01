@@ -44,8 +44,8 @@ past week two.
 
 **Continuing bonds.** With the grief path on, any action can be dedicated — *"planted this for
 Mum"* — and the wall quietly becomes a record of things done in someone's name. The offer comes
-*after* an action, so what you're carrying stays a dedication rather than a reason to act. The name is asked once. Gated on
-[review](../SAFETY.md).
+*after* an action, so what you're carrying stays a dedication rather than a reason to act. The name is asked once. Ships only
+after a grief counsellor has reviewed it.
 
 **Your record follows you.** Sign in and the wall, Keepsakes, and your settings arrive on any
 device you use. Signing in is optional: with no account everything works on the one device, and
