@@ -1,4 +1,5 @@
 // Onboarding's content and rules: data and pure functions, no DOM.
+import { MOCK_USER_NAME } from "../../data/mock.ts";
 
 /* Pick up to five: more would dilute the day. */
 export const CHANNELS = [
@@ -15,15 +16,12 @@ export const MIN_CHANNELS = 3;
 export const MAX_PATHS = 2;
 export const MAX_CIRCLE = 4;
 
-/* Placeholder for the user's name until there are accounts. */
-const NAME = "[Name]";
-
 export const INTRO_MESSAGE =
-  `Hope By Bit: ${NAME} chose you as someone to reach out to when ` +
+  `Hope By Bit: ${MOCK_USER_NAME} chose you as someone to reach out to when ` +
   "things are heavy. Reply YES to be reachable, STOP to decline.";
 
 export const HARD_MESSAGE =
-  `${NAME} is having a hard moment and asked me to let you know. ` +
+  `${MOCK_USER_NAME} is having a hard moment and asked me to let you know. ` +
   "A call or a text would mean a lot right now.";
 
 export type Consent = "pending" | "confirmed" | "declined";
