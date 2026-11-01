@@ -19,12 +19,10 @@ const { title, description, bodyClass } = Astro.props;
          flashes the wrong ground (O6). lib/theme.ts's autoTheme() is the
          same 6/18 split — kept in sync there; this copy can't import. -->
     <script is:inline>
-      var t = localStorage.getItem("theme");
-      if (t !== "light" && t !== "dark") {
-        var h = new Date().getHours();
-        t = (h >= 6 && h < 18) ? "light" : "dark";
-      }
-      document.documentElement.dataset.theme = t;
+      const saved = localStorage.getItem("theme");
+      const h = new Date().getHours();
+      document.documentElement.dataset.theme =
+        saved === "light" || saved === "dark" ? saved : h >= 6 && h < 18 ? "light" : "dark";
     </script>
   </head>
   <body class={bodyClass}>

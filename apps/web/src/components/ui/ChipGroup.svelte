@@ -11,6 +11,6 @@
 
 <div class="chips">
   {#each options as o (o)}
-    <button class="chip" aria-pressed={String(chosen.includes(o))} onclick={() => ontoggle(o)}>{o}</button>
+    <button class="chip" aria-pressed={chosen.includes(o)} onclick={() => ontoggle(o)}>{o}</button>
   {/each}
 </div>

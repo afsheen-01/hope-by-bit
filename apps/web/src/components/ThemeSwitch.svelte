@@ -15,6 +15,9 @@
 
 <div id="theme" role="group" aria-label="Theme">
   {#each OPTIONS as o (o.choice)}
+    <!-- Inlined so the icon takes currentColor. The markup is Phosphor's SVG,
+         bundled at build time — never user input. -->
+    <!-- eslint-disable-next-line svelte/no-at-html-tags -->
     <button type="button" data-choice={o.choice} aria-label={o.label}>{@html o.icon}</button>
   {/each}
 </div>

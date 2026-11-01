@@ -558,7 +558,8 @@
 
   /* ── onboarding: fields ──────────────────────────────────── */
   .field { @apply mt-5; }
-  .field > label {
+  .field > label,
+  .field > .field-label {
     @apply block mb-2 text-text-3 text-pretty;
     font-size: 13px;
     line-height: 1.45;

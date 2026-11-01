@@ -10,7 +10,7 @@
   };
   let { name, label, value = $bindable(), placeholder, type = "text", multiline = false }: Props = $props();
 
-  const id = `f-${name}`;
+  const id = $derived(`f-${name}`);
 </script>
 
 <div class="field">

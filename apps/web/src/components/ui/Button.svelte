@@ -12,7 +12,7 @@
   };
   let { variant = "primary", act, disabled = false, onclick, children }: Props = $props();
 
-  const cls = { primary: "btn", quiet: "btn btn-quiet", skip: "skip" }[variant];
+  const cls = $derived({ primary: "btn", quiet: "btn btn-quiet", skip: "skip" }[variant]);
 </script>
 
 <button class={cls} data-act={act} {disabled} {onclick}>{@render children()}</button>

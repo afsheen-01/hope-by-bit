@@ -29,8 +29,9 @@
 <h1 class="headline">When should it arrive?</h1>
 <p class="body">One arrival a day.</p>
 <div class="field">
-  <label>Every day at</label>
-  <div class="time-box flex items-center gap-2 mt-2" use:timeField>
+  <!-- Names the group rather than one input: Zag sets the inputs' own ids. -->
+  <span class="field-label" id="time-label">Every day at</span>
+  <div class="time-box flex items-center gap-2 mt-2" role="group" aria-labelledby="time-label" use:timeField>
     <div data-seg="hour" class={seg}><input data-part="input" aria-label="Hour" class={input} /></div>
     <span class="text-text-2 text-[22px]">:</span>
     <div data-seg="minute" class={seg}><input data-part="input" aria-label="Minute" class={input} /></div>

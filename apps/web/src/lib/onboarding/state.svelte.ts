@@ -13,9 +13,9 @@ export type Account = "google" | "email" | null;
 class Onboarding {
   step = $state(1);
   notice = $state("");
-  channels = $state<string[]>([]);
-  paths = $state<string[]>([]);
-  circle = $state<Person[]>([]);
+  channels = $state<readonly string[]>([]);
+  paths = $state<readonly string[]>([]);
+  circle = $state<readonly Person[]>([]);
   draftName = $state("");
   draftPhone = $state("");
   intro = $state(INTRO_MESSAGE);

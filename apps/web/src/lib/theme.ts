@@ -6,9 +6,9 @@ export type Theme = "light" | "dark";
 export type ThemeChoice = Theme | "auto";
 export const CHOICES: readonly ThemeChoice[] = ["auto", "light", "dark"];
 
-// ponytail: fixed 6am–6pm daylight window, not real sunrise/sunset for the
-// visitor's location — upgrade to a geolocation-based sunrise calc if a
-// fixed split ever reads wrong somewhere. Base.astro's inline pre-paint
+// A fixed 6am–6pm window, not real sunrise/sunset for the visitor's
+// location. If that ever reads wrong somewhere, a sunrise calculation from
+// the visitor's location can replace it here. Base.astro's inline pre-paint
 // script repeats this rule, because it must run before first paint and
 // can't import.
 export function autoTheme(): Theme {
